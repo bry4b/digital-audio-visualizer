@@ -1,7 +1,7 @@
 m255
 K4
 z2
-Z0 !s12c _opt
+Z0 !s12c _opt2
 Z1 !s99 nomlopt
 R0
 R1
@@ -9,7 +9,17 @@ R0
 R1
 R0
 R1
-R0
+!s12c _opt1
+R1
+Z2 !s12c _opt
+R1
+R2
+R1
+R2
+R1
+R2
+R1
+R2
 R1
 !s11f vlog 2023.3 2023.07, Jul 17 2023
 13
@@ -18,35 +28,86 @@ R1
 !i10e 25
 !i10f 100
 cModel Technology
-Z2 dC:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/simulation/questa
+Z3 dC:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/simulation/questa
 T_opt
 !s110 1733382246
 VI63g56>`6CBjc^G>YfLZ91
 04 12 4 work butterfly_tb fast 0
 =5-9c6b00346243-67515065-398-36c8
 R1
-!s12b OEM100
+Z4 !s12b OEM100
 !s124 OEM10U2 
-o-quiet -auto_acc_if_foreign -work work +acc
-Z3 tCvgOpt 0
+Z5 o-quiet -auto_acc_if_foreign -work work +acc
+Z6 tCvgOpt 0
 n@_opt
-OL;O;2023.3;77
+Z7 OL;O;2023.3;77
+R3
+T_opt1
+!s110 1733393958
+Vh;:TkTFaGa77HU_NbmlZF3
+04 11 4 work issue_queue fast 0
+=1-9c6b00346243-67517e26-24b-938c
+R1
+R4
+!s124 OEM10U1 
+R5
+R6
+n@_opt1
+R7
+R3
+T_opt2
+!s110 1733397506
+V>06Sk;aA7=kZPk_a7k6PM1
+04 14 4 work issue_queue_tb fast 0
+=4-9c6b00346243-67518c01-28e-8da4
+R1
+R4
+!s124 OEM10U28 
+R5
+R6
+n@_opt2
+R7
+varch_reg_file
+2C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/arch_reg_file.sv
+Z8 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
+!s110 1733394270
+!i10b 1
+!s100 [NY`32z[F3a0:;3El1Dkm0
+I=49KB<aS[JoD17BDS[i>P3
+S1
+R3
+w1732582404
+8C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/arch_reg_file.sv
+FC:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/arch_reg_file.sv
+!i122 10
+L0 1 45
+Z9 VDg1SIo80bB@j0V0VzS_@n1
+Z10 OL;L;2023.3;77
+r1
+!s85 0
+31
+!s108 1733394270.000000
+!s107 C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/arch_reg_file.sv|
+!s90 -reportprogress|300|-work|work|C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/arch_reg_file.sv|
+!i113 0
+Z11 o-work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R6
 vbutterfly_4
 2C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_4.sv
-Z4 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
+R8
 !s110 1733381851
 !i10b 1
 !s100 ?1kZ4Tm]_HaVncl_iXNAS3
 IAVnU[DER??IN4AaOf6N^G3
 S1
-R2
+R3
 w1733381717
 8C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_4.sv
 FC:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_4.sv
 !i122 3
 L0 1 53
-Z5 VDg1SIo80bB@j0V0VzS_@n1
-Z6 OL;L;2023.3;77
+R9
+R10
 r1
 !s85 0
 31
@@ -54,24 +115,24 @@ r1
 !s107 C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_4.sv|
 !s90 -reportprogress|300|-work|work|C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_4.sv|
 !i113 0
-Z7 o-work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
-R3
+R11
+R6
 vbutterfly_tb
 2C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv
-R4
+R8
 !s110 1733382243
 !i10b 1
 !s100 5aPg8L8HkCzAXa6F?E^hZ3
 IQ9kXH:<dA`nPfIR5Jm?eC3
 S1
-R2
+R3
 w1733382239
 8C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv
 FC:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv
 !i122 6
 L0 3 49
-R5
-R6
+R9
+R10
 r1
 !s85 0
 31
@@ -79,5 +140,308 @@ r1
 !s107 C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv|
 !s90 -reportprogress|300|-work|work|C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv|
 !i113 0
-R7
+R11
+R6
+vdecode
+Z12 2C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/decode.sv
+R8
+Z13 !s110 1733394265
+!i10b 1
+!s100 Y7;?k0UT[M4dh5^SnR8_33
+I0;Jl]`C[e1AAdfkTm1Vgh3
+S1
 R3
+Z14 w1732581617
+Z15 8C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/decode.sv
+Z16 FC:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/decode.sv
+!i122 9
+L0 1 150
+R9
+R10
+r1
+!s85 0
+31
+Z17 !s108 1733394265.000000
+Z18 !s107 C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/decode.sv|
+Z19 !s90 -reportprogress|300|-work|work|C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/decode.sv|
+!i113 0
+R11
+R6
+vdecode_ALUOp
+R12
+R8
+R13
+!i10b 1
+!s100 fiYV8fgjOAIfnZhGGQITF0
+Ib<5jIg[<bCDNmMHinElIL2
+S1
+R3
+R14
+R15
+R16
+!i122 9
+L0 153 55
+R9
+R10
+r1
+!s85 0
+31
+R17
+R18
+R19
+!i113 0
+R11
+R6
+ndecode_@a@l@u@op
+vfunctional_unit
+2C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/functional_unit.sv
+R8
+!s110 1733396858
+!i10b 1
+!s100 V@J>bniZQ@0j7TaiDn22J1
+IPGQcaKhRK92E@5nWE[2ij1
+S1
+R3
+w1733396344
+8C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/functional_unit.sv
+FC:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/functional_unit.sv
+!i122 20
+L0 1 74
+R9
+R10
+r1
+!s85 0
+31
+!s108 1733396857.000000
+!s107 C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/functional_unit.sv|
+!s90 -reportprogress|300|-work|work|C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/functional_unit.sv|
+!i113 0
+R11
+R6
+vinstr_fetch
+2C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/instr_fetch.sv
+R8
+!s110 1733394274
+!i10b 1
+!s100 dcgciAW7lS94:gVGY>SC>1
+Ii?9omm=MbUzL=FQ2_dSAh0
+S1
+R3
+w1732581260
+8C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/instr_fetch.sv
+FC:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/instr_fetch.sv
+!i122 11
+L0 6 31
+R9
+R10
+r1
+!s85 0
+31
+!s108 1733394274.000000
+!s107 C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/instr_fetch.sv|
+!s90 -reportprogress|300|-work|work|C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/instr_fetch.sv|
+!i113 0
+R11
+R6
+vissue_queue
+2C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/issue_queue.sv
+R8
+!s110 1733397500
+!i10b 1
+!s100 YRcKOcBP1h=^JT_L`@gRl0
+IE]Y72bJ@HSH@`H:<MQlb[3
+S1
+R3
+w1733397490
+8C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/issue_queue.sv
+FC:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/issue_queue.sv
+!i122 24
+L0 1 297
+R9
+R10
+r1
+!s85 0
+31
+!s108 1733397500.000000
+!s107 C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/issue_queue.sv|
+!s90 -reportprogress|300|-work|work|C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/issue_queue.sv|
+!i113 0
+R11
+R6
+vissue_queue_tb
+2C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/issue_queue_tb.sv
+R8
+!s110 1733397497
+!i10b 1
+!s100 R22hj7X@9[Z]mU6:CT`283
+IEAP1D:@VE9cP[5[fkK[1K0
+S1
+R3
+w1733396760
+8C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/issue_queue_tb.sv
+FC:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/issue_queue_tb.sv
+!i122 23
+L0 3 238
+R9
+R10
+r1
+!s85 0
+31
+!s108 1733397497.000000
+!s107 C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/issue_queue_tb.sv|
+!s90 -reportprogress|300|-work|work|C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/issue_queue_tb.sv|
+!i113 0
+R11
+R6
+vissue_select
+2C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/issue_select.sv
+R8
+!s110 1733394277
+!i10b 1
+!s100 4<WA`T1B5>M@mZnT<9VV52
+I2<b6i]VJI06inj2NhIl5G1
+S1
+R3
+w1730428628
+8C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/issue_select.sv
+FC:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/issue_select.sv
+!i122 13
+L0 1 5
+R9
+R10
+r1
+!s85 0
+31
+!s108 1733394277.000000
+!s107 C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/issue_select.sv|
+!s90 -reportprogress|300|-work|work|C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/issue_select.sv|
+!i113 0
+R11
+R6
+vpriority_encoder
+Z20 2C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/priority_encoder.sv
+R8
+Z21 !s110 1733394284
+!i10b 1
+!s100 W^<7PXZhRBo`zC7fA__PY0
+I@N7BkJ2a3OzlgVH?Yz`Y61
+S1
+R3
+Z22 w1732582420
+Z23 8C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/priority_encoder.sv
+Z24 FC:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/priority_encoder.sv
+!i122 14
+L0 1 78
+R9
+R10
+r1
+!s85 0
+31
+Z25 !s108 1733394284.000000
+Z26 !s107 C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/priority_encoder.sv|
+Z27 !s90 -reportprogress|300|-work|work|C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/priority_encoder.sv|
+!i113 0
+R11
+R6
+vpriority_encoder_LSB_4b
+R20
+R8
+R21
+!i10b 1
+!s100 2o7:SVJ?iO5H9j[8j<ogc2
+I[H2^WM7DW2[JYe[5MFF4m1
+S1
+R3
+R22
+R23
+R24
+!i122 14
+L0 94 13
+R9
+R10
+r1
+!s85 0
+31
+R25
+R26
+R27
+!i113 0
+R11
+R6
+npriority_encoder_@l@s@b_4b
+vpriority_encoder_MSB_4b
+R20
+R8
+R21
+!i10b 1
+!s100 e?VBOEKA>AT7nnbSm:GmI1
+IoX5nc1g2mlf7D=6JeK@dY0
+S1
+R3
+R22
+R23
+R24
+!i122 14
+L0 80 13
+R9
+R10
+r1
+!s85 0
+31
+R25
+R26
+R27
+!i113 0
+R11
+R6
+npriority_encoder_@m@s@b_4b
+vrename
+2C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/rename.sv
+R8
+!s110 1733394285
+!i10b 1
+!s100 0[2Hl`j6mT<iIhXFmH>bX3
+Iz:CnFH34]F]AFdOAKbb6L0
+S1
+R3
+w1732580543
+8C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/rename.sv
+FC:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/rename.sv
+!i122 15
+L0 1 97
+R9
+R10
+r1
+!s85 0
+31
+!s108 1733394285.000000
+!s107 C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/rename.sv|
+!s90 -reportprogress|300|-work|work|C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/rename.sv|
+!i113 0
+R11
+R6
+vreorder_buffer
+2C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/reorder_buffer.sv
+R8
+!s110 1733394287
+!i10b 1
+!s100 0G710Fod`l]?ClTODPjHP2
+IMeizYZa=_@BcOGWYkZ=XZ1
+S1
+R3
+w1732583036
+8C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/reorder_buffer.sv
+FC:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/reorder_buffer.sv
+!i122 16
+L0 2 166
+R9
+R10
+r1
+!s85 0
+31
+!s108 1733394287.000000
+!s107 C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/reorder_buffer.sv|
+!s90 -reportprogress|300|-work|work|C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/reorder_buffer.sv|
+!i113 0
+R11
+R6
