@@ -1,0 +1,265 @@
+# Reading pref.tcl
+# //  Questa Intel Starter FPGA Edition-64
+# //  Version 2023.3 win64 Jul 17 2023
+# //
+# //  Copyright 1991-2023 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# do digital-audio-visualizer_run_msim_rtl_systemverilog.do
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Questa Intel Starter FPGA Edition-64 vmap 2023.3 Lib Mapping Utility 2023.07 Jul 17 2023
+# vmap work rtl_work 
+# Copying C:/intelFPGA_lite/23.1/questa_fse/win64/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# 
+# vlog -sv -work work +incdir+C:/Users/bryan/Documents/school/ucla/ieee\ dav\ 2024/digital-audio-visualizer {C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv}
+# Questa Intel Starter FPGA Edition-64 vlog 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 22:36:28 on Dec 04,2024
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer" C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv 
+# -- Compiling module butterfly_tb
+# 
+# Top level modules:
+# 	butterfly_tb
+# End time: 22:36:28 on Dec 04,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+C:/Users/bryan/Documents/school/ucla/ieee\ dav\ 2024/digital-audio-visualizer {C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_4.sv}
+# Questa Intel Starter FPGA Edition-64 vlog 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 22:36:28 on Dec 04,2024
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer" C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_4.sv 
+# -- Compiling module butterfly_4
+# 
+# Top level modules:
+# 	butterfly_4
+# End time: 22:36:28 on Dec 04,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+vsim -voptargs=+acc work.butterfly_tb
+# vsim -voptargs="+acc" work.butterfly_tb 
+# Start time: 22:36:34 on Dec 04,2024
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading sv_std.std
+# Loading work.butterfly_tb(fast)
+# Loading work.butterfly_4(fast)
+add wave -position insertpoint  \
+sim:/butterfly_tb/a \
+sim:/butterfly_tb/b \
+sim:/butterfly_tb/c \
+sim:/butterfly_tb/clk \
+sim:/butterfly_tb/d \
+sim:/butterfly_tb/out0 \
+sim:/butterfly_tb/out1 \
+sim:/butterfly_tb/out2 \
+sim:/butterfly_tb/out3 \
+sim:/butterfly_tb/W0_4 \
+sim:/butterfly_tb/W1_4 \
+sim:/butterfly_tb/W2_4
+run -all
+# ** Error: Re{0}
+#    Time: 10 ns  Scope: butterfly_tb File: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv Line: 36
+# ** Error: Im{0}
+#    Time: 10 ns  Scope: butterfly_tb File: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv Line: 37
+# ** Error: Re{1}
+#    Time: 10 ns  Scope: butterfly_tb File: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv Line: 38
+# ** Error: Im{1}
+#    Time: 10 ns  Scope: butterfly_tb File: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv Line: 39
+# ** Error: Re{2}
+#    Time: 10 ns  Scope: butterfly_tb File: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv Line: 40
+# ** Error: Im{2}
+#    Time: 10 ns  Scope: butterfly_tb File: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv Line: 41
+# ** Error: Re{3}
+#    Time: 10 ns  Scope: butterfly_tb File: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv Line: 42
+# ** Error: Im{3}
+#    Time: 10 ns  Scope: butterfly_tb File: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv Line: 43
+# ** Note: $stop    : C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv(45)
+#    Time: 110 ns  Iteration: 0  Instance: /butterfly_tb
+# Break in Module butterfly_tb at C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv line 45
+vlog -reportprogress 300 -work work {C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv}
+# Questa Intel Starter FPGA Edition-64 vlog 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 22:43:41 on Dec 04,2024
+# vlog -reportprogress 300 -work work C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv 
+# -- Compiling module butterfly_tb
+# 
+# Top level modules:
+# 	butterfly_tb
+# End time: 22:43:41 on Dec 04,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+restart -f
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading sv_std.std
+# Loading work.butterfly_tb(fast)
+# Loading work.butterfly_4(fast)
+run -all
+# ** Error: Re{0}
+#    Time: 10 ns  Scope: butterfly_tb File: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv Line: 36
+# ** Error: Re{1}
+#    Time: 10 ns  Scope: butterfly_tb File: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv Line: 38
+# ** Error: Re{2}
+#    Time: 10 ns  Scope: butterfly_tb File: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv Line: 40
+# ** Error: Re{3}
+#    Time: 10 ns  Scope: butterfly_tb File: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv Line: 42
+# ** Note: $stop    : C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv(45)
+#    Time: 110 ns  Iteration: 0  Instance: /butterfly_tb
+# Break in Module butterfly_tb at C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv line 45
+vlog -reportprogress 300 -work work {C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_4.sv}
+# Questa Intel Starter FPGA Edition-64 vlog 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 22:57:31 on Dec 04,2024
+# vlog -reportprogress 300 -work work C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_4.sv 
+# -- Compiling module butterfly_4
+# 
+# Top level modules:
+# 	butterfly_4
+# End time: 22:57:31 on Dec 04,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vlog -reportprogress 300 -work work {C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv}
+# Questa Intel Starter FPGA Edition-64 vlog 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 22:57:32 on Dec 04,2024
+# vlog -reportprogress 300 -work work C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv 
+# -- Compiling module butterfly_tb
+# 
+# Top level modules:
+# 	butterfly_tb
+# End time: 22:57:32 on Dec 04,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading sv_std.std
+# Loading work.butterfly_tb(fast)
+# Loading work.butterfly_4(fast)
+run -all
+# ** Note: $stop    : C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv(45)
+#    Time: 110 ns  Iteration: 0  Instance: /butterfly_tb
+# Break in Module butterfly_tb at C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv line 45
+vlog -reportprogress 300 -work work {C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv}
+# Questa Intel Starter FPGA Edition-64 vlog 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 22:58:39 on Dec 04,2024
+# vlog -reportprogress 300 -work work C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv 
+# -- Compiling module butterfly_tb
+# ** Error: (vlog-13069) C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv(14): near "DUT": syntax error, unexpected IDENTIFIER, expecting ';'.
+# End time: 22:58:40 on Dec 04,2024, Elapsed time: 0:00:01
+# Errors: 1, Warnings: 0
+vlog -reportprogress 300 -work work {C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv}
+# Questa Intel Starter FPGA Edition-64 vlog 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 23:00:07 on Dec 04,2024
+# vlog -reportprogress 300 -work work C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv 
+# -- Compiling module butterfly_tb
+# 
+# Top level modules:
+# 	butterfly_tb
+# End time: 23:00:07 on Dec 04,2024, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading sv_std.std
+# Loading work.butterfly_tb(fast)
+# Loading work.butterfly_4(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (32) for port 'a'. The port definition is at: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_4.sv(4).
+#    Time: 0 ns  Iteration: 0  Instance: /butterfly_tb/DUT File: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv Line: 14
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (32) for port 'b'. The port definition is at: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_4.sv(4).
+#    Time: 0 ns  Iteration: 0  Instance: /butterfly_tb/DUT File: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv Line: 14
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (32) for port 'c'. The port definition is at: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_4.sv(4).
+#    Time: 0 ns  Iteration: 0  Instance: /butterfly_tb/DUT File: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv Line: 14
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (32) for port 'd'. The port definition is at: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_4.sv(4).
+#    Time: 0 ns  Iteration: 0  Instance: /butterfly_tb/DUT File: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv Line: 14
+# ** Warning: (vsim-3015) [PCDPC] - Port size (14) does not match connection size (34) for port 'w0'. The port definition is at: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_4.sv(5).
+#    Time: 0 ns  Iteration: 0  Instance: /butterfly_tb/DUT File: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv Line: 14
+# ** Warning: (vsim-3015) [PCDPC] - Port size (14) does not match connection size (34) for port 'w1'. The port definition is at: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_4.sv(5).
+#    Time: 0 ns  Iteration: 0  Instance: /butterfly_tb/DUT File: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv Line: 14
+# ** Warning: (vsim-3015) [PCDPC] - Port size (14) does not match connection size (34) for port 'w2'. The port definition is at: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_4.sv(5).
+#    Time: 0 ns  Iteration: 0  Instance: /butterfly_tb/DUT File: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv Line: 14
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (32) for port 'out0'. The port definition is at: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_4.sv(7).
+#    Time: 0 ns  Iteration: 0  Instance: /butterfly_tb/DUT File: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv Line: 14
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (32) for port 'out1'. The port definition is at: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_4.sv(7).
+#    Time: 0 ns  Iteration: 0  Instance: /butterfly_tb/DUT File: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv Line: 14
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (32) for port 'out2'. The port definition is at: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_4.sv(7).
+#    Time: 0 ns  Iteration: 0  Instance: /butterfly_tb/DUT File: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv Line: 14
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (32) for port 'out3'. The port definition is at: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_4.sv(7).
+#    Time: 0 ns  Iteration: 0  Instance: /butterfly_tb/DUT File: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv Line: 14
+run -all
+# ** Error: Re{0}
+#    Time: 10 ns  Scope: butterfly_tb File: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv Line: 36
+# ** Error: Re{1}
+#    Time: 10 ns  Scope: butterfly_tb File: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv Line: 38
+# ** Error: Im{1}
+#    Time: 10 ns  Scope: butterfly_tb File: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv Line: 39
+# ** Error: Re{2}
+#    Time: 10 ns  Scope: butterfly_tb File: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv Line: 40
+# ** Error: Re{3}
+#    Time: 10 ns  Scope: butterfly_tb File: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv Line: 42
+# ** Error: Im{3}
+#    Time: 10 ns  Scope: butterfly_tb File: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv Line: 43
+# ** Note: $stop    : C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv(45)
+#    Time: 110 ns  Iteration: 0  Instance: /butterfly_tb
+# Break in Module butterfly_tb at C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv line 45
+vlog -reportprogress 300 -work work {C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv}
+# Questa Intel Starter FPGA Edition-64 vlog 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 23:03:39 on Dec 04,2024
+# vlog -reportprogress 300 -work work C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv 
+# -- Compiling module butterfly_tb
+# ** Error: (vlog-13069) C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv(33): near "'d": syntax error, unexpected BASE, expecting ',' or '}'.
+# ** Error: (vlog-13069) C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv(34): near "'d": syntax error, unexpected BASE, expecting ',' or '}'.
+# ** Error: (vlog-13069) C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv(35): near "'d": syntax error, unexpected BASE, expecting ',' or '}'.
+# ** Error: (vlog-13069) C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv(36): near "'d": syntax error, unexpected BASE, expecting ',' or '}'.
+# ** Error: (vlog-13069) C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv(39): near "'d": syntax error, unexpected BASE.
+# ** Error: (vlog-13069) C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv(40): near "'d": syntax error, unexpected BASE.
+# ** Error: (vlog-13069) C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv(41): near "'d": syntax error, unexpected BASE.
+# ** Error: (vlog-13069) C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv(42): near "'d": syntax error, unexpected BASE.
+# ** Error: (vlog-13069) C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv(43): near "'d": syntax error, unexpected BASE.
+# ** Error: (vlog-13069) C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv(44): near "'d": syntax error, unexpected BASE.
+# ** Error: (vlog-13069) C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv(45): near "'d": syntax error, unexpected BASE.
+# ** Error: (vlog-13069) C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv(46): near "'d": syntax error, unexpected BASE.
+# End time: 23:03:39 on Dec 04,2024, Elapsed time: 0:00:00
+# Errors: 12, Warnings: 0
+vlog -reportprogress 300 -work work {C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv}
+# Questa Intel Starter FPGA Edition-64 vlog 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 23:04:02 on Dec 04,2024
+# vlog -reportprogress 300 -work work C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv 
+# -- Compiling module butterfly_tb
+# 
+# Top level modules:
+# 	butterfly_tb
+# End time: 23:04:03 on Dec 04,2024, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading sv_std.std
+# Loading work.butterfly_tb(fast)
+# Loading work.butterfly_4(fast)
+# Warning in wave window restart: (vish-4014) No objects found matching '/butterfly_tb/out0_re'. 
+# Warning in wave window restart: (vish-4014) No objects found matching '/butterfly_tb/out0_im'. 
+# Warning in wave window restart: (vish-4014) No objects found matching '/butterfly_tb/out1_re'. 
+# Warning in wave window restart: (vish-4014) No objects found matching '/butterfly_tb/out1_im'. 
+run -all
+# ** Note: $stop    : C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv(48)
+#    Time: 110 ns  Iteration: 0  Instance: /butterfly_tb
+# Break in Module butterfly_tb at C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv line 48
+# Causality operation skipped due to absence of debug database file
+add dataflow \
+sim:/butterfly_tb/d 
+add dataflow \
+sim:/butterfly_tb/out1 

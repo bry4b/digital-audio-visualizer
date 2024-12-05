@@ -1,0 +1,83 @@
+m255
+K4
+z2
+Z0 !s12c _opt
+Z1 !s99 nomlopt
+R0
+R1
+R0
+R1
+R0
+R1
+R0
+R1
+!s11f vlog 2023.3 2023.07, Jul 17 2023
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z2 dC:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/simulation/questa
+T_opt
+!s110 1733382246
+VI63g56>`6CBjc^G>YfLZ91
+04 12 4 work butterfly_tb fast 0
+=5-9c6b00346243-67515065-398-36c8
+R1
+!s12b OEM100
+!s124 OEM10U2 
+o-quiet -auto_acc_if_foreign -work work +acc
+Z3 tCvgOpt 0
+n@_opt
+OL;O;2023.3;77
+vbutterfly_4
+2C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_4.sv
+Z4 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
+!s110 1733381851
+!i10b 1
+!s100 ?1kZ4Tm]_HaVncl_iXNAS3
+IAVnU[DER??IN4AaOf6N^G3
+S1
+R2
+w1733381717
+8C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_4.sv
+FC:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_4.sv
+!i122 3
+L0 1 53
+Z5 VDg1SIo80bB@j0V0VzS_@n1
+Z6 OL;L;2023.3;77
+r1
+!s85 0
+31
+!s108 1733381851.000000
+!s107 C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_4.sv|
+!s90 -reportprogress|300|-work|work|C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_4.sv|
+!i113 0
+Z7 o-work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R3
+vbutterfly_tb
+2C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv
+R4
+!s110 1733382243
+!i10b 1
+!s100 5aPg8L8HkCzAXa6F?E^hZ3
+IQ9kXH:<dA`nPfIR5Jm?eC3
+S1
+R2
+w1733382239
+8C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv
+FC:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv
+!i122 6
+L0 3 49
+R5
+R6
+r1
+!s85 0
+31
+!s108 1733382242.000000
+!s107 C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv|
+!s90 -reportprogress|300|-work|work|C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv|
+!i113 0
+R7
+R3

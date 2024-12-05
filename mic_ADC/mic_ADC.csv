@@ -1,0 +1,31 @@
+# system info mic_ADC on 2024.12.04.22:12:38
+system_info:
+name,value
+DEVICE,10M50DAF484C7G
+DEVICE_FAMILY,MAX 10
+GENERATION_ID,1733379156
+#
+#
+# Files generated for mic_ADC on 2024.12.04.22:12:38
+files:
+filepath,kind,attributes,module,is_top
+simulation/mic_ADC.v,VERILOG,,mic_ADC,true
+simulation/submodules/altera_up_avalon_adv_adc.v,VERILOG,,mic_ADC_adc_mega_0,false
+simulation/submodules/altera_modular_adc_control.v,VERILOG,,mic_ADC_adc_mega_0,false
+simulation/submodules/altera_modular_adc_control_avrg_fifo.v,VERILOG,,mic_ADC_adc_mega_0,false
+simulation/submodules/altera_modular_adc_control_fsm.v,VERILOG,,mic_ADC_adc_mega_0,false
+simulation/submodules/altera_modular_adc_sample_store.v,VERILOG,,mic_ADC_adc_mega_0,false
+simulation/submodules/altera_modular_adc_sample_store_ram.v,VERILOG,,mic_ADC_adc_mega_0,false
+simulation/submodules/altera_modular_adc_sequencer.v,VERILOG,,mic_ADC_adc_mega_0,false
+simulation/submodules/altera_modular_adc_sequencer_csr.v,VERILOG,,mic_ADC_adc_mega_0,false
+simulation/submodules/altera_modular_adc_sequencer_ctrl.v,VERILOG,,mic_ADC_adc_mega_0,false
+simulation/submodules/chsel_code_converter_sw_to_hw.v,VERILOG,,mic_ADC_adc_mega_0,false
+simulation/submodules/DE10_Lite_ADC_Core_modular_adc_0.v,VERILOG,,mic_ADC_adc_mega_0,false
+simulation/submodules/fiftyfivenm_adcblock_primitive_wrapper.v,VERILOG,,mic_ADC_adc_mega_0,false
+simulation/submodules/fiftyfivenm_adcblock_top_wrapper.v,VERILOG,,mic_ADC_adc_mega_0,false
+simulation/submodules/mic_ADC_adc_mega_0.v,VERILOG,,mic_ADC_adc_mega_0,false
+#
+# Map from instance-path to kind of module
+instances:
+instancePath,module
+mic_ADC.adc_mega_0,mic_ADC_adc_mega_0
