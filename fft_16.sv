@@ -1,6 +1,6 @@
-module fft_64 #(
+module fft_16 #(
     parameter WIDTH = 12,
-    parameter N = 64  // must be power of 4
+    parameter N = 16  // must be power of 4
 ) (
     input clk,
     input rst,
@@ -19,7 +19,7 @@ module fft_64 #(
         https://www.ti.com/lit/an/spra152/spra152.pdf 
         https://www.cmlab.csie.ntu.edu.tw/cml/dsp/training/coding/transform/fft.html
         https://thescipub.com/abstract/ajassp.2007.570.575 
-        https://www.worldscientific.com/doi/abs/10.1142/S021812661240018X
+        https://www.worldscientific.com/doi/abs/10.1142/S021812661240018X 
 */
 
 localparam N_BUTTERFLY = (N+3)/4;
@@ -32,6 +32,16 @@ logic [FULL_WIDTH-1:0] b [0:N_BUTTERFLY-1];
 logic [FULL_WIDTH-1:0] c [0:N_BUTTERFLY-1];
 logic [FULL_WIDTH-1:0] d [0:N_BUTTERFLY-1];
 
+// logic [FULL_WIDTH-1:0] out0 [0:N_BUTTERFLY-1];
+// logic [FULL_WIDTH-1:0] out1 [0:N_BUTTERFLY-1];
+// logic [FULL_WIDTH-1:0] out2 [0:N_BUTTERFLY-1];
+// logic [FULL_WIDTH-1:0] out3 [0:N_BUTTERFLY-1];
+
+// logic [FULL_WIDTH-1:0] out0_d [0:N_BUTTERFLY-1];
+// logic [FULL_WIDTH-1:0] out1_d [0:N_BUTTERFLY-1];
+// logic [FULL_WIDTH-1:0] out2_d [0:N_BUTTERFLY-1];
+// logic [FULL_WIDTH-1:0] out3_d [0:N_BUTTERFLY-1];
+
 // outputs 0:3 of butterfly units 0:N_BUTTERFLY-1, each of width FULL_WIDTH. 
 logic [FULL_WIDTH-1:0] out   [0:3] [0:N_BUTTERFLY-1];
 logic [FULL_WIDTH-1:0] out_l [0:3] [0:N_BUTTERFLY-1];   // last stage outputs
@@ -42,23 +52,24 @@ logic [FULL_WIDTH+1:0] w1 [0:N_BUTTERFLY-1];
 logic [FULL_WIDTH+1:0] w2 [0:N_BUTTERFLY-1];
 logic [FULL_WIDTH+1:0] w3 [0:N_BUTTERFLY-1];
 
-logic [FULL_WIDTH+1:0] w_64 [0:9] = '{
-    {{1'b0, (12'd1<<11)},   {1'b0, (12'd0)}},        // W0
-    {{1'b0, (12'd1892)},    {1'b1, (-12'd784)}},     // W2
-    {{1'b0, (12'd1448)},    {1'b1, (-12'd1448)}},    // W4
-    {{1'b0, (12'd784)},     {1'b1, (-12'd1892)}},    // W6
-    {{1'b0, (12'd0)},       {1'b1, (-12'd1<<11)}},   // W8
-    {{1'b1, (-12'd784)},    {1'b1, (-12'd1892)}},    // W10
-    {{1'b1, (-12'd1448)},   {1'b1, (-12'd1448)}},    // W12
-    {{1'b1, (-12'd1892)},   {1'b1, (-12'd784)}},     // W14
-    {{1'b1, (-12'd1<<11)},  {1'b0, (12'd0)}},        // W16
-    {{1'b1, (-12'd1892)},   {1'b0, (12'd784)}}       // W18
+logic [FULL_WIDTH+1:0] w_16 [0:9] = '{
+    {{1'b0, (12'd1<<11)},   {1'b0, (12'd0)}},       // W0
+    {{1'b0, (12'd1892)},    {1'b1, (-12'd784)}},     // W1
+    {{1'b0, (12'd1448)},    {1'b1, (-12'd1448)}},    // W2
+    {{1'b0, (12'd784)},     {1'b1, (-12'd1892)}},    // W3
+    {{1'b0, (12'd0)},       {1'b1, (-12'd1<<11)}},   // W4
+    {{1'b1, (-12'd784)},    {1'b1, (-12'd1892)}},    // W5
+    {{1'b1, (-12'd1448)},   {1'b1, (-12'd1448)}},    // W6
+    {{1'b1, (-12'd1892)},   {1'b1, (-12'd784)}},     // W7
+    {{1'b1, (-12'd1<<11)},  {1'b0, (12'd0)}},       // W8
+    {{1'b1, (-12'd1892)},   {1'b0, (12'd784)}}      // W9
 };
 
-typedef enum logic [2:0] {SET, STAGE1, STAGE2, STAGE3, DONE} state_t;
+typedef enum logic [1:0] {SET, STAGE1, STAGE2, DONE} state_t;
 state_t state, state_d;
 
 logic [1:0] done_sr;
+
 assign done = (state == DONE);
 
 genvar i;
@@ -95,7 +106,7 @@ always_ff @(posedge clk) begin
     if (rst) begin
         done_sr <= 2'b0;
     end else begin
-        done_sr <= {done, done_sr[1]};
+        done_sr <= {state_d == DONE, done_sr[1]};
     end
 end
 
@@ -123,40 +134,23 @@ always_comb begin
             b[i] = {time_samples[i+N_BUTTERFLY*1], 12'b0};
             c[i] = {time_samples[i+N_BUTTERFLY*2], 12'b0};
             d[i] = {time_samples[i+N_BUTTERFLY*3], 12'b0};
-            w0[i]= w_64[0];
-            w1[i]= w_64[0];
-            w2[i]= w_64[0];
-            w3[i]= w_64[0];
+            w0[i]= w_16[0];
+            w1[i]= w_16[0];
+            w2[i]= w_16[0];
+            w3[i]= w_16[0];
         end
     end
 
     STAGE2: begin
-        for (int i = 0; i < N_BUTTERFLY/4; i++) begin
-            for (int j = 0; j < 4; j++) begin
-                a[i*4+j] = out[i][j+0];
-                b[i*4+j] = out[i][j+4];
-                c[i*4+j] = out[i][j+8];
-                d[i*4+j] = out[i][j+12];
-                w0[i*4+j]= w_64[i*(j+0)];
-                w1[i*4+j]= w_64[i*(j+4)];
-                w2[i*4+j]= w_64[i*(j+8)];
-                w3[i*4+j]= w_64[i*(j+12)];
-            end
-        end
-    end
-
-    STAGE3: begin
-        for (int i = 0; i < N_BUTTERFLY/4; i++) begin
-            for (int j = 0; j < 4; j++) begin
-                a[i*4+j] = out[j][i*4+0];
-                b[i*4+j] = out[j][i*4+1];
-                c[i*4+j] = out[j][i*4+2];
-                d[i*4+j] = out[j][i*4+3];
-                w0[i*4+j]= w_64[j*0];
-                w1[i*4+j]= w_64[j*4];
-                w2[i*4+j]= w_64[j*8];
-                w3[i*4+j]= w_64[j*12];
-            end
+        for (int i = 0; i < N_BUTTERFLY; i++) begin
+            a[i] = out[i][0];
+            b[i] = out[i][1];
+            c[i] = out[i][2];
+            d[i] = out[i][3];
+            w0[i]= w_16[i*0];
+            w1[i]= w_16[i*1];
+            w2[i]= w_16[i*2];
+            w3[i]= w_16[i*3];
         end
     end
 
@@ -219,14 +213,6 @@ always_comb begin
         if (rst) begin
             state_d = SET;
         end else begin
-            state_d = STAGE3;
-        end
-    end
-
-    STAGE3: begin
-        if (rst) begin
-            state_d = SET;
-        end else begin 
             state_d = DONE;
         end
     end
