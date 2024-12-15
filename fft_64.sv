@@ -34,7 +34,6 @@ logic [FULL_WIDTH-1:0] d [0:N_BUTTERFLY-1];
 
 // outputs 0:3 of butterfly units 0:N_BUTTERFLY-1, each of width FULL_WIDTH. 
 logic [FULL_WIDTH-1:0] out   [0:3] [0:N_BUTTERFLY-1];
-logic [FULL_WIDTH-1:0] out_l [0:3] [0:N_BUTTERFLY-1];   // last stage outputs
 logic [FULL_WIDTH-1:0] out_d [0:3] [0:N_BUTTERFLY-1];   // next outputs
 
 logic [FULL_WIDTH+1:0] w0 [0:N_BUTTERFLY-1];
@@ -146,12 +145,11 @@ always_ff @(posedge clk) begin
     // out3 <= out3_d;
 
     out <= out_d;
-    out_l <= out;
 
     if (rst) begin
         done_sr <= 2'b0;
     end else begin
-        done_sr <= {done, done_sr[1]};
+        done_sr <= {(state_d == DONE), done_sr[1]};
     end
 end
 
@@ -172,7 +170,6 @@ always_comb begin
     end
 
     // load time samples into upper 12 bits (real part) of a,b,c,d inputs 
-    // time sample indices are bit-reversed for loading WRONG
     STAGE1: begin   
         for (int i = 0; i < N_BUTTERFLY; i++) begin
             a[i] = {time_samples[i+N_BUTTERFLY*0], 12'b0};
@@ -187,7 +184,7 @@ always_comb begin
     end
 
     STAGE2: begin
-        for (int i = 0; i < N_BUTTERFLY/4; i++) begin
+        for (int i = 0; i < 4; i++) begin
             for (int j = 0; j < 4; j++) begin
                 a[i*4+j] = out[i][j+0];
                 b[i*4+j] = out[i][j+4];
@@ -202,7 +199,7 @@ always_comb begin
     end
 
     STAGE3: begin
-        for (int i = 0; i < N_BUTTERFLY/4; i++) begin
+        for (int i = 0; i < 4; i++) begin
             for (int j = 0; j < 4; j++) begin
                 a[i*4+j] = out[j][i*4+0];
                 b[i*4+j] = out[j][i*4+1];
@@ -215,7 +212,7 @@ always_comb begin
             end
         end
     end
-
+    
     DONE: begin
         for (int i = 0; i < N_BUTTERFLY; i++) begin
             // a[i] = out_l[i][0];
@@ -309,11 +306,13 @@ always_ff @(negedge clk) begin
             freq_samples[i] <= 1'b0;
         end
     end else if (done_sr == 2'b10) begin
-        for (int i = 0; i < N_BUTTERFLY; i++) begin
-            freq_samples[i+N_BUTTERFLY*0] <= out[0][i][FULL_WIDTH-1:WIDTH];
-            freq_samples[i+N_BUTTERFLY*1] <= out[1][i][FULL_WIDTH-1:WIDTH];
-            freq_samples[i+N_BUTTERFLY*2] <= out[2][i][FULL_WIDTH-1:WIDTH];
-            freq_samples[i+N_BUTTERFLY*3] <= out[3][i][FULL_WIDTH-1:WIDTH];
+        for (int i = 0; i < 4; i++) begin
+            for (int j = 0; j < 4; j++) begin
+                freq_samples[i+j*4+N_BUTTERFLY*0] <= out[0][i*4+j][FULL_WIDTH-1:WIDTH];
+                freq_samples[i+j*4+N_BUTTERFLY*1] <= out[1][i*4+j][FULL_WIDTH-1:WIDTH];
+                freq_samples[i+j*4+N_BUTTERFLY*2] <= out[2][i*4+j][FULL_WIDTH-1:WIDTH];
+                freq_samples[i+j*4+N_BUTTERFLY*3] <= out[3][i*4+j][FULL_WIDTH-1:WIDTH];
+            end
         end
     end
 end

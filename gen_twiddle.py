@@ -10,7 +10,7 @@ def gen_twiddle(N, width=16):
     
     for i in range(0, len(twiddle)):
         x = twiddle[i]
-        print("{{1'b" + str(1 if np.real(x) < 0 else 0) + ", "+ ("-" if np.real(x) < 0 else "") + str(width) + "'d" + str(np.abs(int(np.round(np.real(x))))) + "},\t{1'b" + str(1 if np.imag(x) < 0 else 0) + ", " + ("-" if np.imag(x) < 0 else "") + str(width) + "'d" + str(np.abs(int(np.round(np.imag(x))))) + "}}", end="")
+        print("{{1'b" + str(1 if np.real(x) < 0 else 0) + ", "+ ("-" if np.real(x) < 0 else " ") + str(width) + "'d" + str(np.abs(int(np.round(np.real(x))))) + "},\t{1'b" + str(1 if np.imag(x) < 0 else 0) + ", " + ("-" if np.imag(x) < 0 else " ") + str(width) + "'d" + str(np.abs(int(np.round(np.imag(x))))) + "}}", end="")
         if i != len(twiddle)-1:
             print(",", end="")
         print ("\t// W" + str(i), end="")
@@ -18,4 +18,4 @@ def gen_twiddle(N, width=16):
 
     return twiddle
 
-gen_twiddle(64, width=12)
+gen_twiddle(256, width=12)

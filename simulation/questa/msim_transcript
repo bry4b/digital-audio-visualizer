@@ -24,631 +24,137 @@
 # Copying C:/intelFPGA_lite/23.1/questa_fse/win64/../modelsim.ini to modelsim.ini
 # Modifying modelsim.ini
 # 
-# vlog -sv -work work +incdir+C:/Users/bryan/Documents/school/ucla/ieee\ dav\ 2024/digital-audio-visualizer {C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv}
+# vlog -sv -work work +incdir+C:/Users/bryan/Documents/school/ucla/ieee\ dav\ 2024/digital-audio-visualizer {C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/fft_64_tb.sv}
 # Questa Intel Starter FPGA Edition-64 vlog 2023.3 Compiler 2023.07 Jul 17 2023
-# Start time: 22:36:28 on Dec 04,2024
-# vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer" C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv 
-# -- Compiling module butterfly_tb
+# Start time: 21:43:15 on Dec 14,2024
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer" C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/fft_64_tb.sv 
+# -- Compiling module fft_64_tb
 # 
 # Top level modules:
-# 	butterfly_tb
-# End time: 22:36:28 on Dec 04,2024, Elapsed time: 0:00:00
+# 	fft_64_tb
+# End time: 21:43:16 on Dec 14,2024, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+C:/Users/bryan/Documents/school/ucla/ieee\ dav\ 2024/digital-audio-visualizer {C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/fft_64.sv}
+# Questa Intel Starter FPGA Edition-64 vlog 2023.3 Compiler 2023.07 Jul 17 2023
+# Start time: 21:43:16 on Dec 14,2024
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer" C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/fft_64.sv 
+# -- Compiling module fft_64
+# 
+# Top level modules:
+# 	fft_64
+# End time: 21:43:16 on Dec 14,2024, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -sv -work work +incdir+C:/Users/bryan/Documents/school/ucla/ieee\ dav\ 2024/digital-audio-visualizer {C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_4.sv}
 # Questa Intel Starter FPGA Edition-64 vlog 2023.3 Compiler 2023.07 Jul 17 2023
-# Start time: 22:36:28 on Dec 04,2024
+# Start time: 21:43:16 on Dec 14,2024
 # vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer" C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_4.sv 
 # -- Compiling module butterfly_4
 # 
 # Top level modules:
 # 	butterfly_4
-# End time: 22:36:28 on Dec 04,2024, Elapsed time: 0:00:00
+# End time: 21:43:16 on Dec 14,2024, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
-vsim -voptargs=+acc work.butterfly_tb
-# vsim -voptargs="+acc" work.butterfly_tb 
-# Start time: 22:36:34 on Dec 04,2024
+vsim -voptargs=+acc work.fft_64_tb
+# vsim -voptargs="+acc" work.fft_64_tb 
+# Start time: 21:43:21 on Dec 14,2024
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vopt-143) Recognized 1 FSM in module "fft_64(fast)".
 # ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
 # Loading sv_std.std
-# Loading work.butterfly_tb(fast)
+# Loading work.fft_64_tb(fast)
+# Loading work.fft_64(fast)
 # Loading work.butterfly_4(fast)
 add wave -position insertpoint  \
-sim:/butterfly_tb/a \
-sim:/butterfly_tb/b \
-sim:/butterfly_tb/c \
-sim:/butterfly_tb/clk \
-sim:/butterfly_tb/d \
-sim:/butterfly_tb/out0 \
-sim:/butterfly_tb/out1 \
-sim:/butterfly_tb/out2 \
-sim:/butterfly_tb/out3 \
-sim:/butterfly_tb/W0_4 \
-sim:/butterfly_tb/W1_4 \
-sim:/butterfly_tb/W2_4
+sim:/fft_64_tb/clk \
+sim:/fft_64_tb/done \
+sim:/fft_64_tb/freq_samples \
+sim:/fft_64_tb/rst \
+sim:/fft_64_tb/start \
+sim:/fft_64_tb/time_samples
 run -all
-# ** Error: Re{0}
-#    Time: 10 ns  Scope: butterfly_tb File: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv Line: 36
-# ** Error: Im{0}
-#    Time: 10 ns  Scope: butterfly_tb File: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv Line: 37
-# ** Error: Re{1}
-#    Time: 10 ns  Scope: butterfly_tb File: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv Line: 38
-# ** Error: Im{1}
-#    Time: 10 ns  Scope: butterfly_tb File: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv Line: 39
-# ** Error: Re{2}
-#    Time: 10 ns  Scope: butterfly_tb File: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv Line: 40
-# ** Error: Im{2}
-#    Time: 10 ns  Scope: butterfly_tb File: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv Line: 41
-# ** Error: Re{3}
-#    Time: 10 ns  Scope: butterfly_tb File: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv Line: 42
-# ** Error: Im{3}
-#    Time: 10 ns  Scope: butterfly_tb File: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv Line: 43
-# ** Note: $stop    : C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv(45)
-#    Time: 110 ns  Iteration: 0  Instance: /butterfly_tb
-# Break in Module butterfly_tb at C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv line 45
-vlog -reportprogress 300 -work work {C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv}
-# Questa Intel Starter FPGA Edition-64 vlog 2023.3 Compiler 2023.07 Jul 17 2023
-# Start time: 22:43:41 on Dec 04,2024
-# vlog -reportprogress 300 -work work C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv 
-# -- Compiling module butterfly_tb
-# 
-# Top level modules:
-# 	butterfly_tb
-# End time: 22:43:41 on Dec 04,2024, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-restart -f
+# ** Note: $stop    : C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/fft_64_tb.sv(34)
+#    Time: 70 ns  Iteration: 0  Instance: /fft_64_tb
+# Break in Module fft_64_tb at C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/fft_64_tb.sv line 34
+add wave -position insertpoint  \
+sim:/fft_64_tb/DUT/a \
+sim:/fft_64_tb/DUT/b \
+sim:/fft_64_tb/DUT/c \
+sim:/fft_64_tb/DUT/d \
+sim:/fft_64_tb/DUT/done_sr \
+sim:/fft_64_tb/DUT/freq_samples \
+sim:/fft_64_tb/DUT/out \
+sim:/fft_64_tb/DUT/out_d \
+sim:/fft_64_tb/DUT/out_l \
+sim:/fft_64_tb/DUT/rst \
+sim:/fft_64_tb/DUT/start \
+sim:/fft_64_tb/DUT/state \
+sim:/fft_64_tb/DUT/state_d \
+sim:/fft_64_tb/DUT/time_samples \
+sim:/fft_64_tb/DUT/w0 \
+sim:/fft_64_tb/DUT/w1 \
+sim:/fft_64_tb/DUT/w2 \
+sim:/fft_64_tb/DUT/w3 \
+sim:/fft_64_tb/DUT/w_64
+restart
 # ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
-# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
-# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-8009) Loading existing optimized design _opt
 # ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
-# Loading sv_std.std
-# Loading work.butterfly_tb(fast)
+# Loading work.fft_64_tb(fast)
+# Loading work.fft_64(fast)
 # Loading work.butterfly_4(fast)
 run -all
-# ** Error: Re{0}
-#    Time: 10 ns  Scope: butterfly_tb File: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv Line: 36
-# ** Error: Re{1}
-#    Time: 10 ns  Scope: butterfly_tb File: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv Line: 38
-# ** Error: Re{2}
-#    Time: 10 ns  Scope: butterfly_tb File: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv Line: 40
-# ** Error: Re{3}
-#    Time: 10 ns  Scope: butterfly_tb File: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv Line: 42
-# ** Note: $stop    : C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv(45)
-#    Time: 110 ns  Iteration: 0  Instance: /butterfly_tb
-# Break in Module butterfly_tb at C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv line 45
-vlog -reportprogress 300 -work work {C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_4.sv}
+# ** Note: $stop    : C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/fft_64_tb.sv(34)
+#    Time: 70 ns  Iteration: 0  Instance: /fft_64_tb
+# Break in Module fft_64_tb at C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/fft_64_tb.sv line 34
+# Optimization canceled
+vlog -reportprogress 300 -work work {C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/fft_64.sv}
 # Questa Intel Starter FPGA Edition-64 vlog 2023.3 Compiler 2023.07 Jul 17 2023
-# Start time: 22:57:31 on Dec 04,2024
-# vlog -reportprogress 300 -work work C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_4.sv 
-# -- Compiling module butterfly_4
+# Start time: 21:47:55 on Dec 14,2024
+# vlog -reportprogress 300 -work work C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/fft_64.sv 
+# -- Compiling module fft_64
 # 
 # Top level modules:
-# 	butterfly_4
-# End time: 22:57:31 on Dec 04,2024, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vlog -reportprogress 300 -work work {C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv}
-# Questa Intel Starter FPGA Edition-64 vlog 2023.3 Compiler 2023.07 Jul 17 2023
-# Start time: 22:57:32 on Dec 04,2024
-# vlog -reportprogress 300 -work work C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv 
-# -- Compiling module butterfly_tb
-# 
-# Top level modules:
-# 	butterfly_tb
-# End time: 22:57:32 on Dec 04,2024, Elapsed time: 0:00:00
+# 	fft_64
+# End time: 21:47:56 on Dec 14,2024, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 restart
 # ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
 # ** Note: (vsim-3813) Design is being optimized due to module recompilation...
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vopt-143) Recognized 1 FSM in module "fft_64(fast)".
 # ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
 # Loading sv_std.std
-# Loading work.butterfly_tb(fast)
+# Loading work.fft_64_tb(fast)
+# Loading work.fft_64(fast)
 # Loading work.butterfly_4(fast)
 run -all
-# ** Note: $stop    : C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv(45)
-#    Time: 110 ns  Iteration: 0  Instance: /butterfly_tb
-# Break in Module butterfly_tb at C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv line 45
-vlog -reportprogress 300 -work work {C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv}
-# Questa Intel Starter FPGA Edition-64 vlog 2023.3 Compiler 2023.07 Jul 17 2023
-# Start time: 22:58:39 on Dec 04,2024
-# vlog -reportprogress 300 -work work C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv 
-# -- Compiling module butterfly_tb
-# ** Error: (vlog-13069) C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv(14): near "DUT": syntax error, unexpected IDENTIFIER, expecting ';'.
-# End time: 22:58:40 on Dec 04,2024, Elapsed time: 0:00:01
-# Errors: 1, Warnings: 0
-vlog -reportprogress 300 -work work {C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv}
-# Questa Intel Starter FPGA Edition-64 vlog 2023.3 Compiler 2023.07 Jul 17 2023
-# Start time: 23:00:07 on Dec 04,2024
-# vlog -reportprogress 300 -work work C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv 
-# -- Compiling module butterfly_tb
-# 
-# Top level modules:
-# 	butterfly_tb
-# End time: 23:00:07 on Dec 04,2024, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-restart
-# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
-# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
-# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
-# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
-# Loading sv_std.std
-# Loading work.butterfly_tb(fast)
-# Loading work.butterfly_4(fast)
-# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (32) for port 'a'. The port definition is at: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_4.sv(4).
-#    Time: 0 ns  Iteration: 0  Instance: /butterfly_tb/DUT File: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv Line: 14
-# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (32) for port 'b'. The port definition is at: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_4.sv(4).
-#    Time: 0 ns  Iteration: 0  Instance: /butterfly_tb/DUT File: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv Line: 14
-# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (32) for port 'c'. The port definition is at: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_4.sv(4).
-#    Time: 0 ns  Iteration: 0  Instance: /butterfly_tb/DUT File: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv Line: 14
-# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (32) for port 'd'. The port definition is at: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_4.sv(4).
-#    Time: 0 ns  Iteration: 0  Instance: /butterfly_tb/DUT File: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv Line: 14
-# ** Warning: (vsim-3015) [PCDPC] - Port size (14) does not match connection size (34) for port 'w0'. The port definition is at: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_4.sv(5).
-#    Time: 0 ns  Iteration: 0  Instance: /butterfly_tb/DUT File: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv Line: 14
-# ** Warning: (vsim-3015) [PCDPC] - Port size (14) does not match connection size (34) for port 'w1'. The port definition is at: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_4.sv(5).
-#    Time: 0 ns  Iteration: 0  Instance: /butterfly_tb/DUT File: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv Line: 14
-# ** Warning: (vsim-3015) [PCDPC] - Port size (14) does not match connection size (34) for port 'w2'. The port definition is at: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_4.sv(5).
-#    Time: 0 ns  Iteration: 0  Instance: /butterfly_tb/DUT File: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv Line: 14
-# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (32) for port 'out0'. The port definition is at: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_4.sv(7).
-#    Time: 0 ns  Iteration: 0  Instance: /butterfly_tb/DUT File: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv Line: 14
-# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (32) for port 'out1'. The port definition is at: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_4.sv(7).
-#    Time: 0 ns  Iteration: 0  Instance: /butterfly_tb/DUT File: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv Line: 14
-# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (32) for port 'out2'. The port definition is at: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_4.sv(7).
-#    Time: 0 ns  Iteration: 0  Instance: /butterfly_tb/DUT File: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv Line: 14
-# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (32) for port 'out3'. The port definition is at: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_4.sv(7).
-#    Time: 0 ns  Iteration: 0  Instance: /butterfly_tb/DUT File: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv Line: 14
-run -all
-# ** Error: Re{0}
-#    Time: 10 ns  Scope: butterfly_tb File: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv Line: 36
-# ** Error: Re{1}
-#    Time: 10 ns  Scope: butterfly_tb File: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv Line: 38
-# ** Error: Im{1}
-#    Time: 10 ns  Scope: butterfly_tb File: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv Line: 39
-# ** Error: Re{2}
-#    Time: 10 ns  Scope: butterfly_tb File: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv Line: 40
-# ** Error: Re{3}
-#    Time: 10 ns  Scope: butterfly_tb File: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv Line: 42
-# ** Error: Im{3}
-#    Time: 10 ns  Scope: butterfly_tb File: C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv Line: 43
-# ** Note: $stop    : C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv(45)
-#    Time: 110 ns  Iteration: 0  Instance: /butterfly_tb
-# Break in Module butterfly_tb at C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv line 45
-vlog -reportprogress 300 -work work {C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv}
-# Questa Intel Starter FPGA Edition-64 vlog 2023.3 Compiler 2023.07 Jul 17 2023
-# Start time: 23:03:39 on Dec 04,2024
-# vlog -reportprogress 300 -work work C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv 
-# -- Compiling module butterfly_tb
-# ** Error: (vlog-13069) C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv(33): near "'d": syntax error, unexpected BASE, expecting ',' or '}'.
-# ** Error: (vlog-13069) C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv(34): near "'d": syntax error, unexpected BASE, expecting ',' or '}'.
-# ** Error: (vlog-13069) C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv(35): near "'d": syntax error, unexpected BASE, expecting ',' or '}'.
-# ** Error: (vlog-13069) C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv(36): near "'d": syntax error, unexpected BASE, expecting ',' or '}'.
-# ** Error: (vlog-13069) C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv(39): near "'d": syntax error, unexpected BASE.
-# ** Error: (vlog-13069) C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv(40): near "'d": syntax error, unexpected BASE.
-# ** Error: (vlog-13069) C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv(41): near "'d": syntax error, unexpected BASE.
-# ** Error: (vlog-13069) C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv(42): near "'d": syntax error, unexpected BASE.
-# ** Error: (vlog-13069) C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv(43): near "'d": syntax error, unexpected BASE.
-# ** Error: (vlog-13069) C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv(44): near "'d": syntax error, unexpected BASE.
-# ** Error: (vlog-13069) C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv(45): near "'d": syntax error, unexpected BASE.
-# ** Error: (vlog-13069) C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv(46): near "'d": syntax error, unexpected BASE.
-# End time: 23:03:39 on Dec 04,2024, Elapsed time: 0:00:00
-# Errors: 12, Warnings: 0
-vlog -reportprogress 300 -work work {C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv}
-# Questa Intel Starter FPGA Edition-64 vlog 2023.3 Compiler 2023.07 Jul 17 2023
-# Start time: 23:04:02 on Dec 04,2024
-# vlog -reportprogress 300 -work work C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv 
-# -- Compiling module butterfly_tb
-# 
-# Top level modules:
-# 	butterfly_tb
-# End time: 23:04:03 on Dec 04,2024, Elapsed time: 0:00:01
-# Errors: 0, Warnings: 0
-restart
-# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
-# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
-# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
-# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
-# Loading sv_std.std
-# Loading work.butterfly_tb(fast)
-# Loading work.butterfly_4(fast)
-# Warning in wave window restart: (vish-4014) No objects found matching '/butterfly_tb/out0_re'. 
-# Warning in wave window restart: (vish-4014) No objects found matching '/butterfly_tb/out0_im'. 
-# Warning in wave window restart: (vish-4014) No objects found matching '/butterfly_tb/out1_re'. 
-# Warning in wave window restart: (vish-4014) No objects found matching '/butterfly_tb/out1_im'. 
-run -all
-# ** Note: $stop    : C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv(48)
-#    Time: 110 ns  Iteration: 0  Instance: /butterfly_tb
-# Break in Module butterfly_tb at C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/butterfly_tb.sv line 48
+# ** Note: $stop    : C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/fft_64_tb.sv(34)
+#    Time: 70 ns  Iteration: 0  Instance: /fft_64_tb
+# Break in Module fft_64_tb at C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/fft_64_tb.sv line 34
 # Causality operation skipped due to absence of debug database file
-add dataflow \
-sim:/butterfly_tb/d 
-add dataflow \
-sim:/butterfly_tb/out1 
-vlog -reportprogress 300 -work work {C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/issue_queue.sv}
+vlog -reportprogress 300 -work work {C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/fft_64.sv}
 # Questa Intel Starter FPGA Edition-64 vlog 2023.3 Compiler 2023.07 Jul 17 2023
-# Start time: 02:12:51 on Dec 05,2024
-# vlog -reportprogress 300 -work work C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/issue_queue.sv 
-# -- Compiling module issue_queue
-# ** Error: C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/issue_queue.sv(123): (vlog-2110) Illegal reference to net "fu_ready".
-# ** Error: C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/issue_queue.sv(176): (vlog-2110) Illegal reference to net "fu_ready".
-# ** Error: C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/issue_queue.sv(176): (vlog-2110) Illegal reference to net "fu_ready".
-# ** Error: C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/issue_queue.sv(188): (vlog-2110) Illegal reference to net "fu_ready".
-# ** Error: C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/issue_queue.sv(188): (vlog-2110) Illegal reference to net "fu_ready".
-# ** Error: C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/issue_queue.sv(200): (vlog-2110) Illegal reference to net "fu_ready".
-# ** Error: C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/issue_queue.sv(200): (vlog-2110) Illegal reference to net "fu_ready".
-# ** Error: C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/issue_queue.sv(226): (vlog-2110) Illegal reference to net "fu_ready".
-# End time: 02:12:51 on Dec 05,2024, Elapsed time: 0:00:00
-# Errors: 8, Warnings: 0
-vlog -reportprogress 300 -work work {C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/issue_queue.sv}
-# Questa Intel Starter FPGA Edition-64 vlog 2023.3 Compiler 2023.07 Jul 17 2023
-# Start time: 02:13:37 on Dec 05,2024
-# vlog -reportprogress 300 -work work C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/issue_queue.sv 
-# -- Compiling module issue_queue
+# Start time: 23:57:41 on Dec 14,2024
+# vlog -reportprogress 300 -work work C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/fft_64.sv 
+# -- Compiling module fft_64
 # 
 # Top level modules:
-# 	issue_queue
-# End time: 02:13:37 on Dec 05,2024, Elapsed time: 0:00:00
+# 	fft_64
+# End time: 23:57:41 on Dec 14,2024, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-vsim -voptargs=+acc work.issue_queue
-# End time: 02:19:18 on Dec 05,2024, Elapsed time: 3:42:44
-# Errors: 0, Warnings: 1
-# vsim -voptargs="+acc" work.issue_queue 
-# Start time: 02:19:18 on Dec 05,2024
-# ** Note: (vsim-3812) Design is being optimized...
-# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
-# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
-# Loading sv_std.std
-# Loading work.issue_queue(fast)
-add wave -position insertpoint  \
-sim:/issue_queue/fu_ready
-add dataflow \
-sim:/issue_queue/fu_ready 
-vlog -reportprogress 300 -work work {C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/issue_queue_tb.sv}
-# Questa Intel Starter FPGA Edition-64 vlog 2023.3 Compiler 2023.07 Jul 17 2023
-# Start time: 02:24:19 on Dec 05,2024
-# vlog -reportprogress 300 -work work C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/issue_queue_tb.sv 
-# -- Compiling module issue_queue_tb
-# 
-# Top level modules:
-# 	issue_queue_tb
-# End time: 02:24:19 on Dec 05,2024, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vlog -reportprogress 300 -work work {C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/decode.sv}
-# Questa Intel Starter FPGA Edition-64 vlog 2023.3 Compiler 2023.07 Jul 17 2023
-# Start time: 02:24:25 on Dec 05,2024
-# vlog -reportprogress 300 -work work C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/decode.sv 
-# -- Compiling module decode
-# -- Compiling module decode_ALUOp
-# 
-# Top level modules:
-# 	decode
-# End time: 02:24:25 on Dec 05,2024, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vlog -reportprogress 300 -work work {C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/arch_reg_file.sv}
-# Questa Intel Starter FPGA Edition-64 vlog 2023.3 Compiler 2023.07 Jul 17 2023
-# Start time: 02:24:30 on Dec 05,2024
-# vlog -reportprogress 300 -work work C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/arch_reg_file.sv 
-# -- Compiling module arch_reg_file
-# 
-# Top level modules:
-# 	arch_reg_file
-# End time: 02:24:30 on Dec 05,2024, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vlog -reportprogress 300 -work work {C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/instr_fetch.sv}
-# Questa Intel Starter FPGA Edition-64 vlog 2023.3 Compiler 2023.07 Jul 17 2023
-# Start time: 02:24:34 on Dec 05,2024
-# vlog -reportprogress 300 -work work C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/instr_fetch.sv 
-# -- Compiling module instr_fetch
-# 
-# Top level modules:
-# 	instr_fetch
-# End time: 02:24:34 on Dec 05,2024, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vlog -reportprogress 300 -work work {C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/issue_queue.sv}
-# Questa Intel Starter FPGA Edition-64 vlog 2023.3 Compiler 2023.07 Jul 17 2023
-# Start time: 02:24:36 on Dec 05,2024
-# vlog -reportprogress 300 -work work C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/issue_queue.sv 
-# -- Compiling module issue_queue
-# 
-# Top level modules:
-# 	issue_queue
-# End time: 02:24:36 on Dec 05,2024, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vlog -reportprogress 300 -work work {C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/issue_select.sv}
-# Questa Intel Starter FPGA Edition-64 vlog 2023.3 Compiler 2023.07 Jul 17 2023
-# Start time: 02:24:37 on Dec 05,2024
-# vlog -reportprogress 300 -work work C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/issue_select.sv 
-# -- Compiling module issue_select
-# 
-# Top level modules:
-# 	issue_select
-# End time: 02:24:37 on Dec 05,2024, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vlog -reportprogress 300 -work work {C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/priority_encoder.sv}
-# Questa Intel Starter FPGA Edition-64 vlog 2023.3 Compiler 2023.07 Jul 17 2023
-# Start time: 02:24:44 on Dec 05,2024
-# vlog -reportprogress 300 -work work C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/priority_encoder.sv 
-# -- Compiling module priority_encoder
-# -- Compiling module priority_encoder_MSB_4b
-# -- Compiling module priority_encoder_LSB_4b
-# 
-# Top level modules:
-# 	priority_encoder
-# End time: 02:24:44 on Dec 05,2024, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vlog -reportprogress 300 -work work {C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/rename.sv}
-# Questa Intel Starter FPGA Edition-64 vlog 2023.3 Compiler 2023.07 Jul 17 2023
-# Start time: 02:24:45 on Dec 05,2024
-# vlog -reportprogress 300 -work work C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/rename.sv 
-# -- Compiling module rename
-# 
-# Top level modules:
-# 	rename
-# End time: 02:24:45 on Dec 05,2024, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vlog -reportprogress 300 -work work {C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/reorder_buffer.sv}
-# Questa Intel Starter FPGA Edition-64 vlog 2023.3 Compiler 2023.07 Jul 17 2023
-# Start time: 02:24:47 on Dec 05,2024
-# vlog -reportprogress 300 -work work C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/reorder_buffer.sv 
-# -- Compiling module reorder_buffer
-# 
-# Top level modules:
-# 	reorder_buffer
-# End time: 02:24:47 on Dec 05,2024, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vlog -reportprogress 300 -work work {C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/functional_unit.sv}
-# Questa Intel Starter FPGA Edition-64 vlog 2023.3 Compiler 2023.07 Jul 17 2023
-# Start time: 02:24:50 on Dec 05,2024
-# vlog -reportprogress 300 -work work C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/functional_unit.sv 
-# -- Compiling module functional_unit
-# 
-# Top level modules:
-# 	functional_unit
-# End time: 02:24:50 on Dec 05,2024, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vsim -voptargs=+acc work.issue_queue_tb
-# End time: 02:25:01 on Dec 05,2024, Elapsed time: 0:05:43
-# Errors: 0, Warnings: 1
-# vsim -voptargs="+acc" work.issue_queue_tb 
-# Start time: 02:25:01 on Dec 05,2024
-# ** Note: (vsim-3812) Design is being optimized...
-# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
-# ** Warning: C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/issue_queue_tb.sv(66): (vopt-2685) [TFMPC] - Too few port connections for 'IF'.  Expected 4, found 3.
-# ** Warning: C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/issue_queue_tb.sv(66): (vopt-2718) [TFMPC] - Missing connection for port 'stop'.
-# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=3.
-# Loading sv_std.std
-# Loading work.issue_queue_tb(fast)
-# Loading work.instr_fetch(fast)
-# Loading work.decode(fast)
-# Loading work.decode_ALUOp(fast)
-# Loading work.rename(fast)
-# Loading work.priority_encoder(fast)
-# Loading work.priority_encoder_MSB_4b(fast)
-# Loading work.arch_reg_file(fast)
-# Loading work.reorder_buffer(fast)
-# Loading work.issue_queue(fast)
-# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (1) for port 'retire_tag'. The port definition is at: C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/rename.sv(11).
-#    Time: 0 ns  Iteration: 0  Instance: /issue_queue_tb/RE File: C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/issue_queue_tb.sv Line: 83
-add wave -position insertpoint  \
-sim:/issue_queue_tb/IQ/cdb_data \
-sim:/issue_queue_tb/IQ/cdb_tags \
-sim:/issue_queue_tb/IQ/cdb_valid \
-sim:/issue_queue_tb/IQ/clk \
-sim:/issue_queue_tb/IQ/data_rs1 \
-sim:/issue_queue_tb/IQ/data_rs2 \
-sim:/issue_queue_tb/IQ/fu_op \
-sim:/issue_queue_tb/IQ/fu_ready \
-sim:/issue_queue_tb/IQ/fu_rob_index \
-sim:/issue_queue_tb/IQ/fu_rs1 \
-sim:/issue_queue_tb/IQ/fu_rs2 \
-sim:/issue_queue_tb/IQ/fu_tags \
-sim:/issue_queue_tb/IQ/imm \
-sim:/issue_queue_tb/IQ/in_valid \
-sim:/issue_queue_tb/IQ/INSTR_SIZE \
-sim:/issue_queue_tb/IQ/iq_data \
-sim:/issue_queue_tb/IQ/iq_full \
-sim:/issue_queue_tb/IQ/iq_head \
-sim:/issue_queue_tb/IQ/iq_ready \
-sim:/issue_queue_tb/IQ/IQ_SIZE \
-sim:/issue_queue_tb/IQ/IQ_SIZE_LOG2 \
-sim:/issue_queue_tb/IQ/iq_stall \
-sim:/issue_queue_tb/IQ/iq_tags \
-sim:/issue_queue_tb/IQ/iq_tail \
-sim:/issue_queue_tb/IQ/ISSUE_PORTS \
-sim:/issue_queue_tb/IQ/NUM_TAGS \
-sim:/issue_queue_tb/IQ/NUM_TAGS_LOG2 \
-sim:/issue_queue_tb/IQ/op \
-sim:/issue_queue_tb/IQ/REG_SIZE \
-sim:/issue_queue_tb/IQ/rob_contains_rs \
-sim:/issue_queue_tb/IQ/rob_data_rs \
-sim:/issue_queue_tb/IQ/rob_ready_rs \
-sim:/issue_queue_tb/IQ/ROB_SIZE \
-sim:/issue_queue_tb/IQ/ROB_SIZE_LOG2 \
-sim:/issue_queue_tb/IQ/rob_tail \
-sim:/issue_queue_tb/IQ/rst \
-sim:/issue_queue_tb/IQ/stall_in \
-sim:/issue_queue_tb/IQ/tag_rd \
-sim:/issue_queue_tb/IQ/tag_rs1 \
-sim:/issue_queue_tb/IQ/tag_rs2
-run -all
-# Initializing Instruction Memory
-# ** Note: $stop    : C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/issue_queue_tb.sv(194)
-#    Time: 220 ns  Iteration: 0  Instance: /issue_queue_tb
-# Break in Module issue_queue_tb at C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/issue_queue_tb.sv line 194
-vlog -reportprogress 300 -work work {C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/issue_queue.sv}
-# Questa Intel Starter FPGA Edition-64 vlog 2023.3 Compiler 2023.07 Jul 17 2023
-# Start time: 03:07:32 on Dec 05,2024
-# vlog -reportprogress 300 -work work C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/issue_queue.sv 
-# -- Compiling module issue_queue
-# 
-# Top level modules:
-# 	issue_queue
-# End time: 03:07:32 on Dec 05,2024, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vlog -reportprogress 300 -work work {C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/issue_queue_tb.sv}
-# Questa Intel Starter FPGA Edition-64 vlog 2023.3 Compiler 2023.07 Jul 17 2023
-# Start time: 03:07:34 on Dec 05,2024
-# vlog -reportprogress 300 -work work C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/issue_queue_tb.sv 
-# -- Compiling module issue_queue_tb
-# 
-# Top level modules:
-# 	issue_queue_tb
-# End time: 03:07:34 on Dec 05,2024, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vlog -reportprogress 300 -work work {C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/functional_unit.sv}
-# Questa Intel Starter FPGA Edition-64 vlog 2023.3 Compiler 2023.07 Jul 17 2023
-# Start time: 03:07:37 on Dec 05,2024
-# vlog -reportprogress 300 -work work C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/functional_unit.sv 
-# -- Compiling module functional_unit
-# 
-# Top level modules:
-# 	functional_unit
-# End time: 03:07:38 on Dec 05,2024, Elapsed time: 0:00:01
-# Errors: 0, Warnings: 0
-restart -f
+restart
 # ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
 # ** Note: (vsim-3813) Design is being optimized due to module recompilation...
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
-# ** Error (suppressible): C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/issue_queue.sv(296): (vopt-7033) Variable 'fu_ready' driven in a combinational block, may not be driven by any other process. See C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/issue_queue.sv(227).
-# Optimization failed
-# ** Error: (vopt-2064) Compiler back-end code generation process terminated with code 12.
-# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=2, Warnings=1.
-# A time value could not be extracted from the current line
-vlog -reportprogress 300 -work work {C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/issue_queue.sv}
-# Questa Intel Starter FPGA Edition-64 vlog 2023.3 Compiler 2023.07 Jul 17 2023
-# Start time: 03:08:20 on Dec 05,2024
-# vlog -reportprogress 300 -work work C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/issue_queue.sv 
-# -- Compiling module issue_queue
-# 
-# Top level modules:
-# 	issue_queue
-# End time: 03:08:20 on Dec 05,2024, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vlog -reportprogress 300 -work work {C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/issue_queue_tb.sv}
-# Questa Intel Starter FPGA Edition-64 vlog 2023.3 Compiler 2023.07 Jul 17 2023
-# Start time: 03:08:24 on Dec 05,2024
-# vlog -reportprogress 300 -work work C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/issue_queue_tb.sv 
-# -- Compiling module issue_queue_tb
-# 
-# Top level modules:
-# 	issue_queue_tb
-# End time: 03:08:24 on Dec 05,2024, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-restart -f
-# No Design Loaded!
-run all
-# No Design Loaded!
-vsim -voptargs=+acc work.issue_queue_tb
-# vsim -voptargs="+acc" work.issue_queue_tb 
-# Start time: 02:25:01 on Dec 05,2024
-# ** Note: (vsim-3812) Design is being optimized...
-# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
-# ** Warning: C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/issue_queue_tb.sv(73): (vopt-2685) [TFMPC] - Too few port connections for 'IF'.  Expected 4, found 3.
-# ** Warning: C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/issue_queue_tb.sv(73): (vopt-2718) [TFMPC] - Missing connection for port 'stop'.
-# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=2, Warnings=4.
-# Loading sv_std.std
-# Loading work.issue_queue_tb(fast)
-# Loading work.instr_fetch(fast)
-# Loading work.decode(fast)
-# Loading work.decode_ALUOp(fast)
-# Loading work.rename(fast)
-# Loading work.priority_encoder(fast)
-# Loading work.priority_encoder_MSB_4b(fast)
-# Loading work.arch_reg_file(fast)
-# Loading work.reorder_buffer(fast)
-# Loading work.issue_queue(fast)
-# Loading work.functional_unit(fast)
-# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (1) for port 'retire_tag'. The port definition is at: C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/rename.sv(11).
-#    Time: 0 ns  Iteration: 0  Instance: /issue_queue_tb/RE File: C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/issue_queue_tb.sv Line: 90
-add wave -position insertpoint  \
-sim:/issue_queue_tb/IQ/cdb_data \
-sim:/issue_queue_tb/IQ/cdb_tags \
-sim:/issue_queue_tb/IQ/cdb_valid \
-sim:/issue_queue_tb/IQ/clk \
-sim:/issue_queue_tb/IQ/data_rs1 \
-sim:/issue_queue_tb/IQ/data_rs2 \
-sim:/issue_queue_tb/IQ/fu_op \
-sim:/issue_queue_tb/IQ/fu_ready \
-sim:/issue_queue_tb/IQ/fu_rob_index \
-sim:/issue_queue_tb/IQ/fu_rs1 \
-sim:/issue_queue_tb/IQ/fu_rs2 \
-sim:/issue_queue_tb/IQ/fu_tags \
-sim:/issue_queue_tb/IQ/fu_valid \
-sim:/issue_queue_tb/IQ/imm \
-sim:/issue_queue_tb/IQ/in_valid \
-sim:/issue_queue_tb/IQ/INSTR_SIZE \
-sim:/issue_queue_tb/IQ/iq_data \
-sim:/issue_queue_tb/IQ/iq_full \
-sim:/issue_queue_tb/IQ/iq_head \
-sim:/issue_queue_tb/IQ/iq_ready \
-sim:/issue_queue_tb/IQ/IQ_SIZE \
-sim:/issue_queue_tb/IQ/IQ_SIZE_LOG2 \
-sim:/issue_queue_tb/IQ/iq_stall \
-sim:/issue_queue_tb/IQ/iq_tags \
-sim:/issue_queue_tb/IQ/iq_tail \
-sim:/issue_queue_tb/IQ/ISSUE_PORTS \
-sim:/issue_queue_tb/IQ/NUM_TAGS \
-sim:/issue_queue_tb/IQ/NUM_TAGS_LOG2 \
-sim:/issue_queue_tb/IQ/op \
-sim:/issue_queue_tb/IQ/REG_SIZE \
-sim:/issue_queue_tb/IQ/rob_contains_rs \
-sim:/issue_queue_tb/IQ/rob_data_rs \
-sim:/issue_queue_tb/IQ/rob_ready_rs \
-sim:/issue_queue_tb/IQ/ROB_SIZE \
-sim:/issue_queue_tb/IQ/ROB_SIZE_LOG2 \
-sim:/issue_queue_tb/IQ/rob_tail \
-sim:/issue_queue_tb/IQ/rst \
-sim:/issue_queue_tb/IQ/stall_in \
-sim:/issue_queue_tb/IQ/tag_rd \
-sim:/issue_queue_tb/IQ/tag_rs1 \
-sim:/issue_queue_tb/IQ/tag_rs2
-run -all
-# Initializing Instruction Memory
-# ** Note: $stop    : C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/issue_queue_tb.sv(225)
-#    Time: 220 ns  Iteration: 0  Instance: /issue_queue_tb
-# Break in Module issue_queue_tb at C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/issue_queue_tb.sv line 225
-vlog -reportprogress 300 -work work {C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/issue_queue_tb.sv}
-# Questa Intel Starter FPGA Edition-64 vlog 2023.3 Compiler 2023.07 Jul 17 2023
-# Start time: 03:18:17 on Dec 05,2024
-# vlog -reportprogress 300 -work work C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/issue_queue_tb.sv 
-# -- Compiling module issue_queue_tb
-# 
-# Top level modules:
-# 	issue_queue_tb
-# End time: 03:18:17 on Dec 05,2024, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vlog -reportprogress 300 -work work {C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/issue_queue.sv}
-# Questa Intel Starter FPGA Edition-64 vlog 2023.3 Compiler 2023.07 Jul 17 2023
-# Start time: 03:18:20 on Dec 05,2024
-# vlog -reportprogress 300 -work work C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/issue_queue.sv 
-# -- Compiling module issue_queue
-# 
-# Top level modules:
-# 	issue_queue
-# End time: 03:18:20 on Dec 05,2024, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-restart -f
-# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
-# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
-# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vopt-143) Recognized 1 FSM in module "fft_64(fast)".
 # ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
 # Loading sv_std.std
-# Loading work.issue_queue_tb(fast)
-# Loading work.instr_fetch(fast)
-# Loading work.decode(fast)
-# Loading work.decode_ALUOp(fast)
-# Loading work.rename(fast)
-# Loading work.priority_encoder(fast)
-# Loading work.priority_encoder_MSB_4b(fast)
-# Loading work.arch_reg_file(fast)
-# Loading work.reorder_buffer(fast)
-# Loading work.issue_queue(fast)
-# Loading work.functional_unit(fast)
-# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (1) for port 'retire_tag'. The port definition is at: C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/rename.sv(11).
-#    Time: 0 ns  Iteration: 0  Instance: /issue_queue_tb/RE File: C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/issue_queue_tb.sv Line: 90
+# Loading work.fft_64_tb(fast)
+# Loading work.fft_64(fast)
+# Loading work.butterfly_4(fast)
 run -all
-# Initializing Instruction Memory
-# ** Note: $stop    : C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/issue_queue_tb.sv(225)
-#    Time: 220 ns  Iteration: 0  Instance: /issue_queue_tb
-# Break in Module issue_queue_tb at C:/Users/bryan/Documents/school/ucla/UCLA 24F/eeM116C/riscv-cpu/issue_queue_tb.sv line 225
-# End time: 03:20:04 on Dec 05,2024, Elapsed time: 0:55:03
-# Errors: 0, Warnings: 2
+# ** Note: $stop    : C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/fft_64_tb.sv(34)
+#    Time: 70 ns  Iteration: 0  Instance: /fft_64_tb
+# Break in Module fft_64_tb at C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/fft_64_tb.sv line 34
