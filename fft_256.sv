@@ -11,11 +11,10 @@ module fft_256 #(
     output logic [WIDTH-1:0] freq_samples [0:N-1]
 );
 
-// TODO: TEST THIS SHIT
-
 /*
-    N-point decimation-in-time FFT using radix-4 butterfly units. 
-    TODO: look into increasing width for more accuracy, especially with smaller twiddle factors
+    256-point decimation-in-time FFT using radix-4 butterfly units. 
+    12b twiddle factor width is necessary to retain uniqueness of finest granularity twiddle factors.
+    increased width yields higher accuracy at the cost of more resources.
 
     handy resources for 4-radix FFT implementations: 
         https://www.ti.com/lit/an/spra152/spra152.pdf 
@@ -45,7 +44,7 @@ logic [FULL_WIDTH+1:0] w3 [0:N_BUTTERFLY-1];
 
 // twiddle factors for 256-point FFT
 // TODO: look into loading ROM
-logic [FULL_WIDTH+1:0] w_256 [0:63] = '{
+logic [FULL_WIDTH+1:0] w_256 [0:N-1] = '{
     {{1'b0,  12'd2048},     {1'b0,  12'd0}},        // W0
     {{1'b0,  12'd2047},     {1'b1, -12'd50}},       // W1
     {{1'b0,  12'd2045},     {1'b1, -12'd100}},      // W2
@@ -374,20 +373,34 @@ always_comb begin
             w1[i]= w_256[0];
             w2[i]= w_256[0];
             w3[i]= w_256[0];
+            // for (int i = 0; i < 4; i++) begin
+            //     for (int j = 0; j < 4; j++) begin
+            //         for (int k = 0; k < 4; k++) begin
+            //             a[i*16+j*4+k] = {time_samples[i+j*4+k*16+N_BUTTERFLY*0], 12'b0}; 
+            //             b[i*16+j*4+k] = {time_samples[i+j*4+k*16+N_BUTTERFLY*1], 12'b0}; 
+            //             c[i*16+j*4+k] = {time_samples[i+j*4+k*16+N_BUTTERFLY*2], 12'b0}; 
+            //             d[i*16+j*4+k] = {time_samples[i+j*4+k*16+N_BUTTERFLY*3], 12'b0}; 
+            //             w0[i*16+j*4+k]= w_256[0];
+            //             w1[i*16+j*4+k]= w_256[0];
+            //             w2[i*16+j*4+k]= w_256[0];
+            //             w3[i*16+j*4+k]= w_256[0];
+            //         end
+            //     end
+            // end
         end
     end
 
     STAGE2: begin
         for (int i = 0; i < 4; i++) begin
             for (int j = 0; j < 16; j++) begin
-                a[i*16+j] = out[i][j+0];
-                b[i*16+j] = out[i][j+16];
-                c[i*16+j] = out[i][j+32];
-                d[i*16+j] = out[i][j+48];
-                w0[i*16+j]= w_256[i*(j+0)];
-                w1[i*16+j]= w_256[i*(j+16)];
-                w2[i*16+j]= w_256[i*(j+32)];
-                w3[i*16+j]= w_256[i*(j+48)];
+                a[i*16+j] = out[i][j+0*16];
+                b[i*16+j] = out[i][j+1*16];
+                c[i*16+j] = out[i][j+2*16];
+                d[i*16+j] = out[i][j+3*16];
+                w0[i*16+j]= w_256[i*(j+0*16)];
+                w1[i*16+j]= w_256[i*(j+1*16)];
+                w2[i*16+j]= w_256[i*(j+2*16)];
+                w3[i*16+j]= w_256[i*(j+3*16)];
             end
         end
     end
@@ -396,14 +409,14 @@ always_comb begin
         for (int i = 0; i < 4; i++) begin
             for (int j = 0; j < 4; j++) begin
                 for (int k = 0; k < 4; k++) begin
-                    a[i*16+j*4+k] = out[j][i*16+k+0];
-                    b[i*16+j*4+k] = out[j][i*16+k+4];
-                    c[i*16+j*4+k] = out[j][i*16+k+8];
-                    d[i*16+j*4+k] = out[j][i*16+k+12];
-                    w0[i*16+j*4+k]= w_256[j*(k+0)];
-                    w1[i*16+j*4+k]= w_256[j*(k+4)];
-                    w2[i*16+j*4+k]= w_256[j*(k+8)];
-                    w3[i*16+j*4+k]= w_256[j*(k+12)];
+                    a[i*16+j*4+k] = out[j][i*16+k+0*4];
+                    b[i*16+j*4+k] = out[j][i*16+k+1*4];
+                    c[i*16+j*4+k] = out[j][i*16+k+2*4];
+                    d[i*16+j*4+k] = out[j][i*16+k+3*4];
+                    w0[i*16+j*4+k]= w_256[j*4*(k+0*4)];
+                    w1[i*16+j*4+k]= w_256[j*4*(k+1*4)];
+                    w2[i*16+j*4+k]= w_256[j*4*(k+2*4)];
+                    w3[i*16+j*4+k]= w_256[j*4*(k+3*4)];
                 end
             end
         end
@@ -417,10 +430,10 @@ always_comb begin
                     b[i*16+j*4+k] = out[k][i*16+j*4+1];
                     c[i*16+j*4+k] = out[k][i*16+j*4+2];
                     d[i*16+j*4+k] = out[k][i*16+j*4+3];
-                    w0[i*16+j*4+k]= w_256[k*0];
-                    w1[i*16+j*4+k]= w_256[k*4];
-                    w2[i*16+j*4+k]= w_256[k*8];
-                    w3[i*16+j*4+k]= w_256[k*12];
+                    w0[i*16+j*4+k]= w_256[k*0*16];
+                    w1[i*16+j*4+k]= w_256[k*1*16];
+                    w2[i*16+j*4+k]= w_256[k*2*16];
+                    w3[i*16+j*4+k]= w_256[k*3*16];
                 end
             end
         end
@@ -537,6 +550,12 @@ always_ff @(negedge clk) begin
                 end
             end
         end
+        // for (int i = 0; i < N_BUTTERFLY; i++) begin
+        //     freq_samples[i+N_BUTTERFLY*0] <= out[0][i][FULL_WIDTH-1:WIDTH];
+        //     freq_samples[i+N_BUTTERFLY*1] <= out[1][i][FULL_WIDTH-1:WIDTH];
+        //     freq_samples[i+N_BUTTERFLY*2] <= out[2][i][FULL_WIDTH-1:WIDTH];
+        //     freq_samples[i+N_BUTTERFLY*3] <= out[3][i][FULL_WIDTH-1:WIDTH];
+        // end
     end
 end
 
