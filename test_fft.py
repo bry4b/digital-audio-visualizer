@@ -1,12 +1,12 @@
 import numpy as np
 
-N = 256
+N = 16
 
 def print_hex(x):
     return "" + str(hex(np.uint16(np.real(x)).astype(np.uint16) & 0XFFF)) + " " + str(hex(np.uint16(np.imag(x)).astype(np.uint16) & 0XFFF))
 
 # generate random time-domain signal
-np.random.seed(2)
+np.random.seed(1)
 signal = np.random.randint(-200, 200, N)
 print(f"{N} sample signal: ")
 print(", ".join(map(str, signal)))

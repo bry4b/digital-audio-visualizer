@@ -5,6 +5,7 @@ module fft_16_tb (
 );
 
 localparam WIDTH = 12;
+localparam N = 16;
 
 logic rst, start, done;
 
@@ -12,7 +13,9 @@ logic [WIDTH-1:0] time_samples [0:15] = '{
     -163, 35, 196, -128, 55, 193, 3, -67, 135, -56, -71, -129, 37, 190, 81, -22
 };
 
-logic [WIDTH-1:0] freq_samples [0:15];
+logic [WIDTH:0] freq_real [0:N-1];
+logic [WIDTH:0] freq_imag [0:N-1];
+logic [WIDTH+1:0] freq_mag [0:N-1];
 
 fft_16 DUT (
     .clk(clk),
@@ -20,7 +23,14 @@ fft_16 DUT (
     .start(start),
     .done(done),
     .time_samples(time_samples),
-    .freq_samples(freq_samples)
+    .freq_real(freq_real),
+    .freq_imag(freq_imag)
+);
+
+mag_est #(.WIDTH(WIDTH), .N(N)) EST (
+    .real_in(freq_real),
+    .imag_in(freq_imag),
+    .magnitude(freq_mag)
 );
 
 initial begin
