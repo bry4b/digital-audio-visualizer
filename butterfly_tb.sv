@@ -4,7 +4,7 @@ module butterfly_tb (
     output logic clk
 );
 
-localparam WIDTH = 24;
+localparam WIDTH = 26;
 localparam HALF_WIDTH = WIDTH >> 1;
 
 localparam W0_4 = {13'h0800, 13'h0000};
@@ -19,6 +19,7 @@ butterfly_4 #(.WIDTH(WIDTH)) DUT (
     .b(b),
     .c(c),
     .d(d),
+    .w0(W0_4),
     .w1(W0_4),
     .w2(W0_4),
     .w3(W0_4),
@@ -30,10 +31,10 @@ butterfly_4 #(.WIDTH(WIDTH)) DUT (
 
 initial begin
     clk = 0;
-    a = {12'd100, 12'd0};
-    b = {12'd150, 12'd0};
-    c = {12'd200, 12'd0};
-    d = {12'd250, 12'd0};
+    a = {13'd100, 13'd0};
+    b = {13'd150, 13'd0};
+    c = {13'd200, 13'd0};
+    d = {13'd250, 13'd0};
 	 
 	 #10;
 	 assert (out0[WIDTH-1:HALF_WIDTH]   == 12'd700)    else $error("Re{0}");

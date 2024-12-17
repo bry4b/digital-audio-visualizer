@@ -18,4 +18,5 @@ def gen_twiddle(N, width=16):
 
     return twiddle
 
+# print output
 gen_twiddle(256, width=12)

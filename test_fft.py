@@ -6,7 +6,7 @@ def print_hex(x):
     return "" + str(hex(np.uint16(np.real(x)).astype(np.uint16) & 0XFFF)) + " " + str(hex(np.uint16(np.imag(x)).astype(np.uint16) & 0XFFF))
 
 # generate random time-domain signal
-np.random.seed(1)
+np.random.seed(2)
 signal = np.random.randint(-200, 200, N)
 print(f"{N} sample signal: ")
 print(", ".join(map(str, signal)))
@@ -21,6 +21,11 @@ print(f"\n{N} point fft result (real): ")
 # print(fft_result)
 print(np.real(fft_result))
 
+print(f"\n{N} point fft result (imag): ")
+print(np.imag(fft_result))
 
-print(f"\n{N} point fft result (hex): ")
-print([print_hex(x) for x in fft_result])
+print(f"\n{N} point fft result (magnitude): ")
+print(np.abs(fft_result))
+
+# print(f"\n{N} point fft result (hex): ")
+# print([print_hex(x) for x in fft_result])
