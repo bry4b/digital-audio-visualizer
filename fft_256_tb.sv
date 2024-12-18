@@ -40,8 +40,14 @@ initial begin
 
     #10 rst <= 0;
     start <= 1;
+	 #10 start <= 0;
 
-    #80 $stop;
+    #70 rst <= 1;
+	 #10 rst <= 0;
+	 #10 start <= 1;
+	 #10 start <= 0;
+	 
+	 #80 $stop;
 end
 
 always begin

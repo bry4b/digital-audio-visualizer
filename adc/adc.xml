@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <deploy
- date="2024.12.04.22:12:41"
- outputDirectory="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/mic_ADC/">
+ date="2024.12.17.01:25:45"
+ outputDirectory="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/adc/">
  <perimeter>
   <parameter
      name="AUTO_GENERATION_ID"
@@ -77,13 +77,13 @@
  </perimeter>
  <entity
    path=""
-   parameterizationKey="mic_ADC:1.0:AUTO_CLK_CLOCK_DOMAIN=-1,AUTO_CLK_CLOCK_RATE=-1,AUTO_CLK_RESET_DOMAIN=-1,AUTO_DEVICE=10M50DAF484C7G,AUTO_DEVICE_FAMILY=MAX 10,AUTO_DEVICE_SPEEDGRADE=7,AUTO_GENERATION_ID=1733379159,AUTO_UNIQUE_ID=(altera_up_avalon_adc_mega:18.0:AUTO_CLK_CLOCK_RATE=0,AUTO_DEVICE_FAMILY=MAX 10,board=DE10-Lite,board_rev=Autodetect,max10plldivby=5,max10pllmultby=1,numch=0,numch_=1,sclk_freq=10.0,sys_clk_freq=50,tsclk=5)"
-   instancePathKey="mic_ADC"
-   kind="mic_ADC"
+   parameterizationKey="adc:1.0:AUTO_CLK_CLOCK_DOMAIN=-1,AUTO_CLK_CLOCK_RATE=-1,AUTO_CLK_RESET_DOMAIN=-1,AUTO_DEVICE=10M50DAF484C7G,AUTO_DEVICE_FAMILY=MAX 10,AUTO_DEVICE_SPEEDGRADE=7,AUTO_GENERATION_ID=1734427543,AUTO_UNIQUE_ID=(altera_up_avalon_adc_mega:18.0:AUTO_CLK_CLOCK_RATE=0,AUTO_DEVICE_FAMILY=MAX 10,board=DE10-Lite,board_rev=Autodetect,max10plldivby=5,max10pllmultby=1,numch=0,numch_=1,sclk_freq=10.0,sys_clk_freq=50,tsclk=5)"
+   instancePathKey="adc"
+   kind="adc"
    version="1.0"
-   name="mic_ADC">
+   name="adc">
   <parameter name="AUTO_CLK_CLOCK_RATE" value="-1" />
-  <parameter name="AUTO_GENERATION_ID" value="1733379159" />
+  <parameter name="AUTO_GENERATION_ID" value="1734427543" />
   <parameter name="AUTO_DEVICE" value="10M50DAF484C7G" />
   <parameter name="AUTO_DEVICE_FAMILY" value="MAX 10" />
   <parameter name="AUTO_CLK_RESET_DOMAIN" value="-1" />
@@ -92,56 +92,56 @@
   <parameter name="AUTO_DEVICE_SPEEDGRADE" value="7" />
   <generatedFiles>
    <file
-       path="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/mic_ADC/synthesis/mic_ADC.v"
+       path="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/adc/synthesis/adc.v"
        type="VERILOG" />
   </generatedFiles>
   <childGeneratedFiles>
    <file
-       path="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/mic_ADC/synthesis/submodules/altera_up_avalon_adv_adc.v"
+       path="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/adc/synthesis/submodules/altera_up_avalon_adv_adc.v"
        type="VERILOG" />
    <file
-       path="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/mic_ADC/synthesis/submodules/altera_modular_adc_control.v"
+       path="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/adc/synthesis/submodules/altera_modular_adc_control.v"
        type="VERILOG" />
    <file
-       path="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/mic_ADC/synthesis/submodules/altera_modular_adc_control_avrg_fifo.v"
+       path="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/adc/synthesis/submodules/altera_modular_adc_control_avrg_fifo.v"
        type="VERILOG" />
    <file
-       path="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/mic_ADC/synthesis/submodules/altera_modular_adc_control_fsm.v"
+       path="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/adc/synthesis/submodules/altera_modular_adc_control_fsm.v"
        type="VERILOG" />
    <file
-       path="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/mic_ADC/synthesis/submodules/altera_modular_adc_sample_store.v"
+       path="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/adc/synthesis/submodules/altera_modular_adc_sample_store.v"
        type="VERILOG" />
    <file
-       path="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/mic_ADC/synthesis/submodules/altera_modular_adc_sample_store_ram.v"
+       path="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/adc/synthesis/submodules/altera_modular_adc_sample_store_ram.v"
        type="VERILOG" />
    <file
-       path="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/mic_ADC/synthesis/submodules/altera_modular_adc_sequencer.v"
+       path="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/adc/synthesis/submodules/altera_modular_adc_sequencer.v"
        type="VERILOG" />
    <file
-       path="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/mic_ADC/synthesis/submodules/altera_modular_adc_sequencer_csr.v"
+       path="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/adc/synthesis/submodules/altera_modular_adc_sequencer_csr.v"
        type="VERILOG" />
    <file
-       path="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/mic_ADC/synthesis/submodules/altera_modular_adc_sequencer_ctrl.v"
+       path="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/adc/synthesis/submodules/altera_modular_adc_sequencer_ctrl.v"
        type="VERILOG" />
    <file
-       path="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/mic_ADC/synthesis/submodules/chsel_code_converter_sw_to_hw.v"
+       path="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/adc/synthesis/submodules/chsel_code_converter_sw_to_hw.v"
        type="VERILOG" />
    <file
-       path="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/mic_ADC/synthesis/submodules/DE10_Lite_ADC_Core_modular_adc_0.v"
+       path="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/adc/synthesis/submodules/DE10_Lite_ADC_Core_modular_adc_0.v"
        type="VERILOG" />
    <file
-       path="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/mic_ADC/synthesis/submodules/fiftyfivenm_adcblock_primitive_wrapper.v"
+       path="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/adc/synthesis/submodules/fiftyfivenm_adcblock_primitive_wrapper.v"
        type="VERILOG" />
    <file
-       path="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/mic_ADC/synthesis/submodules/fiftyfivenm_adcblock_top_wrapper.v"
+       path="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/adc/synthesis/submodules/fiftyfivenm_adcblock_top_wrapper.v"
        type="VERILOG" />
    <file
-       path="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/mic_ADC/synthesis/submodules/mic_ADC_adc_mega_0.v"
+       path="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/adc/synthesis/submodules/adc_adc_mega_0.v"
        type="VERILOG" />
   </childGeneratedFiles>
   <sourceFiles>
    <file
-       path="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/mic_ADC.qsys" />
+       path="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/adc.qsys" />
   </sourceFiles>
   <childSourceFiles>
    <file
@@ -150,7 +150,7 @@
        path="C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/altera_up_avalon_adv_adc.v" />
   </childSourceFiles>
   <messages>
-   <message level="Debug" culprit="mic_ADC">queue size: 0 starting:mic_ADC "mic_ADC"</message>
+   <message level="Debug" culprit="adc">queue size: 0 starting:adc "adc"</message>
    <message level="Progress" culprit="min"></message>
    <message level="Progress" culprit="max"></message>
    <message level="Progress" culprit="current"></message>
@@ -163,8 +163,8 @@
    <message level="Debug">Transform: InterruptFanoutTransform</message>
    <message level="Debug">Transform: AvalonStreamingTransform</message>
    <message level="Debug">Transform: ResetAdaptation</message>
-   <message level="Debug" culprit="mic_ADC"><![CDATA["<b>mic_ADC</b>" reuses <b>altera_up_avalon_adc_mega</b> "<b>submodules/mic_ADC_adc_mega_0</b>"]]></message>
-   <message level="Debug" culprit="mic_ADC">queue size: 0 starting:altera_up_avalon_adc_mega "submodules/mic_ADC_adc_mega_0"</message>
+   <message level="Debug" culprit="adc"><![CDATA["<b>adc</b>" reuses <b>altera_up_avalon_adc_mega</b> "<b>submodules/adc_adc_mega_0</b>"]]></message>
+   <message level="Debug" culprit="adc">queue size: 0 starting:altera_up_avalon_adc_mega "submodules/adc_adc_mega_0"</message>
    <message level="Info" culprit="adc_mega_0">Starting Generation of ADC Controller for DE-series Board</message>
    <message level="Warning" culprit="adc_mega_0"><![CDATA[<b>add_file</b> from generate callback added file <b>altera_modular_adc_control.v</b> with wrong prefix; use [get_generation_property output_name] to get correct prefix]]></message>
    <message level="Warning" culprit="adc_mega_0"><![CDATA[<b>add_file</b> on static file <b>C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_control.v</b> from generate callback is unsafe; add static files from main program]]></message>
@@ -190,27 +190,27 @@
    <message level="Warning" culprit="adc_mega_0"><![CDATA[<b>add_file</b> on static file <b>C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/fiftyfivenm_adcblock_primitive_wrapper.v</b> from generate callback is unsafe; add static files from main program]]></message>
    <message level="Warning" culprit="adc_mega_0"><![CDATA[<b>add_file</b> from generate callback added file <b>fiftyfivenm_adcblock_top_wrapper.v</b> with wrong prefix; use [get_generation_property output_name] to get correct prefix]]></message>
    <message level="Warning" culprit="adc_mega_0"><![CDATA[<b>add_file</b> on static file <b>C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/fiftyfivenm_adcblock_top_wrapper.v</b> from generate callback is unsafe; add static files from main program]]></message>
-   <message level="Info" culprit="adc_mega_0">C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/altera_up_avalon_adv_adc.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_control.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_control_avrg_fifo.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_control_fsm.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_sample_store.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_sample_store_ram.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_sequencer.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_sequencer_csr.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_sequencer_ctrl.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/chsel_code_converter_sw_to_hw.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/DE10_Lite_ADC_Core_modular_adc_0.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/fiftyfivenm_adcblock_primitive_wrapper.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/fiftyfivenm_adcblock_top_wrapper.v C:/Users/bryan/AppData/Local/Temp/alt0062_4839281005888384311.dir/0006_sopcgen/mic_ADC_adc_mega_0.v</message>
+   <message level="Info" culprit="adc_mega_0">C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/altera_up_avalon_adv_adc.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_control.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_control_avrg_fifo.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_control_fsm.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_sample_store.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_sample_store_ram.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_sequencer.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_sequencer_csr.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_sequencer_ctrl.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/chsel_code_converter_sw_to_hw.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/DE10_Lite_ADC_Core_modular_adc_0.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/fiftyfivenm_adcblock_primitive_wrapper.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/fiftyfivenm_adcblock_top_wrapper.v C:/Users/bryan/AppData/Local/Temp/alt0074_3436485892601540260.dir/0006_sopcgen/adc_adc_mega_0.v</message>
    <message level="Debug">set ALTERA_HW_TCL_KEEP_TEMP_FILES=1 to retain temp files</message>
-   <message level="Debug">Command: C:/intelfpga_lite/23.1/quartus\bin64/quartus_sh.exe -t C:/Users/bryan/AppData/Local/Temp/alt0062_4839281005888384311.dir/0007_sopcqmap/not_a_project_setup.tcl</message>
-   <message level="Debug">Command: C:/intelfpga_lite/23.1/quartus\bin64/quartus_map.exe not_a_project --generate_hdl_interface=C:/Users/bryan/AppData/Local/Temp/alt0062_4839281005888384311.dir/0006_sopcgen/mic_ADC_adc_mega_0.v --set=HDL_INTERFACE_OUTPUT_PATH=C:/Users/bryan/AppData/Local/Temp/alt0062_4839281005888384311.dir/0007_sopcqmap/ --ini=disable_check_quartus_compatibility_qsys_only=on</message>
-   <message level="Debug">Command took 0.314s</message>
-   <message level="Debug">Command took 0.399s</message>
+   <message level="Debug">Command: C:/intelfpga_lite/23.1/quartus\bin64/quartus_sh.exe -t C:/Users/bryan/AppData/Local/Temp/alt0074_3436485892601540260.dir/0007_sopcqmap/not_a_project_setup.tcl</message>
+   <message level="Debug">Command: C:/intelfpga_lite/23.1/quartus\bin64/quartus_map.exe not_a_project --generate_hdl_interface=C:/Users/bryan/AppData/Local/Temp/alt0074_3436485892601540260.dir/0006_sopcgen/adc_adc_mega_0.v --set=HDL_INTERFACE_OUTPUT_PATH=C:/Users/bryan/AppData/Local/Temp/alt0074_3436485892601540260.dir/0007_sopcqmap/ --ini=disable_check_quartus_compatibility_qsys_only=on</message>
+   <message level="Debug">Command took 0.304s</message>
+   <message level="Debug">Command took 0.360s</message>
    <message level="Debug">set ALTERA_HW_TCL_KEEP_TEMP_FILES=1 to retain temp files</message>
-   <message level="Debug">Command: C:/intelfpga_lite/23.1/quartus\bin64/quartus_sh.exe -t C:/Users/bryan/AppData/Local/Temp/alt0062_4839281005888384311.dir/0008_sopcqmap/not_a_project_setup.tcl</message>
-   <message level="Debug">Command: C:/intelfpga_lite/23.1/quartus\bin64/quartus_map.exe not_a_project --generate_hdl_interface=C:\Users\bryan\AppData\Local\Temp\alt0062_4839281005888384311.dir\0006_sopcgen\mic_ADC_adc_mega_0.v --set=HDL_INTERFACE_OUTPUT_PATH=C:/Users/bryan/AppData/Local/Temp/alt0062_4839281005888384311.dir/0008_sopcqmap/ --set=HDL_INTERFACE_INSTANCE_NAME=inst --set=HDL_INTERFACE_INSTANCE_ENTITY=mic_ADC_adc_mega_0 "--set=HDL_INTERFACE_INSTANCE_PARAMETERS=board=S\"DE10-Lite\";board_rev=S\"Autodetect\";tsclk=D\"5\";numch=D\"0\";max10pllmultby=D\"1\";max10plldivby=D\"5\";" --ini=disable_check_quartus_compatibility_qsys_only=on</message>
-   <message level="Debug">Command took 0.349s</message>
-   <message level="Debug">Command took 0.371s</message>
-   <message level="Info" culprit="adc_mega_0"><![CDATA["<b>mic_ADC</b>" instantiated <b>altera_up_avalon_adc_mega</b> "<b>adc_mega_0</b>"]]></message>
+   <message level="Debug">Command: C:/intelfpga_lite/23.1/quartus\bin64/quartus_sh.exe -t C:/Users/bryan/AppData/Local/Temp/alt0074_3436485892601540260.dir/0008_sopcqmap/not_a_project_setup.tcl</message>
+   <message level="Debug">Command: C:/intelfpga_lite/23.1/quartus\bin64/quartus_map.exe not_a_project --generate_hdl_interface=C:\Users\bryan\AppData\Local\Temp\alt0074_3436485892601540260.dir\0006_sopcgen\adc_adc_mega_0.v --set=HDL_INTERFACE_OUTPUT_PATH=C:/Users/bryan/AppData/Local/Temp/alt0074_3436485892601540260.dir/0008_sopcqmap/ --set=HDL_INTERFACE_INSTANCE_NAME=inst --set=HDL_INTERFACE_INSTANCE_ENTITY=adc_adc_mega_0 "--set=HDL_INTERFACE_INSTANCE_PARAMETERS=board=S\"DE10-Lite\";board_rev=S\"Autodetect\";tsclk=D\"5\";numch=D\"0\";max10pllmultby=D\"1\";max10plldivby=D\"5\";" --ini=disable_check_quartus_compatibility_qsys_only=on</message>
+   <message level="Debug">Command took 0.295s</message>
+   <message level="Debug">Command took 0.357s</message>
+   <message level="Info" culprit="adc_mega_0"><![CDATA["<b>adc</b>" instantiated <b>altera_up_avalon_adc_mega</b> "<b>adc_mega_0</b>"]]></message>
   </messages>
  </entity>
  <entity
    path="submodules/"
    parameterizationKey="altera_up_avalon_adc_mega:18.0:AUTO_CLK_CLOCK_RATE=0,AUTO_DEVICE_FAMILY=MAX 10,board=DE10-Lite,board_rev=Autodetect,max10plldivby=5,max10pllmultby=1,numch=0,numch_=1,sclk_freq=10.0,sys_clk_freq=50,tsclk=5"
-   instancePathKey="mic_ADC:.:adc_mega_0"
+   instancePathKey="adc:.:adc_mega_0"
    kind="altera_up_avalon_adc_mega"
    version="18.0"
-   name="mic_ADC_adc_mega_0">
+   name="adc_adc_mega_0">
   <parameter name="AUTO_CLK_CLOCK_RATE" value="0" />
   <parameter name="AUTO_DEVICE_FAMILY" value="MAX 10" />
   <parameter name="max10plldivby" value="5" />
@@ -224,46 +224,46 @@
   <parameter name="numch" value="0" />
   <generatedFiles>
    <file
-       path="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/mic_ADC/synthesis/submodules/altera_up_avalon_adv_adc.v"
+       path="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/adc/synthesis/submodules/altera_up_avalon_adv_adc.v"
        type="VERILOG" />
    <file
-       path="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/mic_ADC/synthesis/submodules/altera_modular_adc_control.v"
+       path="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/adc/synthesis/submodules/altera_modular_adc_control.v"
        type="VERILOG" />
    <file
-       path="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/mic_ADC/synthesis/submodules/altera_modular_adc_control_avrg_fifo.v"
+       path="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/adc/synthesis/submodules/altera_modular_adc_control_avrg_fifo.v"
        type="VERILOG" />
    <file
-       path="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/mic_ADC/synthesis/submodules/altera_modular_adc_control_fsm.v"
+       path="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/adc/synthesis/submodules/altera_modular_adc_control_fsm.v"
        type="VERILOG" />
    <file
-       path="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/mic_ADC/synthesis/submodules/altera_modular_adc_sample_store.v"
+       path="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/adc/synthesis/submodules/altera_modular_adc_sample_store.v"
        type="VERILOG" />
    <file
-       path="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/mic_ADC/synthesis/submodules/altera_modular_adc_sample_store_ram.v"
+       path="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/adc/synthesis/submodules/altera_modular_adc_sample_store_ram.v"
        type="VERILOG" />
    <file
-       path="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/mic_ADC/synthesis/submodules/altera_modular_adc_sequencer.v"
+       path="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/adc/synthesis/submodules/altera_modular_adc_sequencer.v"
        type="VERILOG" />
    <file
-       path="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/mic_ADC/synthesis/submodules/altera_modular_adc_sequencer_csr.v"
+       path="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/adc/synthesis/submodules/altera_modular_adc_sequencer_csr.v"
        type="VERILOG" />
    <file
-       path="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/mic_ADC/synthesis/submodules/altera_modular_adc_sequencer_ctrl.v"
+       path="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/adc/synthesis/submodules/altera_modular_adc_sequencer_ctrl.v"
        type="VERILOG" />
    <file
-       path="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/mic_ADC/synthesis/submodules/chsel_code_converter_sw_to_hw.v"
+       path="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/adc/synthesis/submodules/chsel_code_converter_sw_to_hw.v"
        type="VERILOG" />
    <file
-       path="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/mic_ADC/synthesis/submodules/DE10_Lite_ADC_Core_modular_adc_0.v"
+       path="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/adc/synthesis/submodules/DE10_Lite_ADC_Core_modular_adc_0.v"
        type="VERILOG" />
    <file
-       path="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/mic_ADC/synthesis/submodules/fiftyfivenm_adcblock_primitive_wrapper.v"
+       path="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/adc/synthesis/submodules/fiftyfivenm_adcblock_primitive_wrapper.v"
        type="VERILOG" />
    <file
-       path="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/mic_ADC/synthesis/submodules/fiftyfivenm_adcblock_top_wrapper.v"
+       path="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/adc/synthesis/submodules/fiftyfivenm_adcblock_top_wrapper.v"
        type="VERILOG" />
    <file
-       path="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/mic_ADC/synthesis/submodules/mic_ADC_adc_mega_0.v"
+       path="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/adc/synthesis/submodules/adc_adc_mega_0.v"
        type="VERILOG" />
   </generatedFiles>
   <childGeneratedFiles/>
@@ -274,9 +274,9 @@
        path="C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/altera_up_avalon_adv_adc.v" />
   </sourceFiles>
   <childSourceFiles/>
-  <instantiator instantiator="mic_ADC" as="adc_mega_0" />
+  <instantiator instantiator="adc" as="adc_mega_0" />
   <messages>
-   <message level="Debug" culprit="mic_ADC">queue size: 0 starting:altera_up_avalon_adc_mega "submodules/mic_ADC_adc_mega_0"</message>
+   <message level="Debug" culprit="adc">queue size: 0 starting:altera_up_avalon_adc_mega "submodules/adc_adc_mega_0"</message>
    <message level="Info" culprit="adc_mega_0">Starting Generation of ADC Controller for DE-series Board</message>
    <message level="Warning" culprit="adc_mega_0"><![CDATA[<b>add_file</b> from generate callback added file <b>altera_modular_adc_control.v</b> with wrong prefix; use [get_generation_property output_name] to get correct prefix]]></message>
    <message level="Warning" culprit="adc_mega_0"><![CDATA[<b>add_file</b> on static file <b>C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_control.v</b> from generate callback is unsafe; add static files from main program]]></message>
@@ -302,18 +302,18 @@
    <message level="Warning" culprit="adc_mega_0"><![CDATA[<b>add_file</b> on static file <b>C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/fiftyfivenm_adcblock_primitive_wrapper.v</b> from generate callback is unsafe; add static files from main program]]></message>
    <message level="Warning" culprit="adc_mega_0"><![CDATA[<b>add_file</b> from generate callback added file <b>fiftyfivenm_adcblock_top_wrapper.v</b> with wrong prefix; use [get_generation_property output_name] to get correct prefix]]></message>
    <message level="Warning" culprit="adc_mega_0"><![CDATA[<b>add_file</b> on static file <b>C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/fiftyfivenm_adcblock_top_wrapper.v</b> from generate callback is unsafe; add static files from main program]]></message>
-   <message level="Info" culprit="adc_mega_0">C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/altera_up_avalon_adv_adc.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_control.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_control_avrg_fifo.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_control_fsm.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_sample_store.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_sample_store_ram.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_sequencer.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_sequencer_csr.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_sequencer_ctrl.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/chsel_code_converter_sw_to_hw.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/DE10_Lite_ADC_Core_modular_adc_0.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/fiftyfivenm_adcblock_primitive_wrapper.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/fiftyfivenm_adcblock_top_wrapper.v C:/Users/bryan/AppData/Local/Temp/alt0062_4839281005888384311.dir/0006_sopcgen/mic_ADC_adc_mega_0.v</message>
+   <message level="Info" culprit="adc_mega_0">C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/altera_up_avalon_adv_adc.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_control.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_control_avrg_fifo.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_control_fsm.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_sample_store.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_sample_store_ram.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_sequencer.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_sequencer_csr.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_sequencer_ctrl.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/chsel_code_converter_sw_to_hw.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/DE10_Lite_ADC_Core_modular_adc_0.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/fiftyfivenm_adcblock_primitive_wrapper.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/fiftyfivenm_adcblock_top_wrapper.v C:/Users/bryan/AppData/Local/Temp/alt0074_3436485892601540260.dir/0006_sopcgen/adc_adc_mega_0.v</message>
    <message level="Debug">set ALTERA_HW_TCL_KEEP_TEMP_FILES=1 to retain temp files</message>
-   <message level="Debug">Command: C:/intelfpga_lite/23.1/quartus\bin64/quartus_sh.exe -t C:/Users/bryan/AppData/Local/Temp/alt0062_4839281005888384311.dir/0007_sopcqmap/not_a_project_setup.tcl</message>
-   <message level="Debug">Command: C:/intelfpga_lite/23.1/quartus\bin64/quartus_map.exe not_a_project --generate_hdl_interface=C:/Users/bryan/AppData/Local/Temp/alt0062_4839281005888384311.dir/0006_sopcgen/mic_ADC_adc_mega_0.v --set=HDL_INTERFACE_OUTPUT_PATH=C:/Users/bryan/AppData/Local/Temp/alt0062_4839281005888384311.dir/0007_sopcqmap/ --ini=disable_check_quartus_compatibility_qsys_only=on</message>
-   <message level="Debug">Command took 0.314s</message>
-   <message level="Debug">Command took 0.399s</message>
+   <message level="Debug">Command: C:/intelfpga_lite/23.1/quartus\bin64/quartus_sh.exe -t C:/Users/bryan/AppData/Local/Temp/alt0074_3436485892601540260.dir/0007_sopcqmap/not_a_project_setup.tcl</message>
+   <message level="Debug">Command: C:/intelfpga_lite/23.1/quartus\bin64/quartus_map.exe not_a_project --generate_hdl_interface=C:/Users/bryan/AppData/Local/Temp/alt0074_3436485892601540260.dir/0006_sopcgen/adc_adc_mega_0.v --set=HDL_INTERFACE_OUTPUT_PATH=C:/Users/bryan/AppData/Local/Temp/alt0074_3436485892601540260.dir/0007_sopcqmap/ --ini=disable_check_quartus_compatibility_qsys_only=on</message>
+   <message level="Debug">Command took 0.304s</message>
+   <message level="Debug">Command took 0.360s</message>
    <message level="Debug">set ALTERA_HW_TCL_KEEP_TEMP_FILES=1 to retain temp files</message>
-   <message level="Debug">Command: C:/intelfpga_lite/23.1/quartus\bin64/quartus_sh.exe -t C:/Users/bryan/AppData/Local/Temp/alt0062_4839281005888384311.dir/0008_sopcqmap/not_a_project_setup.tcl</message>
-   <message level="Debug">Command: C:/intelfpga_lite/23.1/quartus\bin64/quartus_map.exe not_a_project --generate_hdl_interface=C:\Users\bryan\AppData\Local\Temp\alt0062_4839281005888384311.dir\0006_sopcgen\mic_ADC_adc_mega_0.v --set=HDL_INTERFACE_OUTPUT_PATH=C:/Users/bryan/AppData/Local/Temp/alt0062_4839281005888384311.dir/0008_sopcqmap/ --set=HDL_INTERFACE_INSTANCE_NAME=inst --set=HDL_INTERFACE_INSTANCE_ENTITY=mic_ADC_adc_mega_0 "--set=HDL_INTERFACE_INSTANCE_PARAMETERS=board=S\"DE10-Lite\";board_rev=S\"Autodetect\";tsclk=D\"5\";numch=D\"0\";max10pllmultby=D\"1\";max10plldivby=D\"5\";" --ini=disable_check_quartus_compatibility_qsys_only=on</message>
-   <message level="Debug">Command took 0.349s</message>
-   <message level="Debug">Command took 0.371s</message>
-   <message level="Info" culprit="adc_mega_0"><![CDATA["<b>mic_ADC</b>" instantiated <b>altera_up_avalon_adc_mega</b> "<b>adc_mega_0</b>"]]></message>
+   <message level="Debug">Command: C:/intelfpga_lite/23.1/quartus\bin64/quartus_sh.exe -t C:/Users/bryan/AppData/Local/Temp/alt0074_3436485892601540260.dir/0008_sopcqmap/not_a_project_setup.tcl</message>
+   <message level="Debug">Command: C:/intelfpga_lite/23.1/quartus\bin64/quartus_map.exe not_a_project --generate_hdl_interface=C:\Users\bryan\AppData\Local\Temp\alt0074_3436485892601540260.dir\0006_sopcgen\adc_adc_mega_0.v --set=HDL_INTERFACE_OUTPUT_PATH=C:/Users/bryan/AppData/Local/Temp/alt0074_3436485892601540260.dir/0008_sopcqmap/ --set=HDL_INTERFACE_INSTANCE_NAME=inst --set=HDL_INTERFACE_INSTANCE_ENTITY=adc_adc_mega_0 "--set=HDL_INTERFACE_INSTANCE_PARAMETERS=board=S\"DE10-Lite\";board_rev=S\"Autodetect\";tsclk=D\"5\";numch=D\"0\";max10pllmultby=D\"1\";max10plldivby=D\"5\";" --ini=disable_check_quartus_compatibility_qsys_only=on</message>
+   <message level="Debug">Command took 0.295s</message>
+   <message level="Debug">Command took 0.357s</message>
+   <message level="Info" culprit="adc_mega_0"><![CDATA["<b>adc</b>" instantiated <b>altera_up_avalon_adc_mega</b> "<b>adc_mega_0</b>"]]></message>
   </messages>
  </entity>
 </deploy>

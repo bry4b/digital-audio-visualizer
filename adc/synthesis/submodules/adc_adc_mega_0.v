@@ -19,7 +19,7 @@
 // FROM, OUT OF OR IN CONNECTION WITH THIS FILE OR THE USE OR OTHER DEALINGS
 // IN THIS FILE.
 
-module mic_ADC_adc_mega_0 (
+module adc_adc_mega_0 (
 	CLOCK,
 	RESET,
 	ADC_CS_N,

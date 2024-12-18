@@ -22,7 +22,7 @@ https://fpgasoftware.intel.com/eula.
 (header "symbol" (version "1.1"))
 (symbol
 	(rect 0 0 176 296)
-	(text "mic_ADC" (rect 60 -1 102 11)(font "Arial" (font_size 10)))
+	(text "adc" (rect 78 -1 92 11)(font "Arial" (font_size 10)))
 	(text "inst" (rect 8 280 20 292)(font "Arial" ))
 	(port
 		(pt 0 72)
@@ -108,7 +108,7 @@ https://fpgasoftware.intel.com/eula.
 		(text "CH7" (rect 69 219 156 448)(font "Arial" (color 0 0 0)))
 		(text "reset" (rect 35 235 100 483)(font "Arial" (color 128 0 0)(font_size 9)))
 		(text "reset" (rect 69 259 168 528)(font "Arial" (color 0 0 0)))
-		(text " mic_ADC " (rect 130 280 314 570)(font "Arial" ))
+		(text " adc " (rect 158 280 346 570)(font "Arial" ))
 		(line (pt 64 32)(pt 112 32)(line_width 1))
 		(line (pt 112 32)(pt 112 280)(line_width 1))
 		(line (pt 64 280)(pt 112 280)(line_width 1))

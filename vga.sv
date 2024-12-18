@@ -45,8 +45,8 @@ module vga(
 	reg [9:0] vc;
 	
 	initial begin
-		hc = 'd0;
-		vc = 'd0;
+		hc = 1'd0;
+		vc = 1'd0;
 	end
 	
 	assign hc_out = hc;
@@ -64,11 +64,11 @@ module vga(
 			vc <= 'd0;
 			hc <= 'd0;
 		end else begin
-			if (hc == HPIXELS + HFP + HSPULSE + HBP - 'd1) begin
-				vc <= (vc == VPIXELS + VFP + VSPULSE + VBP - 'd1) ? 'd0 : vc + 'd1;
-				hc <= 'd0;
+			if (hc == HPIXELS + HFP + HSPULSE + HBP - 1'd1) begin
+				vc <= (vc == VPIXELS + VFP + VSPULSE + VBP - 1'd1) ? 1'd0 : vc + 1'd1;
+				hc <= 1'd0;
 			end else begin
-				hc <= hc + 'd1;
+				hc <= hc + 1'd1;
 			end
 		end
 		
@@ -76,8 +76,8 @@ module vga(
 	
 	/* TODO(3): when should hsync and vsync go low?
 	 */
-	assign hsync = (hc >= HPIXELS + HFP  && hc < HPIXELS + HFP + HSPULSE) ? 'd0 : 'd1;
-	assign vsync = (vc >= VPIXELS + VFP  && vc < VPIXELS + VFP + VSPULSE) ? 'd0 : 'd1;
+	assign hsync = (hc >= HPIXELS + HFP  && hc < HPIXELS + HFP + HSPULSE) ? 1'b0 : 1'b1;
+	assign vsync = (vc >= VPIXELS + VFP  && vc < VPIXELS + VFP + VSPULSE) ? 1'b0 : 1'b1;
 	
    // in the combinational block, we set red, green, blue outputs
 	always_comb begin
@@ -86,9 +86,9 @@ module vga(
 		 *       if not, we're in the blanking interval, so set them all to 0
 		 * NOTE: our inputs are fewer bits than the outputs, so left-shift accordingly!
 		 */
-		red = (hc < HPIXELS && vc < VPIXELS && rst == 'd0) ? input_red << 'd1 : 'd0;
-		green = (hc < HPIXELS && vc < VPIXELS && rst == 'd0) ? input_green << 'd1 : 'd0;
-		blue = (hc < HPIXELS && vc < VPIXELS && rst == 'd0)  ? input_blue << 'd2 : 'd0;
+		red = (hc < HPIXELS && vc < VPIXELS && rst == 'd0) ? input_red << 1'd1 : 1'd0;
+		green = (hc < HPIXELS && vc < VPIXELS && rst == 'd0) ? input_green << 1'd1 : 1'd0;
+		blue = (hc < HPIXELS && vc < VPIXELS && rst == 'd0)  ? input_blue << 2'd2 : 1'd0;
 	end
 
 endmodule

@@ -1,6 +1,6 @@
 Info: Starting: Create simulation model
-Info: qsys-generate "C:\Users\bryan\Documents\school\ucla\ieee dav 2024\digital-audio-visualizer\mic_ADC.qsys" --simulation=VERILOG --allow-mixed-language-simulation --output-directory="C:\Users\bryan\Documents\school\ucla\ieee dav 2024\digital-audio-visualizer\mic_ADC\simulation" --family="MAX 10" --part=10M50DAF484C7G
-Progress: Loading digital-audio-visualizer/mic_ADC.qsys
+Info: qsys-generate "C:\Users\bryan\Documents\school\ucla\ieee dav 2024\digital-audio-visualizer\adc.qsys" --simulation=VERILOG --allow-mixed-language-simulation --output-directory="C:\Users\bryan\Documents\school\ucla\ieee dav 2024\digital-audio-visualizer\adc\simulation" --family="MAX 10" --part=10M50DAF484C7G
+Progress: Loading digital-audio-visualizer/adc.qsys
 Progress: Reading input file
 Progress: Adding adc_mega_0 [altera_up_avalon_adc_mega 18.0]
 Progress: Parameterizing module adc_mega_0
@@ -8,7 +8,7 @@ Progress: Building connections
 Progress: Parameterizing connections
 Progress: Validating
 Progress: Done reading input file
-Info: mic_ADC: Generating mic_ADC "mic_ADC" for SIM_VERILOG
+Info: adc: Generating adc "adc" for SIM_VERILOG
 Info: adc_mega_0: Starting Generation of ADC Controller for DE-series Board
 Warning: adc_mega_0: add_file from generate callback added file altera_modular_adc_control.v with wrong prefix; use [get_generation_property output_name] to get correct prefix
 Warning: adc_mega_0: add_file on static file C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_control.v from generate callback is unsafe; add static files from main program
@@ -34,25 +34,25 @@ Warning: adc_mega_0: add_file from generate callback added file fiftyfivenm_adcb
 Warning: adc_mega_0: add_file on static file C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/fiftyfivenm_adcblock_primitive_wrapper.v from generate callback is unsafe; add static files from main program
 Warning: adc_mega_0: add_file from generate callback added file fiftyfivenm_adcblock_top_wrapper.v with wrong prefix; use [get_generation_property output_name] to get correct prefix
 Warning: adc_mega_0: add_file on static file C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/fiftyfivenm_adcblock_top_wrapper.v from generate callback is unsafe; add static files from main program
-Info: adc_mega_0: C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/altera_up_avalon_adv_adc.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_control.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_control_avrg_fifo.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_control_fsm.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_sample_store.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_sample_store_ram.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_sequencer.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_sequencer_csr.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_sequencer_ctrl.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/chsel_code_converter_sw_to_hw.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/DE10_Lite_ADC_Core_modular_adc_0.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/fiftyfivenm_adcblock_primitive_wrapper.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/fiftyfivenm_adcblock_top_wrapper.v C:/Users/bryan/AppData/Local/Temp/alt0062_4839281005888384311.dir/0002_sopcgen/mic_ADC_adc_mega_0.v
-Warning: adc_mega_0: Generation callback did not provide a top level file.  Found mic_ADC_adc_mega_0.v in output directory - callback must `add_file $output_dir/mic_ADC_adc_mega_0.v {SIMULATION SYNTHESIS}`
-Info: adc_mega_0: "mic_ADC" instantiated altera_up_avalon_adc_mega "adc_mega_0"
-Info: mic_ADC: Done "mic_ADC" with 2 modules, 15 files
+Info: adc_mega_0: C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/altera_up_avalon_adv_adc.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_control.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_control_avrg_fifo.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_control_fsm.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_sample_store.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_sample_store_ram.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_sequencer.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_sequencer_csr.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_sequencer_ctrl.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/chsel_code_converter_sw_to_hw.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/DE10_Lite_ADC_Core_modular_adc_0.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/fiftyfivenm_adcblock_primitive_wrapper.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/fiftyfivenm_adcblock_top_wrapper.v C:/Users/bryan/AppData/Local/Temp/alt0074_3436485892601540260.dir/0002_sopcgen/adc_adc_mega_0.v
+Warning: adc_mega_0: Generation callback did not provide a top level file.  Found adc_adc_mega_0.v in output directory - callback must `add_file $output_dir/adc_adc_mega_0.v {SIMULATION SYNTHESIS}`
+Info: adc_mega_0: "adc" instantiated altera_up_avalon_adc_mega "adc_mega_0"
+Info: adc: Done "adc" with 2 modules, 15 files
 Info: qsys-generate succeeded.
 Info: Finished: Create simulation model
 Info: Starting: Create Modelsim Project.
-Info: sim-script-gen --spd="C:\Users\bryan\Documents\school\ucla\ieee dav 2024\digital-audio-visualizer\mic_ADC\mic_ADC.spd" --output-directory="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/mic_ADC/simulation/" --use-relative-paths=true
-Info: Doing: ip-make-simscript --spd=C:\Users\bryan\Documents\school\ucla\ieee dav 2024\digital-audio-visualizer\mic_ADC\mic_ADC.spd --output-directory=C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/mic_ADC/simulation/ --use-relative-paths=true
-Info: Generating the following file(s) for MODELSIM simulator in C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/mic_ADC/simulation/ directory:
+Info: sim-script-gen --spd="C:\Users\bryan\Documents\school\ucla\ieee dav 2024\digital-audio-visualizer\adc\adc.spd" --output-directory="C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/adc/simulation/" --use-relative-paths=true
+Info: Doing: ip-make-simscript --spd=C:\Users\bryan\Documents\school\ucla\ieee dav 2024\digital-audio-visualizer\adc\adc.spd --output-directory=C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/adc/simulation/ --use-relative-paths=true
+Info: Generating the following file(s) for MODELSIM simulator in C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/adc/simulation/ directory:
 Info: 	mentor/msim_setup.tcl
-Info: Generating the following file(s) for RIVIERA simulator in C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/mic_ADC/simulation/ directory:
+Info: Generating the following file(s) for RIVIERA simulator in C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/adc/simulation/ directory:
 Info: 	aldec/rivierapro_setup.tcl
-Info: For information on how to simulate your IP, see the explanatory comments in the simulator-specific subdirectories under C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/mic_ADC/simulation/.
+Info: For information on how to simulate your IP, see the explanatory comments in the simulator-specific subdirectories under C:/Users/bryan/Documents/school/ucla/ieee dav 2024/digital-audio-visualizer/adc/simulation/.
 Info: Regenerate these scripts whenever you make any change to any Quartus-generated IP in your project.
 Info: Finished: Create Modelsim Project.
 Info: Starting: Create block symbol file (.bsf)
-Info: qsys-generate "C:\Users\bryan\Documents\school\ucla\ieee dav 2024\digital-audio-visualizer\mic_ADC.qsys" --block-symbol-file --output-directory="C:\Users\bryan\Documents\school\ucla\ieee dav 2024\digital-audio-visualizer\mic_ADC" --family="MAX 10" --part=10M50DAF484C7G
-Progress: Loading digital-audio-visualizer/mic_ADC.qsys
+Info: qsys-generate "C:\Users\bryan\Documents\school\ucla\ieee dav 2024\digital-audio-visualizer\adc.qsys" --block-symbol-file --output-directory="C:\Users\bryan\Documents\school\ucla\ieee dav 2024\digital-audio-visualizer\adc" --family="MAX 10" --part=10M50DAF484C7G
+Progress: Loading digital-audio-visualizer/adc.qsys
 Progress: Reading input file
 Progress: Adding adc_mega_0 [altera_up_avalon_adc_mega 18.0]
 Progress: Parameterizing module adc_mega_0
@@ -64,8 +64,8 @@ Info: qsys-generate succeeded.
 Info: Finished: Create block symbol file (.bsf)
 Info: 
 Info: Starting: Create HDL design files for synthesis
-Info: qsys-generate "C:\Users\bryan\Documents\school\ucla\ieee dav 2024\digital-audio-visualizer\mic_ADC.qsys" --synthesis=VERILOG --output-directory="C:\Users\bryan\Documents\school\ucla\ieee dav 2024\digital-audio-visualizer\mic_ADC\synthesis" --family="MAX 10" --part=10M50DAF484C7G
-Progress: Loading digital-audio-visualizer/mic_ADC.qsys
+Info: qsys-generate "C:\Users\bryan\Documents\school\ucla\ieee dav 2024\digital-audio-visualizer\adc.qsys" --synthesis=VERILOG --output-directory="C:\Users\bryan\Documents\school\ucla\ieee dav 2024\digital-audio-visualizer\adc\synthesis" --family="MAX 10" --part=10M50DAF484C7G
+Progress: Loading digital-audio-visualizer/adc.qsys
 Progress: Reading input file
 Progress: Adding adc_mega_0 [altera_up_avalon_adc_mega 18.0]
 Progress: Parameterizing module adc_mega_0
@@ -73,7 +73,7 @@ Progress: Building connections
 Progress: Parameterizing connections
 Progress: Validating
 Progress: Done reading input file
-Info: mic_ADC: Generating mic_ADC "mic_ADC" for QUARTUS_SYNTH
+Info: adc: Generating adc "adc" for QUARTUS_SYNTH
 Info: adc_mega_0: Starting Generation of ADC Controller for DE-series Board
 Warning: adc_mega_0: add_file from generate callback added file altera_modular_adc_control.v with wrong prefix; use [get_generation_property output_name] to get correct prefix
 Warning: adc_mega_0: add_file on static file C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_control.v from generate callback is unsafe; add static files from main program
@@ -99,8 +99,8 @@ Warning: adc_mega_0: add_file from generate callback added file fiftyfivenm_adcb
 Warning: adc_mega_0: add_file on static file C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/fiftyfivenm_adcblock_primitive_wrapper.v from generate callback is unsafe; add static files from main program
 Warning: adc_mega_0: add_file from generate callback added file fiftyfivenm_adcblock_top_wrapper.v with wrong prefix; use [get_generation_property output_name] to get correct prefix
 Warning: adc_mega_0: add_file on static file C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/fiftyfivenm_adcblock_top_wrapper.v from generate callback is unsafe; add static files from main program
-Info: adc_mega_0: C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/altera_up_avalon_adv_adc.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_control.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_control_avrg_fifo.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_control_fsm.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_sample_store.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_sample_store_ram.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_sequencer.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_sequencer_csr.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_sequencer_ctrl.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/chsel_code_converter_sw_to_hw.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/DE10_Lite_ADC_Core_modular_adc_0.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/fiftyfivenm_adcblock_primitive_wrapper.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/fiftyfivenm_adcblock_top_wrapper.v C:/Users/bryan/AppData/Local/Temp/alt0062_4839281005888384311.dir/0006_sopcgen/mic_ADC_adc_mega_0.v
-Info: adc_mega_0: "mic_ADC" instantiated altera_up_avalon_adc_mega "adc_mega_0"
-Info: mic_ADC: Done "mic_ADC" with 2 modules, 15 files
+Info: adc_mega_0: C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/altera_up_avalon_adv_adc.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_control.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_control_avrg_fifo.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_control_fsm.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_sample_store.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_sample_store_ram.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_sequencer.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_sequencer_csr.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/altera_modular_adc_sequencer_ctrl.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/chsel_code_converter_sw_to_hw.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/DE10_Lite_ADC_Core_modular_adc_0.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/fiftyfivenm_adcblock_primitive_wrapper.v C:/intelfpga_lite/23.1/ip/altera/university_program/input_output/altera_up_avalon_adc/hdl/de10/fiftyfivenm_adcblock_top_wrapper.v C:/Users/bryan/AppData/Local/Temp/alt0074_3436485892601540260.dir/0006_sopcgen/adc_adc_mega_0.v
+Info: adc_mega_0: "adc" instantiated altera_up_avalon_adc_mega "adc_mega_0"
+Info: adc: Done "adc" with 2 modules, 15 files
 Info: qsys-generate succeeded.
 Info: Finished: Create HDL design files for synthesis

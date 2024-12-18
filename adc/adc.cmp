@@ -1,4 +1,4 @@
-	component mic_ADC is
+	component adc is
 		port (
 			CLOCK : in  std_logic                     := 'X'; -- clk
 			CH0   : out std_logic_vector(11 downto 0);        -- CH0
@@ -11,5 +11,5 @@
 			CH7   : out std_logic_vector(11 downto 0);        -- CH7
 			RESET : in  std_logic                     := 'X'  -- reset
 		);
-	end component mic_ADC;
+	end component adc;
 

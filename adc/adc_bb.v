@@ -1,5 +1,5 @@
 
-module mic_ADC (
+module adc (
 	CLOCK,
 	RESET,
 	CH0,

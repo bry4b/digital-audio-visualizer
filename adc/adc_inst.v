@@ -1,4 +1,4 @@
-	mic_ADC u0 (
+	adc u0 (
 		.CLOCK (<connected-to-CLOCK>), //      clk.clk
 		.RESET (<connected-to-RESET>), //    reset.reset
 		.CH0   (<connected-to-CH0>),   // readings.CH0

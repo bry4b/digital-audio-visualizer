@@ -497,11 +497,12 @@ always_comb begin
     end
 
     DONE: begin
-        if (rst) begin
-            state_d = SET;
-        end else begin
-            state_d = DONE;
-        end
+        // if (rst) begin
+        //     state_d = SET;
+        // end else begin
+        //     state_d = DONE;
+        // end
+        state_d = SET;
     end
 
     default: begin
@@ -513,12 +514,7 @@ end
 
 // catch frequency outputs
 always_ff @(negedge clk) begin
-    if (state_d == SET) begin
-        for (int i = 0; i < N; i++) begin
-            freq_real[i] <= 1'b0;
-            freq_imag[i] <= 1'b0;
-        end
-    end else if (done_sr == 2'b10) begin
+    if (done_sr == 2'b10) begin
         for (int i = 0; i < 4; i++) begin
             for (int j = 0; j < 4; j++) begin
                 for (int k = 0; k < 4; k++) begin
@@ -533,6 +529,11 @@ always_ff @(negedge clk) begin
                     freq_imag[i+j*4+k*16+N_BUTTERFLY*3] <= out[3][i*16+j*4+k][WIDTH:0];
                 end
             end
+        end
+    end else if (state_d == SET) begin
+        for (int i = 0; i < N; i++) begin
+            freq_real[i] <= 1'b0;
+            freq_imag[i] <= 1'b0;
         end
     end
 end

@@ -194,11 +194,13 @@ always_comb begin
     end
 
     DONE: begin
-        if (rst) begin
-            state_d = SET;
-        end else begin
-            state_d = DONE;
-        end
+        // if (rst) begin
+        //     state_d = SET;
+        // end else begin
+        //     state_d = DONE;
+        // end
+
+        state_d = SET;
     end
 
     default: begin
@@ -210,12 +212,7 @@ end
 
 // catch freq_samples
 always_ff @(negedge clk) begin
-    if (state_d == SET) begin
-        for (int i = 0; i < N; i++) begin
-            freq_real[i] <= 1'b0;
-freq_imag[i] <= 1'b0;
-        end
-    end else if (done_sr == 2'b10) begin
+    if (done_sr == 2'b10) begin
         for (int i = 0; i < N_BUTTERFLY; i++) begin
             freq_real[i+N_BUTTERFLY*0] <= out[0][i][FULL_WIDTH-1:WIDTH+1];
             freq_real[i+N_BUTTERFLY*1] <= out[1][i][FULL_WIDTH-1:WIDTH+1];
@@ -226,6 +223,11 @@ freq_imag[i] <= 1'b0;
             freq_imag[i+N_BUTTERFLY*1] <= out[1][i][WIDTH:0];
             freq_imag[i+N_BUTTERFLY*2] <= out[2][i][WIDTH:0];
             freq_imag[i+N_BUTTERFLY*3] <= out[3][i][WIDTH:0];
+        end
+    end else if (state_d == SET) begin
+        for (int i = 0; i < N; i++) begin
+            freq_real[i] <= 1'b0;
+            freq_imag[i] <= 1'b0;
         end
     end
 end
