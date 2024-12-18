@@ -42,9 +42,20 @@ endgenerate
 */
 pll2 VGA_CLOCK ( .inclk0(clk_50MHz), .c0(clk_25MHz) );
 	
-vga VGA ( .vgaclk(clk_25MHz), .input_red(color_to_vga[7:5]), .input_green(color_to_vga[4:2]), .input_blue(color_to_vga[1:0]),
-			 .rst(rst), .hc_out(hc_out), .vc_out(vc_out), .hsync(hsync), .vsync(vsync),
-			 .red(red), .green(green), .blue(blue) );
+vga VGA (
+	.vgaclk(clk_25MHz), 
+	.input_red(color_to_vga[7:5]), 
+	.input_green(color_to_vga[4:2]), 
+	.input_blue(color_to_vga[1:0]),
+	.rst(rst), 
+	.hc_out(hc_out), 
+	.vc_out(vc_out), 
+	.hsync(hsync), 
+	.vsync(vsync),
+	.red(red), 
+	.green(green), 
+	.blue(blue) 
+);
 
 
 logic [7:0] color_gradient [0:15] = '{
@@ -53,7 +64,7 @@ logic [7:0] color_gradient [0:15] = '{
 
 always @(posedge clk_25MHz) begin
 	if (x < 16) begin										//black		//blue
-		color_to_vga <= (y < 30 - thresholds[x]) ? 8'h00 : 8'h03;
+		color_to_vga <= (y < 30 - thresholds[x]) ? 8'h00 : color_gradient[x];
 	end
 end
 
