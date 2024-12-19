@@ -1,12 +1,16 @@
-module mic_sampler(
+module mic_sampler # (
+    parameter WIDTH = 12,
+    parameter N = 256,
+    parameter SAMPLE_RATE = 5000
+) (
     input clk_10MHz,
     input rst,
-    output reg [11:0] samples [0:15]
+    output reg [WIDTH-1:0] samples [0:N-1]
 );
-    reg [11:0] sample;
+    reg [WIDTH-1:0] sample;
     reg mic_sampling_clk;
-	 
-    clock_divider #(10000000, 5000) SAMPLING_CLOCK (.clk(clk_10MHz), .rst(rst), .out_clk(mic_sampling_clk));
+	
+    clock_divider #(10000000, SAMPLE_RATE) SAMPLING_CLOCK (.clk(clk_10MHz), .rst(rst), .out_clk(mic_sampling_clk));
 
     /*
         ADC parameters
