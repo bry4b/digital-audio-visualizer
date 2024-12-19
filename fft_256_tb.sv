@@ -63,7 +63,7 @@ initial begin
     start <= 1;
 	#10 start <= 0;
 
-    #300 rst <= 1;
+    #500 rst <= 1;
 	#10 rst <= 0;
 	#10 start <= 1;
 	#10 start <= 0;

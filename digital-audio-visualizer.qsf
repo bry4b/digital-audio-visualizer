@@ -39,7 +39,7 @@
 
 set_global_assignment -name FAMILY "MAX 10"
 set_global_assignment -name DEVICE 10M50DAF484C7G
-set_global_assignment -name TOP_LEVEL_ENTITY fft_256_tb
+set_global_assignment -name TOP_LEVEL_ENTITY fft_256
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 23.1STD.1
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "22:06:06  DECEMBER 04, 2024"
 set_global_assignment -name LAST_QUARTUS_VERSION "23.1std.1 Lite Edition"
@@ -58,24 +58,6 @@ set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
 set_global_assignment -name VERILOG_INPUT_VERSION VERILOG_2001
 set_global_assignment -name VERILOG_SHOW_LMF_MAPPING_MESSAGES OFF
-set_global_assignment -name SYSTEMVERILOG_FILE mic_test_led.sv
-set_global_assignment -name VERILOG_FILE adc/synthesis/adc.v
-set_global_assignment -name QSYS_FILE adc.qsys
-set_global_assignment -name SYSTEMVERILOG_FILE vga.sv
-set_global_assignment -name SYSTEMVERILOG_FILE mic_sampler.sv
-set_global_assignment -name SYSTEMVERILOG_FILE graphics_controller.sv
-set_global_assignment -name SYSTEMVERILOG_FILE dav_top.sv
-set_global_assignment -name SYSTEMVERILOG_FILE clock_divider.sv
-set_global_assignment -name SYSTEMVERILOG_FILE mag_est.sv
-set_global_assignment -name SYSTEMVERILOG_FILE fft_256_tb.sv
-set_global_assignment -name SYSTEMVERILOG_FILE fft_256.sv
-set_global_assignment -name SYSTEMVERILOG_FILE fft_64_tb.sv
-set_global_assignment -name SYSTEMVERILOG_FILE fft_64.sv
-set_global_assignment -name SYSTEMVERILOG_FILE fft_16_tb.sv
-set_global_assignment -name SYSTEMVERILOG_FILE fft_16.sv
-set_global_assignment -name SYSTEMVERILOG_FILE butterfly_tb.sv
-set_global_assignment -name SYSTEMVERILOG_FILE butterfly_4.sv
-set_global_assignment -name QIP_FILE pll2.qip
 set_location_assignment PIN_A8 -to leds[0]
 set_location_assignment PIN_A9 -to leds[1]
 set_location_assignment PIN_A10 -to leds[2]
@@ -130,6 +112,39 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to red[1]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to red[2]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to red[3]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to vsync
+set_global_assignment -name SYSTEMVERILOG_FILE fft_256_old.sv
+set_global_assignment -name SYSTEMVERILOG_FILE mic_test_led.sv
+set_global_assignment -name VERILOG_FILE adc/synthesis/adc.v
+set_global_assignment -name QSYS_FILE adc.qsys
+set_global_assignment -name SYSTEMVERILOG_FILE vga.sv
+set_global_assignment -name SYSTEMVERILOG_FILE mic_sampler.sv
+set_global_assignment -name SYSTEMVERILOG_FILE graphics_controller.sv
+set_global_assignment -name SYSTEMVERILOG_FILE dav_top.sv
+set_global_assignment -name SYSTEMVERILOG_FILE clock_divider.sv
+set_global_assignment -name SYSTEMVERILOG_FILE mag_est.sv
+set_global_assignment -name SYSTEMVERILOG_FILE fft_256_tb.sv
+set_global_assignment -name SYSTEMVERILOG_FILE fft_256.sv
+set_global_assignment -name SYSTEMVERILOG_FILE fft_64_tb.sv
+set_global_assignment -name SYSTEMVERILOG_FILE fft_64.sv
+set_global_assignment -name SYSTEMVERILOG_FILE fft_16_tb.sv
+set_global_assignment -name SYSTEMVERILOG_FILE fft_16.sv
+set_global_assignment -name SYSTEMVERILOG_FILE butterfly_tb.sv
+set_global_assignment -name SYSTEMVERILOG_FILE butterfly_4.sv
+set_global_assignment -name QIP_FILE pll2.qip
+set_global_assignment -name OPTIMIZATION_MODE "AGGRESSIVE AREA"
+set_global_assignment -name REMOVE_REDUNDANT_LOGIC_CELLS ON
+set_global_assignment -name CYCLONEII_OPTIMIZATION_TECHNIQUE AREA
+set_global_assignment -name AUTO_RAM_TO_LCELL_CONVERSION ON
+set_global_assignment -name ADV_NETLIST_OPT_SYNTH_WYSIWYG_REMAP ON
+set_global_assignment -name MUX_RESTRUCTURE ON
+set_global_assignment -name AUTO_SHIFT_REGISTER_RECOGNITION ALWAYS
+set_global_assignment -name ALLOW_SHIFT_REGISTER_MERGING_ACROSS_HIERARCHIES ALWAYS
+set_global_assignment -name ALLOW_ANY_SHIFT_REGISTER_SIZE_FOR_RECOGNITION ON
+set_global_assignment -name AUTO_RESOURCE_SHARING ON
+set_global_assignment -name PHYSICAL_SYNTHESIS_COMBO_LOGIC_FOR_AREA OFF
+set_global_assignment -name PHYSICAL_SYNTHESIS_MAP_LOGIC_TO_MEMORY_FOR_AREA OFF
+set_global_assignment -name SMART_RECOMPILE ON
+set_global_assignment -name AUTO_RAM_RECOGNITION ON
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
