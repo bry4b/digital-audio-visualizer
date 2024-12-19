@@ -27,19 +27,19 @@ localparam N_LOG2 = $clog2(N);
 localparam N_STAGES = N_LOG2/2;
 localparam FULL_WIDTH = WIDTH*2;
 
-logic [FULL_WIDTH-1:0] a [0:N_BUTTERFLY-1];
-logic [FULL_WIDTH-1:0] b [0:N_BUTTERFLY-1];
-logic [FULL_WIDTH-1:0] c [0:N_BUTTERFLY-1];
-logic [FULL_WIDTH-1:0] d [0:N_BUTTERFLY-1];
+logic [0:N_BUTTERFLY-1] [FULL_WIDTH-1:0] a;
+logic [0:N_BUTTERFLY-1] [FULL_WIDTH-1:0] b;
+logic [0:N_BUTTERFLY-1] [FULL_WIDTH-1:0] c;
+logic [0:N_BUTTERFLY-1] [FULL_WIDTH-1:0] d;
 
 // outputs 0:3 of butterfly units 0:N_BUTTERFLY-1, each of width FULL_WIDTH. 
-logic [FULL_WIDTH-1:0] out   [0:3] [0:N_BUTTERFLY-1];
-logic [FULL_WIDTH-1:0] out_d [0:3] [0:N_BUTTERFLY-1];   // next outputs
+logic [0:N_BUTTERFLY-1] [FULL_WIDTH-1:0] out   [0:3];
+logic [0:N_BUTTERFLY-1] [FULL_WIDTH-1:0] out_d [0:3];   // next outputs
 
-logic [FULL_WIDTH+1:0] w0 [0:N_BUTTERFLY-1];
-logic [FULL_WIDTH+1:0] w1 [0:N_BUTTERFLY-1];
-logic [FULL_WIDTH+1:0] w2 [0:N_BUTTERFLY-1];
-logic [FULL_WIDTH+1:0] w3 [0:N_BUTTERFLY-1];
+logic [0:N_BUTTERFLY-1] [FULL_WIDTH+1:0] w0;
+logic [0:N_BUTTERFLY-1] [FULL_WIDTH+1:0] w1;
+logic [0:N_BUTTERFLY-1] [FULL_WIDTH+1:0] w2;
+logic [0:N_BUTTERFLY-1] [FULL_WIDTH+1:0] w3;
 
 // twiddle factors for 64-point FFT
 // TODO: look into loading ROM
@@ -285,11 +285,12 @@ always_comb begin
     end
 
     DONE: begin
-        if (rst) begin
-            state_d = SET;
-        end else begin
-            state_d = DONE;
-        end
+        // if (rst) begin
+        //     state_d = SET;
+        // end else begin
+        //     state_d = DONE;
+        // end
+        state_d = SET;
     end
 
     default: begin
@@ -301,11 +302,7 @@ end
 
 // catch freq_samples
 always_ff @(negedge clk) begin
-    if (state_d == SET) begin
-        for (int i = 0; i < N; i++) begin
-            freq_samples[i] <= 1'b0;
-        end
-    end else if (done_sr == 2'b10) begin
+    if (done_sr == 2'b10) begin
         for (int i = 0; i < 4; i++) begin
             for (int j = 0; j < 4; j++) begin
                 freq_samples[i+j*4+N_BUTTERFLY*0] <= out[0][i*4+j][FULL_WIDTH-1:WIDTH];
@@ -314,7 +311,11 @@ always_ff @(negedge clk) begin
                 freq_samples[i+j*4+N_BUTTERFLY*3] <= out[3][i*4+j][FULL_WIDTH-1:WIDTH];
             end
         end
-    end
+    end else if (state_d == SET) begin
+        for (int i = 0; i < N; i++) begin
+            freq_samples[i] <= 1'b0;
+        end
+    end 
 end
 
 endmodule

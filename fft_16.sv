@@ -7,9 +7,9 @@ module fft_16 #(
     input start,
     output done,
 
-    input [WIDTH-1:0] time_samples [0:N-1],
-    output logic [WIDTH:0] freq_real [0:N-1],
-    output logic [WIDTH:0] freq_imag [0:N-1]
+    input [WIDTH-1:0]       time_samples    [0:N-1],
+    output logic [WIDTH:0]  freq_real       [0:N-1],
+    output logic [WIDTH:0]  freq_imag       [0:N-1]
 );
 
 /*
@@ -28,19 +28,19 @@ localparam N_LOG2 = $clog2(N);
 localparam N_STAGES = N_LOG2/2;
 localparam FULL_WIDTH = (WIDTH+1)*2;
 
-logic [FULL_WIDTH-1:0] a [0:N_BUTTERFLY-1];
-logic [FULL_WIDTH-1:0] b [0:N_BUTTERFLY-1];
-logic [FULL_WIDTH-1:0] c [0:N_BUTTERFLY-1];
-logic [FULL_WIDTH-1:0] d [0:N_BUTTERFLY-1];
+logic [0:N_BUTTERFLY-1] [FULL_WIDTH-1:0] a;
+logic [0:N_BUTTERFLY-1] [FULL_WIDTH-1:0] b;
+logic [0:N_BUTTERFLY-1] [FULL_WIDTH-1:0] c;
+logic [0:N_BUTTERFLY-1] [FULL_WIDTH-1:0] d;
 
 // outputs 0:3 of butterfly units 0:N_BUTTERFLY-1, each of width FULL_WIDTH. 
-logic [FULL_WIDTH-1:0] out   [0:3] [0:N_BUTTERFLY-1];
-logic [FULL_WIDTH-1:0] out_d [0:3] [0:N_BUTTERFLY-1];   // next outputs
+logic [0:N_BUTTERFLY-1] [FULL_WIDTH-1:0] out   [0:3];
+logic [0:N_BUTTERFLY-1] [FULL_WIDTH-1:0] out_d [0:3];   // next outputs
 
-logic [FULL_WIDTH-1:0] w0 [0:N_BUTTERFLY-1];
-logic [FULL_WIDTH-1:0] w1 [0:N_BUTTERFLY-1];
-logic [FULL_WIDTH-1:0] w2 [0:N_BUTTERFLY-1];
-logic [FULL_WIDTH-1:0] w3 [0:N_BUTTERFLY-1];
+logic [0:N_BUTTERFLY-1] [FULL_WIDTH-1:0] w0;
+logic [0:N_BUTTERFLY-1] [FULL_WIDTH-1:0] w1;
+logic [0:N_BUTTERFLY-1] [FULL_WIDTH-1:0] w2;
+logic [0:N_BUTTERFLY-1] [FULL_WIDTH-1:0] w3;
 
 logic [FULL_WIDTH-1:0] w_16 [0:9] = '{
     {{1'b0, (12'd1<<11)},   {1'b0, (12'd0)}},       // W0
