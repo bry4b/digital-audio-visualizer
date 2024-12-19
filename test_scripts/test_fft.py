@@ -1,6 +1,6 @@
 import numpy as np
 
-N = 16
+N = 256
 
 def print_hex(x):
     return "" + str(hex(np.uint16(np.real(x)).astype(np.uint16) & 0XFFF)) + " " + str(hex(np.uint16(np.imag(x)).astype(np.uint16) & 0XFFF))
