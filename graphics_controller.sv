@@ -7,9 +7,10 @@ module graphics_controller # (
 	parameter N = 256, 
 	parameter BARS = 16
 ) (
-	input clk_50MHz,	//	50 MHz clock
+	input clk_25MHz,	//	25 MHz clock
 	input rst,
 	input fft_done,
+	input [9:0] switches,
 	input [WIDTH+1:0] freq_samples [0:N-1],
 	output logic hsync,
 	output logic vsync,
@@ -17,8 +18,6 @@ module graphics_controller # (
 	output logic [3:0] green,
 	output logic [3:0] blue
 );
-
-logic clk_25MHz;
 
 logic [9:0] hc_out;
 logic [9:0] vc_out;
@@ -29,19 +28,15 @@ assign x = hc_out / 40;	//	16 pixels wide
 assign y = vc_out >> 4;	//	30 pixels tall
 
 logic [7:0] color_to_vga;
-logic rw = 0;
 
-logic [WIDTH-6:0] freq_scaled [0:N-1]; 
-logic [6:0] bars [0:BARS-1];
+logic [WIDTH-1:0] freq_scaled [0:N-1]; 
+logic [WIDTH-1:0] bars [0:BARS-1];
 
-logic [6:0] bin_div_256_16 [0:16] = '{
-	7'd0, 7'd1, 7'd2, 7'd3, 7'd4, 7'd5, 7'd6, 7'd7, 7'd10, 7'd14, 7'd19, 7'd27, 7'd37, 7'd50, 7'd68, 7'd94, 7'd127 
-};
 
 genvar i;
 generate 
 	for (i = 0; i < N; i++) begin : scale_freq
-		assign freq_scaled[i] = freq_samples[i] >> 3'd7;
+		assign freq_scaled[i] = freq_samples[i] >> switches[3:0];
 	end
 endgenerate
 
@@ -56,49 +51,29 @@ logic [11:0] bars_14;
 logic [11:0] bars_15;
 
 always_comb begin
-	bars_7  = 1'b0;
-	bars_8  = 1'b0;
-	bars_9  = 1'b0;
-	bars_10 = 1'b0;
-	bars_11 = 1'b0;
-	bars_12 = 1'b0;
-	bars_13 = 1'b0;
-	bars_14 = 1'b0;
-	bars_15 = 1'b0;
-
-	for (int i = 8; i < 8+4; i++) begin
-		bars_7 = bars_7 + freq_scaled[i];
-	end 
-	for (int i = 12; i < 12+4; i++) begin
-		bars_8 = bars_8 + freq_scaled[i];
-	end
-	for (int i = 16; i < 16+8; i++) begin
-		bars_9 = bars_9 + freq_scaled[i];
-	end 
-	for (int i = 24; i < 24+8; i++) begin
-		bars_10 = bars_10 + freq_scaled[i];
-	end
-	for (int i = 32; i < 32+12; i++) begin
-		bars_11 = bars_11 + freq_scaled[i];
-	end
-	for (int i = 44; i < 44+12; i++) begin
-		bars_12 = bars_12 + freq_scaled[i];
-	end
-	for (int i = 56; i < 56+16; i++) begin
-		bars_13 = bars_13 + freq_scaled[i];
-	end
-	for (int i = 72; i < 72+24; i++) begin
-		bars_14 = bars_14 + freq_scaled[i];
-	end 
-	for (int i = 96; i < 128; i++) begin
-		bars_15 = bars_15 + freq_scaled[i];
-	end
+	bars_7  = 	((freq_scaled[8] + freq_scaled[9]) + (freq_scaled[10] + freq_scaled[11]));
+	bars_8  = 	((freq_scaled[12] + freq_scaled[13]) + (freq_scaled[14] + freq_scaled[15]));
+	bars_9  = 	((freq_scaled[16] + freq_scaled[17]) + (freq_scaled[18] + freq_scaled[19])) + ((freq_scaled[20] + freq_scaled[21]) + (freq_scaled[22] + freq_scaled[23]));
+	bars_10 = 	((freq_scaled[24] + freq_scaled[25]) + (freq_scaled[26] + freq_scaled[27])) + ((freq_scaled[28] + freq_scaled[29]) + (freq_scaled[30] + freq_scaled[31]));
+	bars_11	=	((freq_scaled[32] + freq_scaled[33]) + (freq_scaled[34] + freq_scaled[35])) + ((freq_scaled[36] + freq_scaled[37]) + (freq_scaled[38] + freq_scaled[39])) + 
+				((freq_scaled[40] + freq_scaled[41]) + (freq_scaled[42] + freq_scaled[43]));
+	bars_12 = 	((freq_scaled[44] + freq_scaled[45]) + (freq_scaled[46] + freq_scaled[47])) + ((freq_scaled[48] + freq_scaled[49]) + (freq_scaled[50] + freq_scaled[51])) + 
+				((freq_scaled[52] + freq_scaled[53]) + (freq_scaled[54] + freq_scaled[55]));
+	bars_13 = 	(((freq_scaled[56] + freq_scaled[57]) + (freq_scaled[58] + freq_scaled[59])) + ((freq_scaled[60] + freq_scaled[61]) + (freq_scaled[62] + freq_scaled[63]))) + 
+				(((freq_scaled[64] + freq_scaled[65]) + (freq_scaled[66] + freq_scaled[67])) + ((freq_scaled[68] + freq_scaled[69]) + (freq_scaled[70] + freq_scaled[71])));
+	bars_14 = 	(((freq_scaled[72] + freq_scaled[73]) + (freq_scaled[74] + freq_scaled[75])) + ((freq_scaled[76] + freq_scaled[77]) + (freq_scaled[78] + freq_scaled[79]))) + 
+				(((freq_scaled[80] + freq_scaled[81]) + (freq_scaled[82] + freq_scaled[83])) + ((freq_scaled[84] + freq_scaled[85]) + (freq_scaled[86] + freq_scaled[87]))) + 
+				(((freq_scaled[88] + freq_scaled[89]) + (freq_scaled[90] + freq_scaled[91])) + ((freq_scaled[92] + freq_scaled[93]) + (freq_scaled[94] + freq_scaled[95])));
+	bars_15 = 	(((freq_scaled[96] + freq_scaled[97]) + (freq_scaled[98] + freq_scaled[99])) + ((freq_scaled[100] + freq_scaled[101]) + (freq_scaled[102] + freq_scaled[103]))) + 
+				(((freq_scaled[104] + freq_scaled[105]) + (freq_scaled[106] + freq_scaled[107])) + ((freq_scaled[108] + freq_scaled[109]) + (freq_scaled[110] + freq_scaled[111]))) + 
+				(((freq_scaled[112] + freq_scaled[113]) + (freq_scaled[114] + freq_scaled[115])) + ((freq_scaled[116] + freq_scaled[117]) + (freq_scaled[118] + freq_scaled[119]))) + 
+				(((freq_scaled[120] + freq_scaled[121]) + (freq_scaled[122] + freq_scaled[123])) + ((freq_scaled[124] + freq_scaled[125]) + (freq_scaled[126] + freq_scaled[127])));
 end
 
 
 // update bars on rising edge of vsync 
 logic [1:0] vsync_sr = 2'b00; 
-always @(posedge clk_50MHz) begin
+always @(posedge clk_25MHz) begin
 	vsync_sr <= {vsync_sr[0], vsync};
 	if (vsync_sr == 2'b01) begin
 		if (N == 16) begin
@@ -133,12 +108,6 @@ end
 // 		assign bars[i] = (bin_amplitudes[i] >> 7);		//	scaling: sample >> 8. Works for time sample - adjust for freq samples
 // 	end
 // endgenerate
-
-/*
-    inclk0: 50 MHz
-    c0: 25.2 MHz (25 MHz should also work)
-*/
-pll2 VGA_CLOCK ( .inclk0(clk_50MHz), .c0(clk_25MHz) );
 	
 vga VGA (
 	.vgaclk(clk_25MHz), 
@@ -161,7 +130,7 @@ logic [7:0] color_gradient [0:15] = '{
 };
 
 always @(posedge clk_25MHz) begin
-	if (x < 16) begin										//black		//blue
+	if (x < 16) begin
 		color_to_vga <= (y < 30 - bars[x]) ? 8'h00 : color_gradient[x];
 	end
 end

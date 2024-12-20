@@ -2,8 +2,8 @@ module mag_est #(
     parameter WIDTH = 12,
     parameter N = 256
 ) (
-    input [WIDTH:0] real_in [0:N-1],
-    input [WIDTH:0] imag_in [0:N-1],
+    input [0:N-1] [WIDTH:0] real_in,
+    input [0:N-1] [WIDTH:0] imag_in,
 
     output logic [WIDTH+1:0] magnitude [0:N-1]
 );

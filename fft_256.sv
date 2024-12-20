@@ -8,8 +8,7 @@ module fft_256 #(
     output done,
 
     input [WIDTH-1:0] time_samples [0:N-1],
-    output logic [WIDTH:0] freq_real [0:N-1],
-    output logic [WIDTH:0] freq_imag [0:N-1]
+    output logic [WIDTH+1:0] freq_mag [0:N-1]
 );
 
 /*
@@ -312,6 +311,15 @@ logic [0:N-1] [FULL_WIDTH-1:0] w_256 = '{
     {{1'b0,  12'd2045},     {1'b0,  12'd100}},      // W254
     {{1'b0,  12'd2047},     {1'b0,  12'd50}}        // W255
 };
+
+logic [0:N-1] [WIDTH:0] freq_real;
+logic [0:N-1] [WIDTH:0] freq_imag;
+
+mag_est #(.N(N)) MAG ( 
+	.real_in(freq_real), 
+	.imag_in(freq_imag), 
+	.magnitude(freq_mag)
+);
 
 typedef enum logic [2:0] {SET, STAGE1, STAGE2, STAGE3, STAGE4, DONE} state_t;
 state_t state, state_d;

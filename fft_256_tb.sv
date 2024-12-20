@@ -28,8 +28,7 @@ fft_256 #(.WIDTH(WIDTH)) DUT (
     .start(start),
     .done(done),
     .time_samples(time_samples),
-    .freq_real(freq_real),
-    .freq_imag(freq_imag)
+    .freq_mag(freq_mag)
 );
 
 mag_est #(.WIDTH(WIDTH)) EST (
