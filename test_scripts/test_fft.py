@@ -7,7 +7,7 @@ def print_hex(x):
 
 # generate random time-domain signal
 np.random.seed(1)
-signal = np.random.randint(-200, 200, N)
+signal = np.random.randint(0, 4096, N)
 print(f"{N} sample signal: ")
 print(", ".join(map(str, signal)))
 

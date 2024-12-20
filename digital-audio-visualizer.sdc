@@ -1,0 +1,3 @@
+create_clock -name {clk_50MHz} -period 20 [get_ports {clk_50MHz}]
+create_clock -name {clk_adc} -period 100 [get_ports {clk_adc}]
+set_clock_groups -logically_exclusive -group [get_clocks {clock_divider:FFT_CLOCK|clk_div clk_50MHz GFX|VGA_CLOCK|altpll_component|auto_generated|pll1|clk[0]}] -group [get_clocks {MIC|ADC|adc_mega_0|ADC_CTRL|adc_pll|auto_generated|pll1|clk[0] clk_adc mic_sampler:MIC|clock_divider:SAMPLING_CLOCK|clk_div}]

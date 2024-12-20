@@ -1,5 +1,5 @@
 module fft_16 #(
-    parameter WIDTH = 12,
+    parameter WIDTH = 18,
     parameter N = 16  // must be power of 4
 ) (
     input clk,
@@ -7,9 +7,8 @@ module fft_16 #(
     input start,
     output done,
 
-    input [WIDTH-1:0]       time_samples    [0:N-1],
-    output logic [WIDTH:0]  freq_real       [0:N-1],
-    output logic [WIDTH:0]  freq_imag       [0:N-1]
+    input [WIDTH-1:0] time_samples [0:N-1],
+    output logic [WIDTH:0] freq_mag [0:N-1]
 );
 
 /*
@@ -26,34 +25,43 @@ module fft_16 #(
 localparam N_BUTTERFLY = (N+3)/4;
 localparam N_LOG2 = $clog2(N);
 localparam N_STAGES = N_LOG2/2;
-localparam FULL_WIDTH = (WIDTH+1)*2;
+localparam FULL_WIDTH = WIDTH*2;
 
 logic [0:N_BUTTERFLY-1] [FULL_WIDTH-1:0] a;
 logic [0:N_BUTTERFLY-1] [FULL_WIDTH-1:0] b;
 logic [0:N_BUTTERFLY-1] [FULL_WIDTH-1:0] c;
 logic [0:N_BUTTERFLY-1] [FULL_WIDTH-1:0] d;
-
-// outputs 0:3 of butterfly units 0:N_BUTTERFLY-1, each of width FULL_WIDTH. 
-logic [0:N_BUTTERFLY-1] [FULL_WIDTH-1:0] out   [0:3];
-logic [0:N_BUTTERFLY-1] [FULL_WIDTH-1:0] out_d [0:3];   // next outputs
-
 logic [0:N_BUTTERFLY-1] [FULL_WIDTH-1:0] w0;
 logic [0:N_BUTTERFLY-1] [FULL_WIDTH-1:0] w1;
 logic [0:N_BUTTERFLY-1] [FULL_WIDTH-1:0] w2;
 logic [0:N_BUTTERFLY-1] [FULL_WIDTH-1:0] w3;
 
+// outputs 0:3 of butterfly units 0:N_BUTTERFLY-1, each of width FULL_WIDTH. 
+logic [0:N_BUTTERFLY-1] [FULL_WIDTH-1:0] out_d [0:3];
+logic [0:N_BUTTERFLY-1] [FULL_WIDTH-1:0] out   [0:3];
+
+
 logic [FULL_WIDTH-1:0] w_16 [0:9] = '{
-    {{1'b0, (12'd1<<11)},   {1'b0, (12'd0)}},       // W0
-    {{1'b0, (12'd1892)},    {1'b1, (-12'd784)}},     // W1
-    {{1'b0, (12'd1448)},    {1'b1, (-12'd1448)}},    // W2
-    {{1'b0, (12'd784)},     {1'b1, (-12'd1892)}},    // W3
-    {{1'b0, (12'd0)},       {1'b1, (-12'd1<<11)}},   // W4
-    {{1'b1, (-12'd784)},    {1'b1, (-12'd1892)}},    // W5
-    {{1'b1, (-12'd1448)},   {1'b1, (-12'd1448)}},    // W6
-    {{1'b1, (-12'd1892)},   {1'b1, (-12'd784)}},     // W7
-    {{1'b1, (-12'd1<<11)},  {1'b0, (12'd0)}},       // W8
-    {{1'b1, (-12'd1892)},   {1'b0, (12'd784)}}      // W9
+    { 18'd131071,    18'd0},        // W0
+    { 18'd121094,   -18'd50159},    // W1
+    { 18'd92681,    -18'd92681},    // W2
+    { 18'd50159,    -18'd121094},   // W3
+    { 18'd0,        -18'd131072},   // W4
+    {-18'd50159,    -18'd121094},   // W5
+    {-18'd92681,    -18'd92681},    // W6
+    {-18'd121094,   -18'd50159},    // W7
+    {-18'd131072,    18'd0},        // W8
+    {-18'd121094,    18'd50159}     // W9
 };
+
+// frequency output magnitude estimation
+logic [WIDTH-1:0] freq_real [0:N-1];
+logic [WIDTH-1:0] freq_imag [0:N-1];
+mag_est #(.WIDTH(WIDTH), .N(N)) MAG ( 
+	.real_in(freq_real), 
+	.imag_in(freq_imag), 
+	.magnitude(freq_mag)
+);
 
 typedef enum logic [1:0] {SET, STAGE1, STAGE2, DONE} state_t;
 state_t state, state_d;
@@ -64,7 +72,7 @@ assign done = (state == DONE);
 genvar i;
 generate 
     for (i = 0; i < N_BUTTERFLY; i++) begin : gen_butterfly
-        butterfly_4 #(.WIDTH(FULL_WIDTH)) butterfly (
+        butterfly_4 #(.FULL_WIDTH(FULL_WIDTH)) butterfly (
             .a(a[i]),
             .b(b[i]),
             .c(c[i]),
@@ -113,10 +121,14 @@ always_comb begin
     // time sample indices are bit-reversed for loading WRONG
     STAGE1: begin   
         for (int i = 0; i < N_BUTTERFLY; i++) begin
-            a[i] = $signed({time_samples[i+N_BUTTERFLY*0], 14'b0}) >>> 1'b1;
-            b[i] = $signed({time_samples[i+N_BUTTERFLY*1], 14'b0}) >>> 1'b1;
-            c[i] = $signed({time_samples[i+N_BUTTERFLY*2], 14'b0}) >>> 1'b1;
-            d[i] = $signed({time_samples[i+N_BUTTERFLY*3], 14'b0}) >>> 1'b1;
+            a[i][FULL_WIDTH-1:WIDTH] = $signed(time_samples[i+N_BUTTERFLY*0]);
+            b[i][FULL_WIDTH-1:WIDTH] = $signed(time_samples[i+N_BUTTERFLY*1]);
+            c[i][FULL_WIDTH-1:WIDTH] = $signed(time_samples[i+N_BUTTERFLY*2]);
+            d[i][FULL_WIDTH-1:WIDTH] = $signed(time_samples[i+N_BUTTERFLY*3]);
+            a[i][WIDTH-1:0] = 1'b0;
+            b[i][WIDTH-1:0] = 1'b0;
+            c[i][WIDTH-1:0] = 1'b0;
+            d[i][WIDTH-1:0] = 1'b0;
             w0[i]= w_16[0];
             w1[i]= w_16[0];
             w2[i]= w_16[0];
@@ -214,15 +226,15 @@ end
 always_ff @(negedge clk) begin
     if (done_sr == 2'b10) begin
         for (int i = 0; i < N_BUTTERFLY; i++) begin
-            freq_real[i+N_BUTTERFLY*0] <= out[0][i][FULL_WIDTH-1:WIDTH+1];
-            freq_real[i+N_BUTTERFLY*1] <= out[1][i][FULL_WIDTH-1:WIDTH+1];
-            freq_real[i+N_BUTTERFLY*2] <= out[2][i][FULL_WIDTH-1:WIDTH+1];
-            freq_real[i+N_BUTTERFLY*3] <= out[3][i][FULL_WIDTH-1:WIDTH+1];
+            freq_real[i+N_BUTTERFLY*0] <= out[0][i][FULL_WIDTH-1:WIDTH];
+            freq_real[i+N_BUTTERFLY*1] <= out[1][i][FULL_WIDTH-1:WIDTH];
+            freq_real[i+N_BUTTERFLY*2] <= out[2][i][FULL_WIDTH-1:WIDTH];
+            freq_real[i+N_BUTTERFLY*3] <= out[3][i][FULL_WIDTH-1:WIDTH];
 
-            freq_imag[i+N_BUTTERFLY*0] <= out[0][i][WIDTH:0];
-            freq_imag[i+N_BUTTERFLY*1] <= out[1][i][WIDTH:0];
-            freq_imag[i+N_BUTTERFLY*2] <= out[2][i][WIDTH:0];
-            freq_imag[i+N_BUTTERFLY*3] <= out[3][i][WIDTH:0];
+            freq_imag[i+N_BUTTERFLY*0] <= out[0][i][WIDTH-1:0];
+            freq_imag[i+N_BUTTERFLY*1] <= out[1][i][WIDTH-1:0];
+            freq_imag[i+N_BUTTERFLY*2] <= out[2][i][WIDTH-1:0];
+            freq_imag[i+N_BUTTERFLY*3] <= out[3][i][WIDTH-1:0];
         end
     end else if (state_d == SET) begin
         for (int i = 0; i < N; i++) begin

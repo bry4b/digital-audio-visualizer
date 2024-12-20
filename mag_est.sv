@@ -1,11 +1,11 @@
 module mag_est #(
-    parameter WIDTH = 12,
+    parameter WIDTH = 16,
     parameter N = 256
 ) (
-    input [WIDTH:0] real_in [0:N-1],
-    input [WIDTH:0] imag_in [0:N-1],
+    input [WIDTH-1:0] real_in [0:N-1],
+    input [WIDTH-1:0] imag_in [0:N-1],
 
-    output logic [WIDTH+1:0] magnitude [0:N-1]
+    output logic [WIDTH:0] magnitude [0:N-1]
 );
 
 /* 
@@ -29,19 +29,19 @@ endgenerate
 endmodule
 
 module mag_est_single #(
-    parameter WIDTH = 12
+    parameter WIDTH = 16
 ) (
-    input [WIDTH:0] real_in,
-    input [WIDTH:0] imag_in,
+    input signed [WIDTH-1:0] real_in,
+    input signed [WIDTH-1:0] imag_in,
 
-    output logic [WIDTH+1:0] magnitude
+    output logic [WIDTH:0] magnitude
 );
 
 logic [WIDTH-1:0] real_abs;
 logic [WIDTH-1:0] imag_abs;
 
-assign real_abs = (real_in[WIDTH]) ? (~(real_in[WIDTH-1:0])+1'b1) : (real_in[WIDTH-1:0]);
-assign imag_abs = (imag_in[WIDTH]) ? (~(imag_in[WIDTH-1:0])+1'b1) : (imag_in[WIDTH-1:0]);
+assign real_abs = (real_in[WIDTH-1]) ? (~real_in+1'b1) : (real_in);
+assign imag_abs = (imag_in[WIDTH-1]) ? (~imag_in+1'b1) : (imag_in);
 
 always_comb begin
     if (real_abs > imag_abs) begin

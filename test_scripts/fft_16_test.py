@@ -4,12 +4,12 @@ def twiddle(n):
     return np.exp(-(1j * np.pi * n)/8)
 
 def print_hex(x):
-    return "" + str(hex(np.uint16(np.real(x)).astype(np.uint16) & 0XFFF)) + " " + str(hex(np.uint16(np.imag(x)).astype(np.uint16) & 0XFFF))
+    return "" + str(hex(np.uint16(np.real(x)).astype(np.uint16) & 0XFFFF)) + " " + str(hex(np.uint16(np.imag(x)).astype(np.uint16) & 0XFFFF))
 
 
 # generate random time-domain signal
 np.random.seed(1)
-signal = np.random.randint(-200, 200, 16)
+signal = np.random.randint(0, 4096, 16)
 print(signal)
 
 fft_s1_u0_in = signal[[0, 4, 8, 12]]
@@ -39,7 +39,7 @@ print([print_hex(x) for x in fft_s1_u3])
 
 
 fft_s2_u0_in = [fft_s1_u0[0], fft_s1_u1[0], fft_s1_u2[0], fft_s1_u3[0]]
-fft_s2_u1_in = [fft_s1_u0[1], (1892-784j)*fft_s1_u1[1], (1448-1448j)*fft_s1_u2[1], (784-1892j)*fft_s1_u3[1]]
+fft_s2_u1_in = [fft_s1_u0[1], twiddle(1)*fft_s1_u1[1], twiddle(2)*fft_s1_u2[1], twiddle(3)*fft_s1_u3[1]]
 fft_s2_u2_in = [fft_s1_u0[2], twiddle(2)*fft_s1_u1[2], twiddle(4)*fft_s1_u2[2], twiddle(6)*fft_s1_u3[2]]
 fft_s2_u3_in = [fft_s1_u0[3], twiddle(3)*fft_s1_u1[3], twiddle(6)*fft_s1_u2[3], twiddle(9)*fft_s1_u3[3]]
 print("\nstage2 inputs (hex): ")
