@@ -30,7 +30,7 @@ module fft_256 #(
 */
 
 localparam N_BFLY = (N+3)/4;
-localparam N_INST = 4;
+localparam N_INST = 8;
 localparam N_LOG2 = $clog2(N);
 localparam N_STAGES = N_LOG2/2;
 localparam FULL_WIDTH = WIDTH*2;
@@ -246,10 +246,10 @@ logic [0:189] [FULL_WIDTH-1:0] w_256 = '{
         {-18'd9642,      18'd130716}    // W189
 };
 
-// frequency output magnitude estimation
-logic [WIDTH-1:0] freq_real [0:N-1];
-logic [WIDTH-1:0] freq_imag [0:N-1];
-mag_est #(.WIDTH(WIDTH), .N(N)) MAG ( 
+logic [0:N-1] [WIDTH:0] freq_real;
+logic [0:N-1] [WIDTH:0] freq_imag;
+
+mag_est #(.N(N)) MAG ( 
 	.real_in(freq_real), 
 	.imag_in(freq_imag), 
 	.magnitude(freq_mag)
@@ -257,11 +257,11 @@ mag_est #(.WIDTH(WIDTH), .N(N)) MAG (
 
 typedef enum logic [2:0] {SET, STAGE1, STAGE2, STAGE3, STAGE4, DONE} state_t;
 state_t state, state_d;
-logic [3:0] counter;
+logic [2:0] counter;
 logic [1:0] substage;
-logic [1:0] subsubstage;
-assign substage = counter[3:2];
-assign subsubstage = counter[1:0];
+logic subsubstage;
+assign substage = counter[2:1];
+assign subsubstage = counter[0];
 
 logic [1:0] done_sr;
 assign done = (state == DONE);
@@ -270,7 +270,7 @@ assign done = (state == DONE);
 genvar i;
 generate 
     for (i = 0; i < N_INST; i++) begin : gen_BFLY
-        butterfly_4 #(.FULL_WIDTH(FULL_WIDTH)) butterfly (
+        butterfly_4 #(.WIDTH(FULL_WIDTH)) butterfly (
             .a(a[i]),
             .b(b[i]),
             .c(c[i]),
@@ -308,101 +308,53 @@ end
 always_ff @(negedge clk) begin
 
     case (counter)
-    4'h0: begin
-        out_temp[0][0:3] <= out_d[0];
-        out_temp[1][0:3] <= out_d[1];
-        out_temp[2][0:3] <= out_d[2];
-        out_temp[3][0:3] <= out_d[3];
+    3'b000: begin
+        out_temp[0][0:7] <= out_d[0];
+        out_temp[1][0:7] <= out_d[1];
+        out_temp[2][0:7] <= out_d[2];
+        out_temp[3][0:7] <= out_d[3];
     end
-    4'h1: begin
-        out_temp[0][4:7] <= out_d[0];
-        out_temp[1][4:7] <= out_d[1];
-        out_temp[2][4:7] <= out_d[2];
-        out_temp[3][4:7] <= out_d[3];
+    3'b001: begin
+        out_temp[0][8:15] <= out_d[0];
+        out_temp[1][8:15] <= out_d[1];
+        out_temp[2][8:15] <= out_d[2];
+        out_temp[3][8:15] <= out_d[3];
     end
-    4'h2: begin
-        out_temp[0][8:11] <= out_d[0];
-        out_temp[1][8:11] <= out_d[1];
-        out_temp[2][8:11] <= out_d[2];
-        out_temp[3][8:11] <= out_d[3];
+    3'b010: begin
+        out_temp[0][16:23] <= out_d[0];
+        out_temp[1][16:23] <= out_d[1];
+        out_temp[2][16:23] <= out_d[2];
+        out_temp[3][16:23] <= out_d[3];
     end
-    4'h3: begin
-        out_temp[0][12:15] <= out_d[0];
-        out_temp[1][12:15] <= out_d[1];
-        out_temp[2][12:15] <= out_d[2];
-        out_temp[3][12:15] <= out_d[3];
+    3'b011: begin
+        out_temp[0][24:31] <= out_d[0];
+        out_temp[1][24:31] <= out_d[1];
+        out_temp[2][24:31] <= out_d[2];
+        out_temp[3][24:31] <= out_d[3];
     end
-    4'h4: begin
-        out_temp[0][16:19] <= out_d[0];
-        out_temp[1][16:19] <= out_d[1];
-        out_temp[2][16:19] <= out_d[2];
-        out_temp[3][16:19] <= out_d[3];
+    3'b100: begin
+        out_temp[0][32:39] <= out_d[0];
+        out_temp[1][32:39] <= out_d[1];
+        out_temp[2][32:39] <= out_d[2];
+        out_temp[3][32:39] <= out_d[3];
     end
-    4'h5: begin
-        out_temp[0][20:23] <= out_d[0];
-        out_temp[1][20:23] <= out_d[1];
-        out_temp[2][20:23] <= out_d[2];
-        out_temp[3][20:23] <= out_d[3];
+    3'b101: begin
+        out_temp[0][40:47] <= out_d[0];
+        out_temp[1][40:47] <= out_d[1];
+        out_temp[2][40:47] <= out_d[2];
+        out_temp[3][40:47] <= out_d[3];
     end
-    4'h6: begin
-        out_temp[0][24:27] <= out_d[0];
-        out_temp[1][24:27] <= out_d[1];
-        out_temp[2][24:27] <= out_d[2];
-        out_temp[3][24:27] <= out_d[3];
+    3'b110: begin
+        out_temp[0][48:55] <= out_d[0];
+        out_temp[1][48:55] <= out_d[1];
+        out_temp[2][48:55] <= out_d[2];
+        out_temp[3][48:55] <= out_d[3];
     end
-    4'h7: begin
-        out_temp[0][28:31] <= out_d[0];
-        out_temp[1][28:31] <= out_d[1];
-        out_temp[2][28:31] <= out_d[2];
-        out_temp[3][28:31] <= out_d[3];
-    end
-    4'h8: begin
-        out_temp[0][32:35] <= out_d[0];
-        out_temp[1][32:35] <= out_d[1];
-        out_temp[2][32:35] <= out_d[2];
-        out_temp[3][32:35] <= out_d[3];
-    end
-    4'h9: begin
-        out_temp[0][36:39] <= out_d[0];
-        out_temp[1][36:39] <= out_d[1];
-        out_temp[2][36:39] <= out_d[2];
-        out_temp[3][36:39] <= out_d[3];
-    end
-    4'ha: begin
-        out_temp[0][40:43] <= out_d[0];
-        out_temp[1][40:43] <= out_d[1];
-        out_temp[2][40:43] <= out_d[2];
-        out_temp[3][40:43] <= out_d[3];
-    end
-    4'hb: begin
-        out_temp[0][44:47] <= out_d[0];
-        out_temp[1][44:47] <= out_d[1];
-        out_temp[2][44:47] <= out_d[2];
-        out_temp[3][44:47] <= out_d[3];
-    end
-    4'hc: begin
-        out_temp[0][48:51] <= out_d[0];
-        out_temp[1][48:51] <= out_d[1];
-        out_temp[2][48:51] <= out_d[2];
-        out_temp[3][48:51] <= out_d[3];
-    end
-    4'hd: begin
-        out_temp[0][52:55] <= out_d[0];
-        out_temp[1][52:55] <= out_d[1];
-        out_temp[2][52:55] <= out_d[2];
-        out_temp[3][52:55] <= out_d[3];
-    end
-    4'he: begin
-        out_temp[0][56:59] <= out_d[0];
-        out_temp[1][56:59] <= out_d[1];
-        out_temp[2][56:59] <= out_d[2];
-        out_temp[3][56:59] <= out_d[3];
-    end
-    4'hf: begin
-        out_temp[0][60:63] <= out_d[0];
-        out_temp[1][60:63] <= out_d[1];
-        out_temp[2][60:63] <= out_d[2];
-        out_temp[3][60:63] <= out_d[3];
+    3'b111: begin
+        out_temp[0][56:63] <= out_d[0];
+        out_temp[1][56:63] <= out_d[1];
+        out_temp[2][56:63] <= out_d[2];
+        out_temp[3][56:63] <= out_d[3];
     end
     default: begin
         out_temp[0] <= 1'b0;
@@ -429,12 +381,14 @@ always_comb begin
         end
     end
 
+    // load time samples into upper 13 bits (real part) of a,b,c,d inputs. 
+    // 12b time samples need to be sign extended by 1 bit.
     STAGE1: begin   
         for (int i = 0; i < N_INST; i++) begin
-            a[i][FULL_WIDTH-1:WIDTH] = 1'd0 + time_samples[i+N_BFLY*0+substage*16+subsubstage*4];
-            b[i][FULL_WIDTH-1:WIDTH] = 1'd0 + time_samples[i+N_BFLY*1+substage*16+subsubstage*4];
-            c[i][FULL_WIDTH-1:WIDTH] = 1'd0 + time_samples[i+N_BFLY*2+substage*16+subsubstage*4];
-            d[i][FULL_WIDTH-1:WIDTH] = 1'd0 + time_samples[i+N_BFLY*3+substage*16+subsubstage*4];
+            a[i][FULL_WIDTH-1:WIDTH] = 1'b0 + time_samples[i+N_BFLY*0+substage*16+subsubstage*8];
+            b[i][FULL_WIDTH-1:WIDTH] = 1'b0 + time_samples[i+N_BFLY*1+substage*16+subsubstage*8];
+            c[i][FULL_WIDTH-1:WIDTH] = 1'b0 + time_samples[i+N_BFLY*2+substage*16+subsubstage*8];
+            d[i][FULL_WIDTH-1:WIDTH] = 1'b0 + time_samples[i+N_BFLY*3+substage*16+subsubstage*8];
             a[i][WIDTH-1:0] = 1'b0;
             b[i][WIDTH-1:0] = 1'b0;
             c[i][WIDTH-1:0] = 1'b0;
@@ -459,15 +413,15 @@ always_comb begin
         //         w3[i*16+j]= w_256[i*(j+3*16)];
         //     end
         // end
-        for (int j = 0; j < 4; j++) begin
-            a[j]    = out[substage][j+subsubstage*4+0*16];
-            b[j]    = out[substage][j+subsubstage*4+1*16];
-            c[j]    = out[substage][j+subsubstage*4+2*16];
-            d[j]    = out[substage][j+subsubstage*4+3*16];
-            w0[j]   = w_256[substage*(j+subsubstage*4+0*16)];
-            w1[j]   = w_256[substage*(j+subsubstage*4+1*16)];
-            w2[j]   = w_256[substage*(j+subsubstage*4+2*16)];
-            w3[j]   = w_256[substage*(j+subsubstage*4+3*16)];
+        for (int j = 0; j < 8; j++) begin
+            a[j]    = out[substage][j+subsubstage*8+0*16];
+            b[j]    = out[substage][j+subsubstage*8+1*16];
+            c[j]    = out[substage][j+subsubstage*8+2*16];
+            d[j]    = out[substage][j+subsubstage*8+3*16];
+            w0[j]   = w_256[substage*(j+subsubstage*8+0*16)];
+            w1[j]   = w_256[substage*(j+subsubstage*8+1*16)];
+            w2[j]   = w_256[substage*(j+subsubstage*8+2*16)];
+            w3[j]   = w_256[substage*(j+subsubstage*8+3*16)];
         end
     end
 
@@ -486,15 +440,17 @@ always_comb begin
         //         end
         //     end
         // end
-        for (int k = 0; k < 4; k++) begin
-            a[k]    = out[subsubstage][substage*16+k+0*4];
-            b[k]    = out[subsubstage][substage*16+k+1*4];
-            c[k]    = out[subsubstage][substage*16+k+2*4];
-            d[k]    = out[subsubstage][substage*16+k+3*4];
-            w0[k]   = w_256[subsubstage*4*(k+0*4)];
-            w1[k]   = w_256[subsubstage*4*(k+1*4)];
-            w2[k]   = w_256[subsubstage*4*(k+2*4)];
-            w3[k]   = w_256[subsubstage*4*(k+3*4)];
+        for (int j = 0; j < 2; j++) begin
+            for (int k = 0; k < 4; k++) begin
+                a[j*4+k]    = out[j+subsubstage*2][substage*16+k+0*4];
+                b[j*4+k]    = out[j+subsubstage*2][substage*16+k+1*4];
+                c[j*4+k]    = out[j+subsubstage*2][substage*16+k+2*4];
+                d[j*4+k]    = out[j+subsubstage*2][substage*16+k+3*4];
+                w0[j*4+k]   = w_256[(j+subsubstage*2)*4*(k+0*4)];
+                w1[j*4+k]   = w_256[(j+subsubstage*2)*4*(k+1*4)];
+                w2[j*4+k]   = w_256[(j+subsubstage*2)*4*(k+2*4)];
+                w3[j*4+k]   = w_256[(j+subsubstage*2)*4*(k+3*4)];
+            end
         end
     end
 
@@ -513,15 +469,17 @@ always_comb begin
         //         end
         //     end
         // end
-        for (int k = 0; k < 4; k++) begin
-            a[k]    = out[k][substage*16+subsubstage*4+0];
-            b[k]    = out[k][substage*16+subsubstage*4+1];
-            c[k]    = out[k][substage*16+subsubstage*4+2];
-            d[k]    = out[k][substage*16+subsubstage*4+3];
-            w0[k]   = w_256[k*0*16];
-            w1[k]   = w_256[k*1*16];
-            w2[k]   = w_256[k*2*16];
-            w3[k]   = w_256[k*3*16];
+        for (int j = 0; j < 2; j++) begin
+            for (int k = 0; k < 4; k++) begin
+                a[j*4+k]    = out[k][substage*16+(j+subsubstage*2)*4+0];
+                b[j*4+k]    = out[k][substage*16+(j+subsubstage*2)*4+1];
+                c[j*4+k]    = out[k][substage*16+(j+subsubstage*2)*4+2];
+                d[j*4+k]    = out[k][substage*16+(j+subsubstage*2)*4+3];
+                w0[j*4+k]   = w_256[k*0*16];
+                w1[j*4+k]   = w_256[k*1*16];
+                w2[j*4+k]   = w_256[k*2*16];
+                w3[j*4+k]   = w_256[k*3*16];
+            end
         end
     end
 
@@ -568,7 +526,7 @@ always_comb begin
     STAGE1: begin
         if (rst) begin
             state_d = SET;  
-        end else if (counter == 4'hf) begin
+        end else if (counter == 3'o7) begin
             state_d = STAGE2;
         end else begin
             state_d = STAGE1;
@@ -578,7 +536,7 @@ always_comb begin
     STAGE2: begin
         if (rst) begin
             state_d = SET;
-        end else if (counter == 4'hf) begin
+        end else if (counter == 3'o7) begin
             state_d = STAGE3;
         end else begin 
             state_d = STAGE2;
@@ -588,7 +546,7 @@ always_comb begin
     STAGE3: begin
         if (rst) begin
             state_d = SET;
-        end else if (counter == 4'hf) begin 
+        end else if (counter == 3'o7) begin 
             state_d = STAGE4;
         end else begin
             state_d = STAGE3;
@@ -598,7 +556,7 @@ always_comb begin
     STAGE4: begin
         if (rst) begin 
             state_d = SET;
-        end else if (counter == 4'hf) begin
+        end else if (counter == 3'o7) begin
             state_d = DONE;
         end else begin
             state_d = STAGE4;
@@ -611,11 +569,7 @@ always_comb begin
         // end else begin
         //     state_d = DONE;
         // end
-        if (counter == 4'hf) begin
-            state_d = SET;
-        end else begin
-            state_d = DONE;
-        end
+        state_d = SET;
     end
 
     default: begin
@@ -631,19 +585,19 @@ always_ff @(negedge clk) begin
         for (int i = 0; i < 4; i++) begin
             for (int j = 0; j < 4; j++) begin
                 for (int k = 0; k < 4; k++) begin
-                    freq_real[i+j*4+k*16+N_BFLY*0] <= out[0][i*16+j*4+k][FULL_WIDTH-1:WIDTH];
-                    freq_real[i+j*4+k*16+N_BFLY*1] <= out[1][i*16+j*4+k][FULL_WIDTH-1:WIDTH];
-                    freq_real[i+j*4+k*16+N_BFLY*2] <= out[2][i*16+j*4+k][FULL_WIDTH-1:WIDTH];
-                    freq_real[i+j*4+k*16+N_BFLY*3] <= out[3][i*16+j*4+k][FULL_WIDTH-1:WIDTH];
+                    freq_real[i+j*4+k*16+N_BFLY*0] <= out[0][i*16+j*4+k][FULL_WIDTH-1:WIDTH+1];
+                    freq_real[i+j*4+k*16+N_BFLY*1] <= out[1][i*16+j*4+k][FULL_WIDTH-1:WIDTH+1];
+                    freq_real[i+j*4+k*16+N_BFLY*2] <= out[2][i*16+j*4+k][FULL_WIDTH-1:WIDTH+1];
+                    freq_real[i+j*4+k*16+N_BFLY*3] <= out[3][i*16+j*4+k][FULL_WIDTH-1:WIDTH+1];
 
-                    freq_imag[i+j*4+k*16+N_BFLY*0] <= out[0][i*16+j*4+k][WIDTH-1:0];
-                    freq_imag[i+j*4+k*16+N_BFLY*1] <= out[1][i*16+j*4+k][WIDTH-1:0];
-                    freq_imag[i+j*4+k*16+N_BFLY*2] <= out[2][i*16+j*4+k][WIDTH-1:0];
-                    freq_imag[i+j*4+k*16+N_BFLY*3] <= out[3][i*16+j*4+k][WIDTH-1:0];
+                    freq_imag[i+j*4+k*16+N_BFLY*0] <= out[0][i*16+j*4+k][WIDTH:0];
+                    freq_imag[i+j*4+k*16+N_BFLY*1] <= out[1][i*16+j*4+k][WIDTH:0];
+                    freq_imag[i+j*4+k*16+N_BFLY*2] <= out[2][i*16+j*4+k][WIDTH:0];
+                    freq_imag[i+j*4+k*16+N_BFLY*3] <= out[3][i*16+j*4+k][WIDTH:0];
                 end
             end
         end
-    end else if (rst) begin
+    end else if (state_d == SET) begin
         for (int i = 0; i < N; i++) begin
             freq_real[i] <= 1'b0;
             freq_imag[i] <= 1'b0;

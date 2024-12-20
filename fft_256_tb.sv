@@ -4,7 +4,7 @@ module fft_256_tb (
     output logic clk
 );
 
-localparam WIDTH = 20;  // computation bit width
+localparam WIDTH = 18;  // computation bit width
 localparam N = 256;     // FFT points
 
 logic [WIDTH-1:0] time_samples [0:N-1] = '{

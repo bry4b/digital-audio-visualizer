@@ -13,9 +13,9 @@ module dav_top(
 );
 
 localparam N = 256;
-localparam N_STAGES = 4*8+2;		// 4 stages each with 8 substages, plus 2 stages for set and done
+localparam N_STAGES = 6*16;			// 4 computation stages each with 16 substages, plus 2 stages for set and done
 localparam MAX_FREQ = 20000;
-localparam WIDTH = 19;				// MAKE SURE THIS MATCHES DESIRED COMPUTATION WIDTH! UPDATE TWIDDLE FACTORS IF CHANGED!
+localparam WIDTH = 18;				// MAKE SURE THIS MATCHES DESIRED COMPUTATION WIDTH! UPDATE TWIDDLE FACTORS IF CHANGED!
 
 logic [11:0] time_samples [0:N-1];
 logic [WIDTH:0] freq_samples [0:N-1];
@@ -52,7 +52,7 @@ if (N == 16) begin
 		.freq_mag(freq_samples)
 	);
 end else if (N == 256) begin
-	clock_divider #(50000000, 60*40) FFT_CLOCK (.clk(clk_50MHz), .rst(~rst), .out_clk(fft_clk));
+	clock_divider #(50000000, 60*96) FFT_CLOCK (.clk(clk_50MHz), .rst(~rst), .out_clk(fft_clk));
 
 	fft_256 #(.WIDTH(WIDTH)) FFT (
 		.clk(fft_clk),
