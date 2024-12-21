@@ -2,16 +2,17 @@
 	Convert to histogram - will need to adjust later for 256 bins
 	Also need to fix screen tearing issue
 */
-module graphics_controller # ( 
-	parameter WIDTH = 12,
+module graphics_controller # (
+	parameter GFX_WIDTH = 6,
 	parameter N = 256, 
+	parameter USED_SAMPLES = 101,
 	parameter BARS = 16
 ) (
 	input clk_25MHz,	//	25 MHz clock
 	input rst,
 	input fft_done,
 	input [9:0] switches,
-	input [WIDTH:0] freq_samples [0:N-1],
+	input [GFX_WIDTH-1:0] freq_scaled [0:100],	// pass in scaled freq_samples for USED_SAMPLES = 101
 	output logic hsync,
 	output logic vsync,
 	output logic [3:0] red,
@@ -19,26 +20,31 @@ module graphics_controller # (
 	output logic [3:0] blue
 );
 
-localparam USED_BINS = 69;
+// VGA SIGNALS
 logic [9:0] hc_out;
 logic [9:0] vc_out;
-
 logic [5:0] x;
 logic [5:0] y;
 assign x = (hc_out >> 3)/5;	//	16 pixels wide
 assign y = vc_out >> 4;	//	30 pixels tall
-
 logic [7:0] color_to_vga;
 
-logic [0:USED_BINS-1] [5:0] freq_scaled; 
-logic [0:BARS-1] [5:0] bars ;
+// HISTOGRAM LOGIC
+// logic [0:100] [5:0] freq_scaled; 
+logic [0:BARS-1] [5:0] bars;
 
-genvar i;
-generate 
-	for (i = 0; i < USED_BINS; i++) begin : scale_freq
-		assign freq_scaled[i] = freq_samples[i] >> 4'd8;
-	end
-endgenerate
+// moving average control
+logic [1:0] ema_alpha;
+logic [3:0] ema_decay;
+assign ema_alpha = switches[1:0];
+assign ema_decay = (3'b1 << ema_alpha) - 1'b1;
+
+// genvar i;
+// generate 
+// 	for (i = 0; i < 101; i++) begin : scale_freq
+// 		assign freq_scaled[i] = freq_samples[i] >> 4'd8;
+// 	end
+// endgenerate
 
 // update bars on rising edge of vsync 
 logic [1:0] vsync_sr = 2'b00; 
@@ -53,86 +59,88 @@ always @(posedge clk_25MHz) begin
 			// for (int i = 0; i < 16; i++) begin
 			// 	bars[i] <= freq_scaled[i];
 			// end
-			bars[0] <= 		(freq_scaled[2]>>3) + ((bars[0]*7)>>3);
-			bars[1] <=		(freq_scaled[3]>>3) + ((bars[1]*7)>>3);
-			bars[2] <=		(freq_scaled[4]>>3) + ((bars[2]*7)>>3);
-			bars[3] <=		(freq_scaled[5]>>3) + ((bars[3]*7)>>3);
-			bars[4] <=		(freq_scaled[6]>>3) + ((bars[4]*7)>>3);
-			bars[5] <=		(freq_scaled[7]>>3) + ((bars[5]*7)>>3);
-			bars[6] <=		(freq_scaled[8]>>3) + ((bars[6]*7)>>3);
-			bars[7] <=	 ((((freq_scaled[9]/1)  + (freq_scaled[10]/1)))>>3) + ((bars[7]*7)>>3);
-			bars[8] <=	 ((((freq_scaled[11]/1) + (freq_scaled[12]/1)))>>3) + ((bars[8]*7)>>3);
-			bars[9] <=	(((((freq_scaled[13]/2) + (freq_scaled[14]/2))) + (((freq_scaled[15]/2) + (freq_scaled[16]/2))))>>3) + ((bars[9]*7)>>3);
-			bars[10]<= 	(((((freq_scaled[17]/2) + (freq_scaled[18]/2))) + (((freq_scaled[19]/2) + (freq_scaled[20]/2))))>>3) + ((bars[10]*7)>>3);
-			bars[11]<= ((((((freq_scaled[21]/4) + (freq_scaled[22]/4))) + (((freq_scaled[23]/4) + (freq_scaled[24]/4)))) + 
-			 			 ((((freq_scaled[25]/4) + (freq_scaled[26]/4))) + (((freq_scaled[27]/4) + (freq_scaled[28]/4)))))>>3) + ((bars[11]*7)>>3);
-			bars[12]<= ((((((freq_scaled[29]/4) + (freq_scaled[30]/4))) + (((freq_scaled[31]/4) + (freq_scaled[32]/4)))) + 
-						 ((((freq_scaled[33]/4) + (freq_scaled[34]/4))) + (((freq_scaled[35]/4) + (freq_scaled[36]/4)))))>>3) + ((bars[12]*7)>>3);
-			bars[13]<= ((((((freq_scaled[37]/8) + (freq_scaled[38]/8))) + (((freq_scaled[39]/8) + (freq_scaled[40]/8)))) +
-						 ((((freq_scaled[41]/8) + (freq_scaled[42]/8))) + (((freq_scaled[43]/8) + (freq_scaled[44]/8)))) +
-						 ((((freq_scaled[45]/8) + (freq_scaled[46]/8))) + (((freq_scaled[47]/8) + (freq_scaled[48]/8)))) +
-						 ((((freq_scaled[49]/8) + (freq_scaled[50]/8))) + (((freq_scaled[51]/8) + (freq_scaled[52]/8)))))>>3) + ((bars[13]*7)>>3);
-			bars[14]<= ((((((freq_scaled[53]/8) + (freq_scaled[54]/8))) + (((freq_scaled[55]/8) + (freq_scaled[56]/8)))) + 
-						 ((((freq_scaled[57]/8) + (freq_scaled[58]/8))) + (((freq_scaled[59]/8) + (freq_scaled[60]/8)))) + 
-						 ((((freq_scaled[61]/8) + (freq_scaled[62]/8))) + (((freq_scaled[63]/8) + (freq_scaled[64]/8)))) + 
-						 ((((freq_scaled[65]/8) + (freq_scaled[66]/8))) + (((freq_scaled[67]/8) + (freq_scaled[68]/8)))))>>3) + ((bars[14]*7)>>3);
-			bars[15]<=(((((((freq_scaled[69]/16) + (freq_scaled[70]/16)) + ((freq_scaled[71]/16) + (freq_scaled[72]/16))) + 
-						  (((freq_scaled[73]/16) + (freq_scaled[74]/16)) + ((freq_scaled[75]/16) + (freq_scaled[76]/16)))) + 
-						(((((freq_scaled[77]/16) + (freq_scaled[78]/16)) + ((freq_scaled[79]/16) + (freq_scaled[80]/16)))) + 
-						  (((freq_scaled[81]/16) + (freq_scaled[82]/16))) + ((freq_scaled[83]/16) + (freq_scaled[84]/16)))) + 
-						(((((freq_scaled[85]/16) + (freq_scaled[86]/16)) + ((freq_scaled[87]/16) + (freq_scaled[88]/16))) + 
-						  (((freq_scaled[89]/16) + (freq_scaled[90]/16)) + ((freq_scaled[91]/16) + (freq_scaled[92]/16)))) + 
-						(((((freq_scaled[93]/16) + (freq_scaled[94]/16)) + ((freq_scaled[95]/16) + (freq_scaled[96]/16)))) + 
-						  (((freq_scaled[97]/16) + (freq_scaled[98]/16))) + ((freq_scaled[99]/16) + (freq_scaled[100]/16)))))>>3) + ((bars[15]*7)>>3);
-						  
-			// bars[0] <= 	(freq_scaled[1]>>3) + ((bars[0]*7)>>3);
-			// bars[1] <= 	(freq_scaled[2]>>3) + ((bars[1]*7)>>3);
-			// bars[2] <= 	(freq_scaled[3]>>3) + ((bars[2]*7)>>3);
-			// bars[3] <= 	(freq_scaled[4]>>3) + ((bars[3]*7)>>3);
-			// bars[4] <= 	(freq_scaled[5]>>3) + ((bars[4]*7)>>3);
-			// bars[5] <= 	(freq_scaled[6]>>3) + ((bars[5]*7)>>3);
-			// bars[6] <= 	(freq_scaled[7]>>3) + ((bars[6]*7)>>3);
-			// bars[7] <= 	(freq_scaled[8]>>3) + ((bars[7]*7)>>3);
-			// bars[8] <= 	((((freq_scaled[9]/1)  + (freq_scaled[10]/1)))>>3) + ((bars[8]*7)>>3);
-			// bars[9] <= 	((((freq_scaled[11]/1) + (freq_scaled[12]/1)))>>3) + ((bars[9]*7)>>3);
-			// bars[10]<= 	((((freq_scaled[13]/2) + (freq_scaled[14]/2))) + (((freq_scaled[15]/2) + (freq_scaled[16]/2)))>>3) + ((bars[10]*7)>>3);
-			// bars[11]<= 	((((freq_scaled[17]/2) + (freq_scaled[18]/2))) + (((freq_scaled[19]/2) + (freq_scaled[20]/2)))>>3) + ((bars[11]*7)>>3);
-			// bars[12]<= (((((freq_scaled[21]/4) + (freq_scaled[22]/4))) + (((freq_scaled[23]/4) + (freq_scaled[24]/4)))) + 
-			// 			((((freq_scaled[25]/4) + (freq_scaled[26]/4))) + (((freq_scaled[27]/4) + (freq_scaled[28]/4))))>>3) + ((bars[12]*7)>>3);
-			// bars[13]<= (((((freq_scaled[29]/4) + (freq_scaled[30]/4))) + (((freq_scaled[31]/4) + (freq_scaled[32]/4)))) + 
-			// 			((((freq_scaled[33]/4) + (freq_scaled[34]/4))) + (((freq_scaled[35]/4) + (freq_scaled[36]/4))))>>3) + ((bars[13]*7)>>3);
-			// bars[14]<= (((((freq_scaled[37]/8) + (freq_scaled[38]/8))) + (((freq_scaled[39]/8) + (freq_scaled[40]/8)))) +
-			// 			((((freq_scaled[41]/8) + (freq_scaled[42]/8))) + (((freq_scaled[43]/8) + (freq_scaled[44]/8)))) +
-			// 			((((freq_scaled[45]/8) + (freq_scaled[46]/8))) + (((freq_scaled[47]/8) + (freq_scaled[48]/8)))) +
-			// 			((((freq_scaled[49]/8) + (freq_scaled[50]/8))) + (((freq_scaled[51]/8) + (freq_scaled[52]/8))))>>3) + ((bars[14]*7)>>3);
-			// bars[15]<= (((((freq_scaled[53]/8) + (freq_scaled[54]/8))) + (((freq_scaled[55]/8) + (freq_scaled[56]/8)))) + 
-			// 			((((freq_scaled[57]/8) + (freq_scaled[58]/8))) + (((freq_scaled[59]/8) + (freq_scaled[60]/8)))) + 
-			// 			((((freq_scaled[61]/8) + (freq_scaled[62]/8))) + (((freq_scaled[63]/8) + (freq_scaled[64]/8)))) + 
-			// 			((((freq_scaled[65]/8) + (freq_scaled[66]/8))) + (((freq_scaled[67]/8) + (freq_scaled[68]/8))))>>3) + ((bars[15]*7)>>3);
-			// bars[0] <= 	freq_scaled[1];
-			// bars[1] <= 	freq_scaled[2];
-			// bars[2] <= 	freq_scaled[3];
-			// bars[3] <= 	freq_scaled[4];
-			// bars[4] <= 	freq_scaled[5];
-			// bars[5] <= 	freq_scaled[6];
-			// bars[6] <= 	freq_scaled[7];
-			// bars[7] <= 	freq_scaled[8];
-			// bars[8] <= 	((freq_scaled[9] + freq_scaled[10]));
-			// bars[9] <= 	((freq_scaled[11] + freq_scaled[12]));
-			// bars[10]<= 	((freq_scaled[13] + freq_scaled[14])) + ((freq_scaled[15] + freq_scaled[16]));
-			// bars[11]<= 	((freq_scaled[17] + freq_scaled[18])) + ((freq_scaled[19] + freq_scaled[20]));
-			// bars[12]<= 	(((freq_scaled[21] + freq_scaled[22])) + ((freq_scaled[23] + freq_scaled[24]))) + 
-			// 			(((freq_scaled[25] + freq_scaled[26])) + ((freq_scaled[27] + freq_scaled[28])));
-			// bars[13]<= 	(((freq_scaled[29] + freq_scaled[30])) + ((freq_scaled[31] + freq_scaled[32]))) + 
-			// 			(((freq_scaled[33] + freq_scaled[34])) + ((freq_scaled[35] + freq_scaled[36])));
-			// bars[14]<= 	(((freq_scaled[37] + freq_scaled[38])) + ((freq_scaled[39] + freq_scaled[40]))) +
-			// 			(((freq_scaled[41] + freq_scaled[42])) + ((freq_scaled[43] + freq_scaled[44]))) +
-			// 			(((freq_scaled[45] + freq_scaled[46])) + ((freq_scaled[47] + freq_scaled[48]))) +
-			// 			(((freq_scaled[49] + freq_scaled[50])) + ((freq_scaled[51] + freq_scaled[52])));
-			// bars[15]<= 	(((freq_scaled[53] + freq_scaled[54])) + ((freq_scaled[55] + freq_scaled[56]))) + 
-			// 			(((freq_scaled[57] + freq_scaled[58])) + ((freq_scaled[59] + freq_scaled[60]))) + 
-			// 			(((freq_scaled[61] + freq_scaled[62])) + ((freq_scaled[63] + freq_scaled[64]))) + 
-			// 			(((freq_scaled[65] + freq_scaled[66])) + ((freq_scaled[67] + freq_scaled[68])));
+			if (USED_SAMPLES == 101) begin
+				bars[0] <= 		(freq_scaled[2]>>ema_alpha) + ((bars[0]*ema_decay)>>ema_alpha);
+				bars[1] <=		(freq_scaled[3]>>ema_alpha) + ((bars[1]*ema_decay)>>ema_alpha);
+				bars[2] <=		(freq_scaled[4]>>ema_alpha) + ((bars[2]*ema_decay)>>ema_alpha);
+				bars[3] <=		(freq_scaled[5]>>ema_alpha) + ((bars[3]*ema_decay)>>ema_alpha);
+				bars[4] <=		(freq_scaled[6]>>ema_alpha) + ((bars[4]*ema_decay)>>ema_alpha);
+				bars[5] <=		(freq_scaled[7]>>ema_alpha) + ((bars[5]*ema_decay)>>ema_alpha);
+				bars[6] <=		(freq_scaled[8]>>ema_alpha) + ((bars[6]*ema_decay)>>ema_alpha);
+				bars[7] <=	 ((((freq_scaled[9])    + (freq_scaled[10])))>>ema_alpha) + ((bars[7]*ema_decay)>>ema_alpha);
+				bars[8] <=	 ((((freq_scaled[11])   + (freq_scaled[12])))>>ema_alpha) + ((bars[8]*ema_decay)>>ema_alpha);
+				bars[9] <=	(((((freq_scaled[13]>>1) + (freq_scaled[14]>>1))) + (((freq_scaled[15]>>1) + (freq_scaled[16]>>1))))>>ema_alpha) + ((bars[9]*ema_decay)>>ema_alpha);
+				bars[10]<= 	(((((freq_scaled[17]>>1) + (freq_scaled[18]>>1))) + (((freq_scaled[19]>>1) + (freq_scaled[20]>>1))))>>ema_alpha) + ((bars[10]*ema_decay)>>ema_alpha);
+				bars[11]<= ((((((freq_scaled[21]>>2) + (freq_scaled[22]>>2))) + (((freq_scaled[23]>>2) + (freq_scaled[24]>>2)))) + 
+							((((freq_scaled[25]>>2) + (freq_scaled[26]>>2))) + (((freq_scaled[27]>>2) + (freq_scaled[28]>>2)))))>>ema_alpha) + ((bars[11]*ema_decay)>>ema_alpha);
+				bars[12]<= ((((((freq_scaled[29]>>2) + (freq_scaled[30]>>2))) + (((freq_scaled[31]>>2) + (freq_scaled[32]>>2)))) + 
+							((((freq_scaled[33]>>2) + (freq_scaled[34]>>2))) + (((freq_scaled[35]>>2) + (freq_scaled[36]>>2)))))>>ema_alpha) + ((bars[12]*ema_decay)>>ema_alpha);
+				bars[13]<= ((((((freq_scaled[37]>>3) + (freq_scaled[38]>>3))) + (((freq_scaled[39]>>3) + (freq_scaled[40]>>3)))) +
+							((((freq_scaled[41]>>3) + (freq_scaled[42]>>3))) + (((freq_scaled[43]>>3) + (freq_scaled[44]>>3)))) +
+							((((freq_scaled[45]>>3) + (freq_scaled[46]>>3))) + (((freq_scaled[47]>>3) + (freq_scaled[48]>>3)))) +
+							((((freq_scaled[49]>>3) + (freq_scaled[50]>>3))) + (((freq_scaled[51]>>3) + (freq_scaled[52]>>3)))))>>ema_alpha) + ((bars[13]*ema_decay)>>ema_alpha);
+				bars[14]<= ((((((freq_scaled[53]>>3) + (freq_scaled[54]>>3))) + (((freq_scaled[55]>>3) + (freq_scaled[56]>>3)))) + 
+							((((freq_scaled[57]>>3) + (freq_scaled[58]>>3))) + (((freq_scaled[59]>>3) + (freq_scaled[60]>>3)))) + 
+							((((freq_scaled[61]>>3) + (freq_scaled[62]>>3))) + (((freq_scaled[63]>>3) + (freq_scaled[64]>>3)))) + 
+							((((freq_scaled[65]>>3) + (freq_scaled[66]>>3))) + (((freq_scaled[67]>>3) + (freq_scaled[68]>>3)))))>>ema_alpha) + ((bars[14]*ema_decay)>>ema_alpha);
+				bars[15]<=(((((((freq_scaled[69]>>4) | (freq_scaled[70]>>4))  | ((freq_scaled[71]>>4) | (freq_scaled[72]>>4))) + 
+							(((freq_scaled[73]>>4) | (freq_scaled[74]>>4))  | ((freq_scaled[75]>>4) | (freq_scaled[76]>>4)))) + 
+							(((((freq_scaled[77]>>4) | (freq_scaled[78]>>4))  | ((freq_scaled[79]>>4) | (freq_scaled[80]>>4)))) + 
+							(((freq_scaled[81]>>4) | (freq_scaled[82]>>4))) | ((freq_scaled[83]>>4) | (freq_scaled[84]>>4)))) + 
+							(((((freq_scaled[85]>>4) | (freq_scaled[86]>>4))  | ((freq_scaled[87]>>4) | (freq_scaled[88]>>4))) + 
+							(((freq_scaled[89]>>4) | (freq_scaled[90]>>4))  | ((freq_scaled[91]>>4) | (freq_scaled[92]>>4)))) + 
+							(((((freq_scaled[93]>>4) | (freq_scaled[94]>>4))  | ((freq_scaled[95]>>4) | (freq_scaled[96]>>4)))) + 
+							(((freq_scaled[97]>>4) | (freq_scaled[98]>>4))) | ((freq_scaled[99]>>4) | (freq_scaled[100]>>4)))))>>ema_alpha) + ((bars[15]*ema_decay)>>ema_alpha);
+			end else if (USED_SAMPLES == 69) begin
+				bars[0] <= 		(freq_scaled[1]>>ema_alpha) + ((bars[0]*ema_decay)>>ema_alpha);
+				bars[1] <=		(freq_scaled[2]>>ema_alpha) + ((bars[1]*ema_decay)>>ema_alpha);
+				bars[2] <=		(freq_scaled[3]>>ema_alpha) + ((bars[2]*ema_decay)>>ema_alpha);
+				bars[3] <=		(freq_scaled[4]>>ema_alpha) + ((bars[3]*ema_decay)>>ema_alpha);
+				bars[4] <=		(freq_scaled[5]>>ema_alpha) + ((bars[4]*ema_decay)>>ema_alpha);
+				bars[5] <=		(freq_scaled[6]>>ema_alpha) + ((bars[5]*ema_decay)>>ema_alpha);
+				bars[6] <=		(freq_scaled[7]>>ema_alpha) + ((bars[6]*ema_decay)>>ema_alpha);
+				bars[7] <=		(freq_scaled[8]>>ema_alpha) + ((bars[7]*ema_decay)>>ema_alpha);
+				bars[8] <=	 ((((freq_scaled[9])    + (freq_scaled[10])))>>ema_alpha) + ((bars[8]*ema_decay)>>ema_alpha);
+				bars[9] <= 	 ((((freq_scaled[11])   + (freq_scaled[12])))>>ema_alpha) + ((bars[9]*ema_decay)>>ema_alpha);
+				bars[10]<=	(((((freq_scaled[13]>>1) + (freq_scaled[14]>>1))) + (((freq_scaled[15]>>1) + (freq_scaled[16]>>1))))>>ema_alpha) + ((bars[10]*ema_decay)>>ema_alpha);
+				bars[11]<=  (((((freq_scaled[17]>>1) + (freq_scaled[18]>>1))) + (((freq_scaled[19]>>1) + (freq_scaled[20]>>1))))>>ema_alpha) + ((bars[11]*ema_decay)>>ema_alpha);
+				bars[12]<= ((((((freq_scaled[21]>>2) + (freq_scaled[22]>>2))) + (((freq_scaled[23]>>2) + (freq_scaled[24]>>2)))) + 
+						 	 ((((freq_scaled[25]>>2) + (freq_scaled[26]>>2))) + (((freq_scaled[27]>>2) + (freq_scaled[28]>>2)))))>>ema_alpha) + ((bars[12]*ema_decay)>>ema_alpha);
+				bars[13]<= ((((((freq_scaled[29]>>2) + (freq_scaled[30]>>2))) + (((freq_scaled[31]>>2) + (freq_scaled[32]>>2)))) + 
+						 	 ((((freq_scaled[33]>>2) + (freq_scaled[34]>>2))) + (((freq_scaled[35]>>2) + (freq_scaled[36]>>2)))))>>ema_alpha) + ((bars[13]*ema_decay)>>ema_alpha);
+				bars[14]<= ((((((freq_scaled[37]>>3) + (freq_scaled[38]>>3))) + (((freq_scaled[39]>>3) + (freq_scaled[40]>>3)))) +
+						 	 ((((freq_scaled[41]>>3) + (freq_scaled[42]>>3))) + (((freq_scaled[43]>>3) + (freq_scaled[44]>>3)))) +
+						 	 ((((freq_scaled[45]>>3) + (freq_scaled[46]>>3))) + (((freq_scaled[47]>>3) + (freq_scaled[48]>>3)))) +
+						 	 ((((freq_scaled[49]>>3) + (freq_scaled[50]>>3))) + (((freq_scaled[51]>>3) + (freq_scaled[52]>>3)))))>>ema_alpha) + ((bars[14]*ema_decay)>>ema_alpha);
+				bars[15]<= ((((((freq_scaled[53]>>3) + (freq_scaled[54]>>3))) + (((freq_scaled[55]>>3) + (freq_scaled[56]>>3)))) + 
+						 	 ((((freq_scaled[57]>>3) + (freq_scaled[58]>>3))) + (((freq_scaled[59]>>3) + (freq_scaled[60]>>3)))) + 
+						 	 ((((freq_scaled[61]>>3) + (freq_scaled[62]>>3))) + (((freq_scaled[63]>>3) + (freq_scaled[64]>>3)))) + 
+						 	 ((((freq_scaled[65]>>3) + (freq_scaled[66]>>3))) + (((freq_scaled[67]>>3) + (freq_scaled[68]>>3)))))>>ema_alpha) + ((bars[15]*ema_decay)>>ema_alpha);
+			end
+			// bars[0] <= 	(freq_scaled[1]>>ema_alpha) + ((bars[0]*ema_decay)>>ema_alpha);
+			// bars[1] <= 	(freq_scaled[2]>>ema_alpha) + ((bars[1]*ema_decay)>>ema_alpha);
+			// bars[2] <= 	(freq_scaled[3]>>ema_alpha) + ((bars[2]*ema_decay)>>ema_alpha);
+			// bars[3] <= 	(freq_scaled[4]>>ema_alpha) + ((bars[3]*ema_decay)>>ema_alpha);
+			// bars[4] <= 	(freq_scaled[5]>>ema_alpha) + ((bars[4]*ema_decay)>>ema_alpha);
+			// bars[5] <= 	(freq_scaled[6]>>ema_alpha) + ((bars[5]*ema_decay)>>ema_alpha);
+			// bars[6] <= 	(freq_scaled[7]>>ema_alpha) + ((bars[6]*ema_decay)>>ema_alpha);
+			// bars[7] <= 	(freq_scaled[8]>>ema_alpha) + ((bars[7]*ema_decay)>>ema_alpha);
+			// bars[8] <= 	((((freq_scaled[9])  + (freq_scaled[10])))>>ema_alpha) + ((bars[8]*ema_decay)>>ema_alpha);
+			// bars[9] <= 	((((freq_scaled[11]) + (freq_scaled[12])))>>ema_alpha) + ((bars[9]*ema_decay)>>ema_alpha);
+			// bars[10]<= 	((((freq_scaled[13]>>1) + (freq_scaled[14]>>1))) + (((freq_scaled[15]>>1) + (freq_scaled[16]>>1)))>>ema_alpha) + ((bars[10]*ema_decay)>>ema_alpha);
+			// bars[11]<= 	((((freq_scaled[17]>>1) + (freq_scaled[18]>>1))) + (((freq_scaled[19]>>1) + (freq_scaled[20]>>1)))>>ema_alpha) + ((bars[11]*ema_decay)>>ema_alpha);
+			// bars[12]<= (((((freq_scaled[21]>>2) + (freq_scaled[22]>>2))) + (((freq_scaled[23]>>2) + (freq_scaled[24]>>2)))) + 
+			// 			((((freq_scaled[25]>>2) + (freq_scaled[26]>>2))) + (((freq_scaled[27]>>2) + (freq_scaled[28]>>2))))>>ema_alpha) + ((bars[12]*ema_decay)>>ema_alpha);
+			// bars[13]<= (((((freq_scaled[29]>>2) + (freq_scaled[30]>>2))) + (((freq_scaled[31]>>2) + (freq_scaled[32]>>2)))) + 
+			// 			((((freq_scaled[33]>>2) + (freq_scaled[34]>>2))) + (((freq_scaled[35]>>2) + (freq_scaled[36]>>2))))>>ema_alpha) + ((bars[13]*ema_decay)>>ema_alpha);
+			// bars[14]<= (((((freq_scaled[37]>>3) + (freq_scaled[38]>>3))) + (((freq_scaled[39]>>3) + (freq_scaled[40]>>3)))) +
+			// 			((((freq_scaled[41]>>3) + (freq_scaled[42]>>3))) + (((freq_scaled[43]>>3) + (freq_scaled[44]>>3)))) +
+			// 			((((freq_scaled[45]>>3) + (freq_scaled[46]>>3))) + (((freq_scaled[47]>>3) + (freq_scaled[48]>>3)))) +
+			// 			((((freq_scaled[49]>>3) + (freq_scaled[50]>>3))) + (((freq_scaled[51]>>3) + (freq_scaled[52]>>3))))>>ema_alpha) + ((bars[14]*ema_decay)>>ema_alpha);
+			// bars[15]<= (((((freq_scaled[53]>>3) + (freq_scaled[54]>>3))) + (((freq_scaled[55]>>3) + (freq_scaled[56]>>3)))) + 
+			// 			((((freq_scaled[57]>>3) + (freq_scaled[58]>>3))) + (((freq_scaled[59]>>3) + (freq_scaled[60]>>3)))) + 
+			// 			((((freq_scaled[61]>>3) + (freq_scaled[62]>>3))) + (((freq_scaled[63]>>3) + (freq_scaled[64]>>3)))) + 
+			// 			((((freq_scaled[65]>>3) + (freq_scaled[66]>>3))) + (((freq_scaled[67]>>3) + (freq_scaled[68]>>3))))>>ema_alpha) + ((bars[15]*ema_decay)>>ema_alpha);
 		end
 	end
 end

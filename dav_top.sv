@@ -16,9 +16,12 @@ localparam N = 256;
 localparam N_STAGES = 6*16;			// 4 computation stages each with 16 substages, plus 2 stages for set and done
 localparam MAX_FREQ = 20000;
 localparam WIDTH = 18;				// MAKE SURE THIS MATCHES DESIRED COMPUTATION WIDTH! UPDATE TWIDDLE FACTORS IF CHANGED!
+localparam USED_SAMPLES = 69;		// 69 samples are placed in 16 bins
+localparam GFX_WIDTH = 6;			// only top 6 bits passed into graphics for frequency scaling
 
 logic [11:0] time_samples [0:N-1];
 logic [WIDTH:0] freq_samples [0:N-1];
+logic [GFX_WIDTH-1:0] freq_scaled [0:100];
 
 logic clk_25MHz;
 logic fft_clk;
@@ -65,12 +68,20 @@ end else if (N == 256) begin
 end
 endgenerate 
 
-graphics_controller #(.N(N)) GFX (
+// scale frequencies before passing into graphics controller
+genvar i;
+generate 
+	for (i = 0; i < 101; i++) begin : scale_freq
+		assign freq_scaled[i] = freq_samples[i] >> switches[9:6];
+	end
+endgenerate
+
+graphics_controller #(.N(N), .USED_SAMPLES(USED_SAMPLES)) GFX (
 	.clk_25MHz(clk_25MHz), 
 	.rst(~rst), 
 	.fft_done(done),
 	.switches(switches),
-	.freq_samples(freq_samples), 
+	.freq_scaled(freq_scaled), 
 	.hsync(hsync), 
 	.vsync(vsync), 
 	.red(red), 
