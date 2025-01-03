@@ -1,3 +1,16 @@
+/*
+TOP module for 256-pt digital audio visualizer sampling at 20 kHz. first 69 frequencies are placed in 16 bins for display on VGA monitor. exponential averaging is used to smooth out display bars.
+
+MAX4466 adjustable gain microphone amplifier (https://www.adafruit.com/product/1063)
+	OUT -> ADC0 (leftmost header pin of JP8)
+	GND -> GND
+	VCC -> 3.3V (CHECK VOLTAGE LEVELS BEFORE CONNECTING)
+
+switches [9:6] control frequency scaling for display. 0x0 = no scaling, 0x1 = divide by 2, 0x2 = divide by 4, 0x3 = divide by 8, etc. tested with these switches set to 0x8, smaller values result in a lot of noise. 
+
+switches [1:0] control the exponential averaging factor. 0x0 = no averaging, 0x1 = 1/2, 0x2 = 1/4, 0x3 = 1/8, etc. tested with these switches set to 0x2. 
+
+*/
 module dav_top(
 	input clk_50MHz,
 	input clk_adc,

@@ -1,7 +1,3 @@
-/*
-	Convert to histogram - will need to adjust later for 256 bins
-	Also need to fix screen tearing issue
-*/
 module graphics_controller # (
 	parameter GFX_WIDTH = 6,
 	parameter N = 256, 
