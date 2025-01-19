@@ -17,8 +17,7 @@ module fft_256 #(
     each stage is split into four sub-stages to perform computations in parallel. 
     12b twiddle factor (plus sign bit) is necessary to retain uniqueness of finest granularity twiddle factors.
     increased width yields higher accuracy at the cost of more resources.
-    this module assumes a 12b input bus of time-domain data, and outputs a 14b bus of approximated complex frequency magnitudes. 
-    computations are performed using 13b numbers to prevent signed overflow
+    this module assumes a 18b input bus of time-domain data, and outputs a 19b bus of approximated complex frequency magnitudes. 
 
     TODO: look into loading ROM for twiddle factors? not sure if read latency will be an issue, currently stored in logic array
 
