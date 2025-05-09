@@ -6,6 +6,7 @@ module mic_sampler # (
     input rst,
     output reg [11:0] samples [0:N-1]
 );
+	localparam VCC_HALF_VALUE = 1352; // for 3v3 VCC
     reg [11:0] sample;
     reg mic_sampling_clk;
 	
@@ -22,7 +23,7 @@ module mic_sampler # (
     adc ADC (.CLOCK(clk_10MHz), .CH0(sample), .RESET(0)); 
 
     always @(posedge mic_sampling_clk) begin
-        samples[N-1] <= sample;
+        samples[N-1] <= sample - VCC_HALF_VALUE;
         for (int i = 0; i < N-1; i++) begin
             samples[i] <= samples[i+1];
         end

@@ -1,5 +1,6 @@
 module fft_256 #(
     parameter WIDTH = 18,
+    parameter USED_SAMPLES = 256, // number of frequency bins to output
     parameter N = 256  // must be power of 4
 ) (
     input clk,
@@ -8,7 +9,7 @@ module fft_256 #(
     output done,
 
     input [WIDTH-1:0] time_samples [0:N-1],
-    output logic [WIDTH:0] freq_mag [0:N-1]
+    output logic [WIDTH:0] freq_mag [0:USED_SAMPLES-1]
 );
 
 /*
@@ -17,8 +18,7 @@ module fft_256 #(
     each stage is split into four sub-stages to perform computations in parallel. 
     12b twiddle factor (plus sign bit) is necessary to retain uniqueness of finest granularity twiddle factors.
     increased width yields higher accuracy at the cost of more resources.
-    this module assumes a 12b input bus of time-domain data, and outputs a 14b bus of approximated complex frequency magnitudes. 
-    computations are performed using 13b numbers to prevent signed overflow
+    this module assumes a 12b input bus of time-domain data, and outputs a 18b bus of approximated complex frequency magnitudes. 
 
     TODO: look into loading ROM for twiddle factors? not sure if read latency will be an issue, currently stored in logic array
 
@@ -249,10 +249,10 @@ logic [0:189] [FULL_WIDTH-1:0] w_256 = '{
 // frequency output magnitude estimation
 logic [WIDTH-1:0] freq_real [0:N-1];
 logic [WIDTH-1:0] freq_imag [0:N-1];
-mag_est #(.WIDTH(WIDTH), .N(N)) MAG ( 
-	.real_in(freq_real), 
-	.imag_in(freq_imag), 
-	.magnitude(freq_mag)
+mag_est #(.WIDTH(WIDTH), .N(USED_SAMPLES)) MAG ( 
+	.real_in(freq_real[0:USED_SAMPLES-1]), 
+	.imag_in(freq_imag[0:USED_SAMPLES-1]), 
+	.magnitude(freq_mag[0:USED_SAMPLES-1])
 );
 
 typedef enum logic [2:0] {SET, STAGE1, STAGE2, STAGE3, STAGE4, DONE} state_t;
